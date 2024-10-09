@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from django.views.generic import DetailView
 
-# Create your views here.
+from portfolio.models import PublishedMedia
+
+class PublishedMediaDetailView(DetailView):
+    content_type = "text/html"
+    context_object_name = "media"
+    http_method_names = ["get", "post"]
+    model = PublishedMedia
+    queryset = PublishedMedia.objects.filter(hidden__exact=False)
