@@ -29,6 +29,18 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+    "bucket": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+}
+
 
 # Application definition
 
@@ -42,6 +54,7 @@ INSTALLED_APPS = [
     "tailwind",
     "theme",
     "django_browser_reload",
+    "portfolio.apps.PortfolioConfig",
 ]
 
 MIDDLEWARE = [

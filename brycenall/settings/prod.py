@@ -27,6 +27,30 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+            "bucket_name": "big-static",
+            "object_parameters": {},
+            "region_name": "us-east-2",
+            "verify": False,
+        },
+    },
+    "bucket": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+            "bucket_name": "brycenall-bucket",
+            "object_parameters": {},
+            "region_name": "us-east-2",
+            "verify": False,
+        },
+    },
+}
+
 
 # Application definition
 
@@ -37,6 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "portfolio.apps.PortfolioConfig",
 ]
 
 MIDDLEWARE = [
