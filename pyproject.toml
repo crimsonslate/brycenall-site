@@ -1,0 +1,52 @@
+[project]
+version = "1.0.0"
+name = "brycenall-site"
+description = "Bryce Nall's website."
+requires-python = ">= 3.12"
+readme = { file = "README.md", content-type = "text/markdown" }
+
+authors = [
+    { name = "Blake Nall", email = "dev@darthnall.com" },
+    { name = "Constantine Kapatos", email = "kapatos.constantine@gmail.com" },
+]
+
+[project.urls]
+Repository = "https://github.com/crimsonslate/brycenall-site"
+
+[tool.ruff]
+exclude = [
+    ".git",
+    ".gitignore",
+    ".venv",
+    "venv",
+    ".vscode",
+    "__pycache__",
+    "node_modules",
+    "site-packages",
+    "dist",
+    "build",
+]
+
+line-length = 88
+indent-width = 4
+
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E4",
+    "E7",
+    "E9",
+    "F",
+]
+ignore = []
+fixable = [ "ALL" ]
+unfixable = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
