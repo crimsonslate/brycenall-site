@@ -1,4 +1,8 @@
+from typing import Any
+
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
+from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 from portfolio.models import PublishedMedia
 
@@ -8,7 +12,14 @@ class PublishedMediaDetailView(DetailView):
     context_object_name = "media"
     http_method_names = ["get", "post"]
     model = PublishedMedia
-    queryset = PublishedMedia.objects.filter(hidden__exact=False)
+
+    def get_context_data(self, *args, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(*args, **kwargs)
+        context["comments"] = self.get_object().comments
+        return context
+
+    def add_comment(self, user: User, text: str) -> HttpResponse:
+        raise NotImplementedError()
 
 class PublishedMediaEditView(UpdateView):
     template_name = "portfolio/media_edit.html"
@@ -16,7 +27,6 @@ class PublishedMediaEditView(UpdateView):
     context_object_name = "media"
     http_method_names = ["get", "post"]
     model = PublishedMedia
-    queryset = PublishedMedia.objects.filter(hidden__exact=False)
 
 class PublishedMediaDeleteView(DeleteView):
     template_name = "portfolio/media_delete.html"
@@ -24,7 +34,6 @@ class PublishedMediaDeleteView(DeleteView):
     context_object_name = "media"
     http_method_names = ["get", "post"]
     model = PublishedMedia
-    queryset = PublishedMedia.objects.filter(hidden__exact=False)
 
 class PublishedMediaUploadView(CreateView):
     template_name = "portfolio/media_upload.html"
@@ -32,4 +41,3 @@ class PublishedMediaUploadView(CreateView):
     context_object_name = "media"
     http_method_names = ["get", "post"]
     model = PublishedMedia
-    queryset = PublishedMedia.objects.filter(hidden__exact=False)

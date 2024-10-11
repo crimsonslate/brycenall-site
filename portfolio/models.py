@@ -50,7 +50,7 @@ class PublishedMediaComment(models.Model):
         verbose_name_plural = "comments"
 
     media = models.ForeignKey(PublishedMedia, on_delete=models.PROTECT)
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
     text = models.TextField(max_length=2048)
     likes = models.PositiveIntegerField(default=0)
     dislikes = models.PositiveIntegerField(default=0)
