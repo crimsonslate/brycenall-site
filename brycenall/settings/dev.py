@@ -23,6 +23,8 @@ INTERNAL_IPS = ["127.0.0.1"]
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-#ezlo7tqc&h07y4g^1i3jqg78^z*jgsyd11kq812^=k4%!lk6b'
+MEDIA_ROOT = "media/"
+MEDIA_URL = "/media/"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

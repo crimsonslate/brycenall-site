@@ -1,12 +1,12 @@
 {% extends "portfolio/layout.html" %}
 {% block content %}
-    {% if media._type == "video" %}
+    {% if media.is_image %}
+    <img class="h-auto max-w-full" src="{{ media.url }}" alt="{{ media.title }}">
+    {% else %}
     <video class="w-full" controls>
         <span class="sr-only">{{ media.title }}</span>
         <source src="{{ media.url }}" type="video/mp4">
           Your browser does not support the video tag.
     </video>
-    {% elif media._type == "image" %}
-    <img class="h-auto max-w-full" src="{{ media.url }}" alt="{{ media.title }}">
     {% endif %}
 {% endblock content %}
