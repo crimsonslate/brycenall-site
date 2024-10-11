@@ -8,4 +8,4 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-   urlpatterns.append(path("__reload__/", include("django_browser_reload.urls"))) 
+    urlpatterns.append(path("__reload__/", include("django_browser_reload.urls")))

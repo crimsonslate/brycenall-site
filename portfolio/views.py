@@ -1,11 +1,18 @@
 from typing import Any
 
-from django.views.generic import CreateView, DeleteView, DetailView, FormView, UpdateView
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    FormView,
+    UpdateView,
+)
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 
 from portfolio.models import PublishedMedia
 from portfolio.forms import CommentForm
+
 
 class MediaDetailView(DetailView, FormView):
     form_class = CommentForm
@@ -23,6 +30,7 @@ class MediaDetailView(DetailView, FormView):
     def add_comment(self, user: User, text: str) -> HttpResponse:
         raise NotImplementedError()
 
+
 class MediaEditView(UpdateView):
     template_name = "portfolio/media_edit.html"
     content_type = "text/html"
@@ -30,12 +38,14 @@ class MediaEditView(UpdateView):
     http_method_names = ["get", "post"]
     model = PublishedMedia
 
+
 class MediaDeleteView(DeleteView):
     template_name = "portfolio/media_delete.html"
     content_type = "text/html"
     context_object_name = "media"
     http_method_names = ["get", "post"]
     model = PublishedMedia
+
 
 class MediaUploadView(CreateView):
     template_name = "portfolio/media_upload.html"
