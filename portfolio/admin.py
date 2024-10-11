@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from portfolio.models import PublishedMedia, PublishedMediaComment
+from portfolio.models import PublishedMedia, Comment
 
 
 admin.site.register(PublishedMedia)
-admin.site.register(PublishedMediaComment)
+admin.site.register(Comment)
