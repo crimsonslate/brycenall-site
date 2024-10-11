@@ -22,18 +22,20 @@ STORAGES = {
     "staticfiles": {
         "BACKEND": "storages.backends.s3.S3Storage",
         "OPTIONS": {
-            "bucket_name": "big-static",
-            "object_parameters": {},
-            "region_name": "us-east-2",
+            "location": "static/",
+            "session_profile": ...,
+            "bucket_name": "brycenall-bucket",
+            "region_name": "us-east-1",
             "verify": False,
         },
     },
     "bucket": {
         "BACKEND": "storages.backends.s3.S3Storage",
         "OPTIONS": {
+            "location": "media/",
+            "session_profile": ...,
             "bucket_name": "brycenall-bucket",
-            "object_parameters": {},
-            "region_name": "us-east-2",
+            "region_name": "us-east-1",
             "verify": False,
         },
     },
