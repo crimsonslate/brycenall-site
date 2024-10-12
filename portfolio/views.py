@@ -18,7 +18,6 @@ class MediaDetailView(DetailView, FormView):
     form_class = CommentForm
     template_name = "portfolio/media_detail.html"
     content_type = "text/html"
-    context_object_name = "media"
     http_method_names = ["get", "post"]
     model = Media
 
@@ -34,7 +33,6 @@ class MediaDetailView(DetailView, FormView):
 class MediaEditView(UpdateView):
     template_name = "portfolio/media_edit.html"
     content_type = "text/html"
-    context_object_name = "media"
     http_method_names = ["get", "post"]
     model = Media
 
@@ -42,15 +40,13 @@ class MediaEditView(UpdateView):
 class MediaDeleteView(DeleteView):
     template_name = "portfolio/media_delete.html"
     content_type = "text/html"
-    context_object_name = "media"
     http_method_names = ["get", "post"]
     model = Media
 
 
-class MediaUploadView(CreateView, FormView):
+class MediaUploadView(CreateView):
     form_class = MediaUploadForm
     template_name = "portfolio/media_upload.html"
     content_type = "text/html"
-    context_object_name = "media"
     http_method_names = ["get", "post"]
     model = Media

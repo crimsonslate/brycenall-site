@@ -1,12 +1,12 @@
 {% extends "portfolio/layout.html" %}
 {% block content %}
-    {% if media.is_image %}
-    <img class="h-auto max-w-full" src="{{ media.url }}" alt="{{ media.title }}">
-    {% else %}
-    <video class="w-full" controls>
-        <span class="sr-only">{{ media.title }}</span>
-        <source src="{{ media.url }}" type="video/mp4">
-          Your browser does not support the video tag.
-    </video>
-    {% endif %}
+    <div class="grid">
+        <form method="post" action="{% url "media upload" %}" class="max-w-sm mx-auto">
+            {% csrf_token %}
+            {{ form }}
+        </form>
+        <button class="py-4 px-12 rounded-sm max-w-screen-md bg-blue-400 hover:bg-blue-200 transition-colors duration-150 hover:text-gray-500" type="submit">
+            Submit
+        </button>
+    </div>
 {% endblock content %}
