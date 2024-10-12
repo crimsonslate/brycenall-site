@@ -1,5 +1,7 @@
 from typing import Any
 
+from django.contrib.auth.models import User
+from django.http import HttpResponse
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -7,11 +9,9 @@ from django.views.generic import (
     FormView,
     UpdateView,
 )
-from django.http import HttpResponse
-from django.contrib.auth.models import User
 
-from portfolio.models import PublishedMedia
-from portfolio.forms import CommentForm
+from portfolio.models import Media
+from portfolio.forms import CommentForm, MediaUploadForm
 
 
 class MediaDetailView(DetailView, FormView):
@@ -20,11 +20,11 @@ class MediaDetailView(DetailView, FormView):
     content_type = "text/html"
     context_object_name = "media"
     http_method_names = ["get", "post"]
-    model = PublishedMedia
+    model = Media
 
     def get_context_data(self, *args, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(*args, **kwargs)
-        context["comments"] = self.get_object().comments
+        # context["comments"] = self.get_object().comments
         return context
 
     def add_comment(self, user: User, text: str) -> HttpResponse:
@@ -36,7 +36,7 @@ class MediaEditView(UpdateView):
     content_type = "text/html"
     context_object_name = "media"
     http_method_names = ["get", "post"]
-    model = PublishedMedia
+    model = Media
 
 
 class MediaDeleteView(DeleteView):
@@ -44,12 +44,13 @@ class MediaDeleteView(DeleteView):
     content_type = "text/html"
     context_object_name = "media"
     http_method_names = ["get", "post"]
-    model = PublishedMedia
+    model = Media
 
 
-class MediaUploadView(CreateView):
+class MediaUploadView(CreateView, FormView):
+    form_class = MediaUploadForm
     template_name = "portfolio/media_upload.html"
     content_type = "text/html"
     context_object_name = "media"
     http_method_names = ["get", "post"]
-    model = PublishedMedia
+    model = Media

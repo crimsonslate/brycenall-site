@@ -20,11 +20,7 @@ class Comment(models.Model):
         self.dislikes += 1
 
 
-class PublishedMedia(models.Model):
-    class Meta:
-        verbose_name = "Published Media"
-        verbose_name_plural = "Published Medias"
-
+class Media(models.Model):
     title = models.CharField(max_length=256)
     source = models.FileField(storage=storages["bucket"])
     thumb = models.FileField(
