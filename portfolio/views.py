@@ -1,7 +1,6 @@
 from typing import Any
 
 from django.contrib.auth.models import User
-from django.http import HttpResponse
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -10,7 +9,7 @@ from django.views.generic import (
     UpdateView,
 )
 
-from portfolio.models import Media
+from portfolio.models import Media, Comment
 from portfolio.forms import CommentForm, MediaUploadForm
 
 
@@ -26,8 +25,12 @@ class MediaDetailView(DetailView, FormView):
         context["comments"] = self.get_object().comments
         return context
 
-    def add_comment(self, user: User, text: str) -> HttpResponse:
-        raise NotImplementedError()
+    def add_comment(self, user: User, text: str) -> None:
+        comment = Comment.objects.create(user=user, text=text)
+        media = self.get_object()
+        media.add(comment)
+        media.save()
+        return
 
 
 class MediaEditView(UpdateView):
