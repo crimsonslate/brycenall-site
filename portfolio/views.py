@@ -1,6 +1,8 @@
 from typing import Any
 
 from django.contrib.auth.models import User
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse_lazy
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -25,12 +27,14 @@ class MediaDetailView(DetailView, FormView):
         context["comments"] = self.get_object().comments
         return context
 
-    def add_comment(self, user: User, text: str) -> None:
-        comment = Comment.objects.create(user=user, text=text)
+    def form_valid(self, form: CommentForm) -> HttpResponseRedirect:
+        comment = Comment.objects.create(
+            user=form.cleaned_data["user"], text=form.cleaned_data["text"]
+        )
         media = self.get_object()
         media.add(comment)
         media.save()
-        return
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class MediaEditView(UpdateView):
