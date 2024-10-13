@@ -39,7 +39,9 @@ class Media(models.Model):
         default=None,
     )
     desc = models.TextField(verbose_name="description", max_length=2048)
-    slug = models.SlugField(max_length=64, blank=True, null=True, default=None)
+    slug = models.SlugField(
+        max_length=64, unique=True, blank=True, null=True, default=None
+    )
 
     views = models.PositiveIntegerField(default=0)
     likes = models.PositiveIntegerField(default=0)
