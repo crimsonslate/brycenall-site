@@ -23,7 +23,7 @@ class MediaDetailView(DetailView, FormView):
 
     def get_context_data(self, *args, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(*args, **kwargs)
-        # context["comments"] = self.get_object().comments
+        context["comments"] = self.get_object().comments
         return context
 
     def add_comment(self, user: User, text: str) -> HttpResponse:
