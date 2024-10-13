@@ -5,8 +5,6 @@ from django.core.files.storage import storages
 from django.contrib.auth import get_user_model
 from datetime import date
 
-from portfolio.validators import validate_media_file_extension
-
 
 class Comment(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
@@ -31,9 +29,7 @@ class Comment(models.Model):
 
 class Media(models.Model):
     title = models.CharField(max_length=256)
-    source = models.FileField(
-        storage=storages["bucket"], validators=[validate_media_file_extension]
-    )
+    source = models.FileField(storage=storages["bucket"])
     thumb = models.ImageField(
         verbose_name="thumbnail",
         storage=storages["bucket"],
