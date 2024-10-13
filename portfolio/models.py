@@ -1,8 +1,11 @@
 from django.db import models, transaction
 from django.utils import timezone
+from django.utils.text import slugify
 from django.core.files.storage import storages
 from django.contrib.auth import get_user_model
 from datetime import date
+
+from portfolio.validators import validate_media_file_extension
 
 
 class Comment(models.Model):
@@ -28,7 +31,9 @@ class Comment(models.Model):
 
 class Media(models.Model):
     title = models.CharField(max_length=256)
-    source = models.FileField(storage=storages["bucket"])
+    source = models.FileField(
+        storage=storages["bucket"], validators=[validate_media_file_extension]
+    )
     thumb = models.ImageField(
         verbose_name="thumbnail",
         storage=storages["bucket"],
@@ -38,6 +43,7 @@ class Media(models.Model):
         default=None,
     )
     desc = models.TextField(verbose_name="description", max_length=2048)
+    slug = models.SlugField(max_length=64, blank=True, null=True, default=None)
 
     views = models.PositiveIntegerField(default=0)
     likes = models.PositiveIntegerField(default=0)
@@ -57,6 +63,11 @@ class Media(models.Model):
     @property
     def url(self) -> str:
         return self.source.url
+
+    def save(self, *args, **kwargs) -> None:
+        if not self.slug:
+            self.slug = slugify(self.title)
+        return super().save(*args, **kwargs)
 
     @transaction.atomic
     def add_dislike(self) -> None:
