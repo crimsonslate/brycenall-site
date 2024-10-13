@@ -7,9 +7,12 @@ from datetime import date
 
 class Comment(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
-    text = models.TextField(max_length=2048)
+    text = models.TextField(max_length=2048, blank=False, null=True, default=None)
     likes = models.PositiveIntegerField(default=0)
     dislikes = models.PositiveIntegerField(default=0)
+
+    datetime_published = models.DateTimeField(default=timezone.now)
+    datetime_last_modified = models.DateTimeField(auto_now=True)
 
     @transaction.atomic
     def add_like(self) -> None:
@@ -19,13 +22,17 @@ class Comment(models.Model):
     def add_dislike(self) -> None:
         self.dislikes += 1
 
+    def __str__(self) -> str:
+        return f"{self.user.username}'s Comment #{self.id}"
+
 
 class Media(models.Model):
     title = models.CharField(max_length=256)
     source = models.FileField(storage=storages["bucket"])
-    thumb = models.FileField(
+    thumb = models.ImageField(
         verbose_name="thumbnail",
         storage=storages["bucket"],
+        upload_to="thumb/",
         null=True,
         blank=True,
         default=None,
@@ -42,7 +49,7 @@ class Media(models.Model):
     datetime_last_modified = models.DateTimeField(auto_now=True)
     datetime_published = models.DateTimeField(default=timezone.now)
 
-    comments = models.ManyToManyField(Comment)
+    comments = models.ManyToManyField(Comment, default=None, blank=True)
 
     def __str__(self) -> str:
         return self.title
