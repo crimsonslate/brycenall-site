@@ -6,7 +6,7 @@ DEBUG = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 INTERNAL_IPS = ["127.0.0.1"]
 LANGUAGE_CODE = "en-us"
-MEDIA_ROOT = "/media/"
+MEDIA_ROOT = BASE_DIR / "media/"
 MEDIA_URL = "media/"
 ROOT_URLCONF = "brycenall.urls"
 SECRET_KEY = "django-insecure-#ezlo7tqc&h07y4g^1i3jqg78^z*jgsyd11kq812^=k4%!lk6b"
