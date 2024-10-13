@@ -17,6 +17,9 @@ class Comment(models.Model):
     datetime_published = models.DateTimeField(default=timezone.now)
     datetime_last_modified = models.DateTimeField(auto_now=True)
 
+    def __str__(self) -> str:
+        return f"Comment #{self.pk}"
+
     @transaction.atomic
     def add_like(self) -> None:
         self.likes += 1
@@ -24,9 +27,6 @@ class Comment(models.Model):
     @transaction.atomic
     def add_dislike(self) -> None:
         self.dislikes += 1
-
-    def __str__(self) -> str:
-        return f"{self.user.username}'s Comment #{self.id}"
 
 
 class Media(models.Model):
