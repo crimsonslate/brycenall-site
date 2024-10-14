@@ -78,3 +78,8 @@ class Media(models.Model):
     @transaction.atomic
     def add_view(self) -> None:
         self.views += 1
+
+
+class NewsletterSubmission(models.Model):
+    email = models.EmailField(max_length=64)
+    datetime_submitted = models.DateTimeField(default=timezone.now)
