@@ -8,8 +8,7 @@ from django.core.files import File
 def validate_video_file_extension(value: File) -> None:
     video_extensions: list[str] = ["mp4", "mkv", "m4a", "webm"]
     validator = FileExtensionValidator(allowed_extensions=video_extensions)
-    validator(value)
-    return
+    return validator(value)
 
 
 def validate_media_file_extension(value: File) -> None:
@@ -20,5 +19,4 @@ def validate_media_file_extension(value: File) -> None:
             file_extension for file_extension in video_extensions + image_extensions
         ]
     )
-    validator(value)
-    return
+    return validator(value)
