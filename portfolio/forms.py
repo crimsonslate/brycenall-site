@@ -17,11 +17,11 @@ class NewsletterSignupForm(forms.Form):
         error_messages={"required": "Please enter your email address."},
     )
     opted_in = forms.BooleanField(
-        label="Opted-In",
+        label="I agree",
         help_text="By checking this box, you agree to recieve marketing emails from us in the future.",
         initial=False,
         error_messages={
-            "required": "You must agree to recieve marking emails from us to sign up for our newsletter."
+            "required": "You must agree to recieve marketing emails from us to sign up for our newsletter."
         },
     )
 
