@@ -3,10 +3,25 @@
     {% if media.is_image %}
     <img class="h-auto max-w-full" src="{{ media.url }}" alt="{{ media.title }}">
     {% else %}
+    <h2 class="text-black"></h2>
     <video class="w-full" controls>
         <span class="sr-only">{{ media.title }}</span>
         <source src="{{ media.url }}" type="video/mp4">
           Your browser does not support the video tag.
     </video>
+    {{ media.title }}
+    {{ media.views }}
+    {{ media.likes }}
+    {{ media.dislikes }}
     {% endif %}
+    {% for comment in comments %}
+    <div class="m-4 p-4 grid">
+        <h2 class="text-serif text-semibold text-gray-700">
+            {% if comment.user %}{{ comment.user.username }}{% else %}Anonymous{% endif %} -
+        </h2>
+        <p class="text-normal text-gray-800">{{ comment.text }}<p>
+    </div>
+    {% empty %}
+    <h2>No comments... :(</h2>
+    {% endfor %}
 {% endblock content %}
