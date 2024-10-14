@@ -1,3 +1,4 @@
+from django.core.validators import validate_image_file_extension
 from django.db import models, transaction
 from django.utils import timezone
 from django.utils.text import slugify
@@ -5,11 +6,16 @@ from django.core.files.storage import storages
 from django.contrib.auth import get_user_model
 from datetime import date
 
-from portfolio.validators import validate_media_extension
+from portfolio.validators import (
+    validate_media_file_extension,
+    validate_video_file_extension,
+)
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
+    user = models.ForeignKey(
+        get_user_model(), on_delete=models.PROTECT, default=None, blank=True, null=True
+    )
     text = models.TextField(max_length=2048, blank=False, null=True, default=None)
     likes = models.PositiveIntegerField(default=0)
     dislikes = models.PositiveIntegerField(default=0)
@@ -32,7 +38,7 @@ class Comment(models.Model):
 class Media(models.Model):
     title = models.CharField(max_length=256, unique=True)
     source = models.FileField(
-        storage=storages["bucket"], validators=[validate_media_extension]
+        storage=storages["bucket"], validators=[validate_media_file_extension]
     )
     thumb = models.ImageField(
         verbose_name="thumbnail",
@@ -66,6 +72,10 @@ class Media(models.Model):
         return self.title
 
     def save(self, *args, **kwargs) -> None:
+        if self.is_image:
+            self.source.validators = [validate_image_file_extension]
+        else:
+            self.source.validators = [validate_video_file_extension]
         return super().save(*args, **kwargs)
 
     @property
