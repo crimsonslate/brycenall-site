@@ -1,7 +1,6 @@
 from django.core.validators import validate_image_file_extension
-from django.db import models, transaction
+from django.db import models
 from django.utils import timezone
-from django.utils.text import slugify
 from django.core.files.storage import storages
 from django.contrib.auth import get_user_model
 from datetime import date
@@ -26,14 +25,6 @@ class Comment(models.Model):
     def __str__(self) -> str:
         return f"Comment #{self.pk}"
 
-    @transaction.atomic
-    def add_like(self) -> None:
-        self.likes += 1
-
-    @transaction.atomic
-    def add_dislike(self) -> None:
-        self.dislikes += 1
-
 
 class Media(models.Model):
     title = models.CharField(max_length=256, unique=True)
@@ -53,7 +44,6 @@ class Media(models.Model):
         max_length=64, unique=True, blank=True, null=True, default=None
     )
 
-    views = models.PositiveIntegerField(default=0)
     likes = models.PositiveIntegerField(default=0)
     dislikes = models.PositiveIntegerField(default=0)
     hidden = models.BooleanField(default=False)
@@ -81,18 +71,6 @@ class Media(models.Model):
     @property
     def url(self) -> str:
         return self.source.url
-
-    @transaction.atomic
-    def add_dislike(self) -> None:
-        self.dislikes += 1
-
-    @transaction.atomic
-    def add_like(self) -> None:
-        self.likes += 1
-
-    @transaction.atomic
-    def add_view(self) -> None:
-        self.views += 1
 
 
 class NewsletterSubmission(models.Model):
