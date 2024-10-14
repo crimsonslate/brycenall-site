@@ -1,7 +1,7 @@
 from typing import Any
 
-from django.contrib.auth.models import User
-from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from django.http import HttpRequest, HttpResponse
+from django.db import transaction
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -10,60 +10,61 @@ from django.views.generic import (
     UpdateView,
 )
 
-from portfolio.models import Media, Comment, NewsletterSubmission
-from portfolio.forms import CommentForm, MediaUploadForm, NewsletterSignupForm
+from portfolio.models import Media, NewsletterSubmission
+from portfolio.forms import MediaUploadForm, NewsletterSignupForm
 
 
 class NewsletterSignupFormView(FormView):
-    form_class = NewsletterSignupForm
-    template_name = "portfolio/newsletter_signup.html"
     content_type = "text/html"
+    form_class = NewsletterSignupForm
     http_method_names = ["get", "post"]
+    template_name = "portfolio/newsletter_signup.html"
 
     def form_valid(self, form: NewsletterSignupForm) -> HttpResponse:
         NewsletterSubmission.objects.create(email=form.cleaned_data["email"])
         return super().form_valid(form=form)
 
 
-class MediaDetailView(DetailView, FormView):
-    form_class = CommentForm
-    template_name = "portfolio/media_detail.html"
+class MediaDetailView(DetailView):
     content_type = "text/html"
     http_method_names = ["get", "post"]
     model = Media
+    queryset = Media.objects.filter(hidden__exact=False)
+
+    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        self.add_view()
+        return super().get(request, *args, **kwargs)
 
     def get_context_data(self, *args, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(*args, **kwargs)
         context["comments"] = self.get_object().comments.all()
         return context
 
-    def form_valid(self, form: CommentForm) -> HttpResponseRedirect:
-        comment = Comment.objects.create(
-            user=form.cleaned_data["user"], text=form.cleaned_data["text"]
-        )
-        media = self.get_object()
-        media.add(comment)
+    @transaction.atomic
+    def add_view(self) -> None:
+        media: Media = self.get_object()
+        media.views += 1
         media.save()
-        return HttpResponseRedirect(self.get_success_url())
 
 
 class MediaEditView(UpdateView):
-    template_name = "portfolio/media_edit.html"
     content_type = "text/html"
     http_method_names = ["get", "post"]
     model = Media
+    template_name_suffix = "_edit"
 
 
 class MediaDeleteView(DeleteView):
-    template_name = "portfolio/media_delete.html"
     content_type = "text/html"
     http_method_names = ["get", "post"]
     model = Media
+    template_name_suffix = "_delete"
 
 
 class MediaUploadView(CreateView):
-    form_class = MediaUploadForm
-    template_name = "portfolio/media_upload.html"
     content_type = "text/html"
+    form_class = MediaUploadForm
     http_method_names = ["get", "post"]
     model = Media
+    template_name = "portfolio/media_upload.html"
+    template_name_suffix = "_upload"
