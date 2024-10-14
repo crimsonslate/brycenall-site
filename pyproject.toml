@@ -38,10 +38,12 @@ select = [
     "E7",
     "E9",
     "F",
+    "DJ",
 ]
-ignore = []
+ignore = ["DJ001", "F821"]
 fixable = [ "ALL" ]
 unfixable = []
+extend-per-file-ignores = {"*/migrations/*.py" = ["E501"]}
 
 [tool.ruff.format]
 quote-style = "double"

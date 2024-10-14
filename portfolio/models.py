@@ -28,7 +28,7 @@ class Comment(models.Model):
 
 
 class Media(models.Model):
-    title = models.CharField(max_length=256)
+    title = models.CharField(max_length=256, unique=True)
     source = models.FileField(storage=storages["bucket"])
     thumb = models.ImageField(
         verbose_name="thumbnail",
@@ -54,18 +54,19 @@ class Media(models.Model):
     datetime_published = models.DateTimeField(default=timezone.now)
 
     comments = models.ManyToManyField(Comment, default=None, blank=True)
+    previous_title = models.CharField(
+        max_length=256, blank=True, null=True, default=None
+    )
 
     def __str__(self) -> str:
         return self.title
 
+    def save(self, *args, **kwargs) -> None:
+        return super().save(*args, **kwargs)
+
     @property
     def url(self) -> str:
         return self.source.url
-
-    def save(self, *args, **kwargs) -> None:
-        if not self.slug:
-            self.slug = slugify(self.title)
-        return super().save(*args, **kwargs)
 
     @transaction.atomic
     def add_dislike(self) -> None:
