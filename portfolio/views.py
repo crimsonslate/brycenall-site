@@ -1,8 +1,7 @@
 from typing import Any
 
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse_lazy
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -11,8 +10,19 @@ from django.views.generic import (
     UpdateView,
 )
 
-from portfolio.models import Media, Comment
-from portfolio.forms import CommentForm, MediaUploadForm
+from portfolio.models import Media, Comment, NewsletterSubmission
+from portfolio.forms import CommentForm, MediaUploadForm, NewsletterSignupForm
+
+
+class NewsletterSignupFormView(FormView):
+    form_class = NewsletterSignupForm
+    template_name = "portfolio/newsletter_signup.html"
+    content_type = "text/html"
+    http_method_names = ["get", "post"]
+
+    def form_valid(self, form: NewsletterSignupForm) -> HttpResponse:
+        NewsletterSubmission.objects.create(email=form.cleaned_data["email"])
+        return super().form_valid(form=form)
 
 
 class MediaDetailView(DetailView, FormView):

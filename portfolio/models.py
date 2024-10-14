@@ -81,5 +81,5 @@ class Media(models.Model):
 
 
 class NewsletterSubmission(models.Model):
-    email = models.EmailField(max_length=64)
+    email = models.EmailField(max_length=64, unique=True)
     datetime_submitted = models.DateTimeField(default=timezone.now)
