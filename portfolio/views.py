@@ -31,20 +31,10 @@ class MediaDetailView(DetailView):
     model = Media
     queryset = Media.objects.filter(hidden__exact=False)
 
-    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
-        self.add_view()
-        return super().get(request, *args, **kwargs)
-
     def get_context_data(self, *args, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(*args, **kwargs)
         context["comments"] = self.get_object().comments.all()
         return context
-
-    @transaction.atomic
-    def add_view(self) -> None:
-        media: Media = self.get_object()
-        media.views += 1
-        media.save()
 
 
 class MediaEditView(UpdateView):
