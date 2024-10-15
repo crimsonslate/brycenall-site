@@ -1,6 +1,7 @@
 from django.core.validators import validate_image_file_extension
 from django.db import models
 from django.utils import timezone
+from django.utils.text import slugify
 from django.core.files.storage import storages
 from django.contrib.auth import get_user_model
 from datetime import date
@@ -66,6 +67,8 @@ class Media(models.Model):
             self.source.validators = [validate_image_file_extension]
         else:
             self.source.validators = [validate_video_file_extension]
+        if not self.slug:
+            self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
 
     @property
