@@ -1,7 +1,6 @@
 from typing import Any
 
-from django.http import HttpRequest, HttpResponse
-from django.db import transaction
+from django.http import HttpResponse
 from django.views.generic import (
     DeleteView,
     DetailView,
