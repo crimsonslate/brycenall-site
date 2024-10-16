@@ -9,11 +9,17 @@ class PortfolioFormRenderer(TemplatesSetting):
     field_template_name = "portfolio/forms/partials/_field.html"
 
     def get_template(self, template_name: str) -> Template | None:
-        match template_name:
-            case "django/forms/widgets/text.html":
-                return super().get_template("portfolio/forms/partials/_text.html")
-            case _:
-                return super().get_template(template_name)
+        if template_name.startswith("django/forms/widgets/"):
+            return super().get_template(
+                template_name.replace(
+                    "django/forms/widgets/", "portfolio/forms/partials/_"
+                )
+            )
+        elif template_name.startswith("django/forms/"):
+            return super().get_template(
+                template_name.replace("django/forms/", "portfolio/forms/")
+            )
+        return super().get_template(template_name)
 
 
 class CommentUploadForm(forms.Form):
