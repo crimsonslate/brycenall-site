@@ -1,11 +1,19 @@
 from django import forms
 from django.forms.renderers import TemplatesSetting
+from django.template import Template
 
 
 class PortfolioFormRenderer(TemplatesSetting):
-    form_template_name = "portfolio/forms/_form.html"
-    formset_template_name = "portfolio/forms/_formset.html"
-    field_template_name = "portfolio/forms/_field.html"
+    form_template_name = "portfolio/forms/partials/_form.html"
+    formset_template_name = "portfolio/forms/partials/_formset.html"
+    field_template_name = "portfolio/forms/partials/_field.html"
+
+    def get_template(self, template_name: str) -> Template | None:
+        match template_name:
+            case "django/forms/widgets/text.html":
+                return super().get_template("portfolio/forms/partials/_text.html")
+            case _:
+                return super().get_template(template_name)
 
 
 class CommentUploadForm(forms.Form):

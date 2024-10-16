@@ -1,9 +1,0 @@
-{% for field in form %}
-    {% if not form.is_bound %}
-        {% include "portfolio/forms/_field_unbound.html" with field=field %}
-    {% elif field.name in form.errors %}
-        {% include "portfolio/forms/_field_invalid.html" with field=field %}
-    {% else %}
-        {% include "portfolio/forms/_field_valid.html" with field=field %}
-    {% endif %}
-{% endfor %}

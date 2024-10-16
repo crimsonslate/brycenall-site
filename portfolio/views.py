@@ -3,14 +3,14 @@ from typing import Any
 from django.http import HttpRequest, HttpResponse
 from django.db import transaction
 from django.views.generic import (
-    CreateView,
     DeleteView,
     DetailView,
     FormView,
+    ListView,
     UpdateView,
 )
 
-from portfolio.models import Media, NewsletterSubmission
+from portfolio.models import Comment, Media, NewsletterSubmission
 from portfolio.forms import MediaUploadForm, NewsletterSignupForm
 
 
@@ -25,6 +25,14 @@ class NewsletterSignupFormView(FormView):
         return super().form_valid(form=form)
 
 
+class CommentListView(ListView):
+    allow_empty = True
+    content_type = "text/html"
+    context_object_name = "comments"
+    http_method_names = ["get"]
+    model = Comment
+
+
 class MediaDetailView(DetailView):
     content_type = "text/html"
     http_method_names = ["get", "post"]
@@ -33,7 +41,7 @@ class MediaDetailView(DetailView):
 
     def get_context_data(self, *args, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(*args, **kwargs)
-        context["comments"] = self.get_object().comments.all()
+        context["comments"] = self.get_object().comments.all()[:20]
         return context
 
 
@@ -51,10 +59,9 @@ class MediaDeleteView(DeleteView):
     template_name_suffix = "_delete"
 
 
-class MediaUploadView(CreateView):
+class MediaUploadView(FormView):
     content_type = "text/html"
     form_class = MediaUploadForm
     http_method_names = ["get", "post"]
-    model = Media
-    template_name = "portfolio/media_upload.html"
+    template_name = "portfolio/forms/media_upload.html"
     template_name_suffix = "_upload"
