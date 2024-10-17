@@ -6,7 +6,7 @@
     {{ field.as_field_group }}
     {% if errors %}
     <ul class="list-disc list-inside">
-        <span class="sr-only">{{ field.name }} errors</span>
+        <span class="sr-only">{{ field }} errors</span>
         {% for error in errors %}
         <li class="mt-4 text-sm md:text-md font-semibold dark:text-gray-50">
             {{ error }}

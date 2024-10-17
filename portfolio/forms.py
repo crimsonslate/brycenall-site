@@ -1,6 +1,7 @@
 from django import forms
 from django.forms.renderers import TemplatesSetting
 from django.template import Template
+from django.forms.widgets import Textarea
 
 
 class PortfolioFormRenderer(TemplatesSetting):
@@ -28,9 +29,9 @@ class CommentUploadForm(forms.Form):
 
 
 class MediaUploadForm(forms.Form):
-    source = forms.ClearableFileInput()
+    source = forms.FileField()
     title = forms.CharField(label="Title", max_length=256)
-    desc = forms.CharField(label="Description", max_length=2048)
+    desc = forms.CharField(label="Description", max_length=2048, widget=Textarea())
 
 
 class NewsletterSignupForm(forms.Form):
