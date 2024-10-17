@@ -6,11 +6,11 @@ from . import views
 
 urlpatterns = [
     path("upload/", views.MediaUploadView.as_view(), name="media upload"),
-    path("<str:slug>/", views.MediaDetailView.as_view(), name="media detail"),
     path("media/edit/<int:pk>/", views.MediaEditView.as_view(), name="media edit"),
     path(
         "media/delete/<int:pk>/", views.MediaDeleteView.as_view(), name="media delete"
     ),
+    path("<str:slug>/", views.MediaDetailView.as_view(), name="media detail"),
 ]
 
 if settings.DEBUG:

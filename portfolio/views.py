@@ -63,4 +63,7 @@ class MediaUploadView(FormView):
     form_class = MediaUploadForm
     http_method_names = ["get", "post"]
     template_name = "portfolio/media_upload.html"
-    template_name_suffix = "_upload"
+
+    def post(self, request, *args, **kwargs):
+        print(self.request.POST)
+        return super().post(request, *args, **kwargs)
