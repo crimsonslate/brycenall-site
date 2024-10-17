@@ -9,6 +9,7 @@ from datetime import date
 from portfolio.validators import (
     validate_media_file_extension,
     validate_video_file_extension,
+    validate_unique_media_slug,
 )
 
 
@@ -28,7 +29,9 @@ class Comment(models.Model):
 
 
 class Media(models.Model):
-    title = models.CharField(max_length=256, unique=True)
+    title = models.CharField(
+        max_length=256, unique=True, validators=[validate_unique_media_slug]
+    )
     source = models.FileField(
         storage=storages["bucket"], validators=[validate_media_file_extension]
     )
@@ -63,12 +66,12 @@ class Media(models.Model):
         return self.title
 
     def save(self, *args, **kwargs) -> None:
+        if not self.slug:
+            self.slug = slugify(self.title)
         if self.is_image:
             self.source.validators = [validate_image_file_extension]
         else:
             self.source.validators = [validate_video_file_extension]
-        if not self.slug:
-            self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
 
     @property

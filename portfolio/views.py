@@ -62,5 +62,5 @@ class MediaUploadView(FormView):
     content_type = "text/html"
     form_class = MediaUploadForm
     http_method_names = ["get", "post"]
-    template_name = "portfolio/forms/media_upload.html"
+    template_name = "portfolio/media_upload.html"
     template_name_suffix = "_upload"
