@@ -2,8 +2,9 @@
     class="mt-2 bg-stone-100 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
     type="{{ widget.type }}"
     name="{{ widget.name }}"
-    {% if widget.value != None %}
-    value="{{ widget.value|stringformat:'s' }}"
-    {% endif %}
     {% include "portfolio/forms/partials/_attrs.html" with attrs=widget.attrs only %}
-></textarea>
+>
+{% if widget.value != None %}
+{{ widget.value|stringformat:'s' }}
+{% endif %}
+</textarea>
