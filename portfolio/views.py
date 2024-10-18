@@ -48,14 +48,19 @@ class MediaEditView(UpdateView):
     content_type = "text/html"
     http_method_names = ["get", "post"]
     model = Media
-    template_name_suffix = "_edit"
+    template_name = "portfolio/media_edit.html"
+    fields = ["source", "title", "desc"]
+
+    def post(self, request, *args, **kwargs):
+        print(self.request.FILES)
+        return super().post(request, *args, **kwargs)
 
 
 class MediaDeleteView(DeleteView):
     content_type = "text/html"
     http_method_names = ["get", "post"]
     model = Media
-    template_name_suffix = "_delete"
+    template_name = "portfolio/media_delete.html"
 
 
 class MediaUploadView(FormView):
@@ -65,5 +70,5 @@ class MediaUploadView(FormView):
     template_name = "portfolio/media_upload.html"
 
     def post(self, request, *args, **kwargs):
-        print(self.request.POST)
+        print(self.request.FILES)
         return super().post(request, *args, **kwargs)
