@@ -5,6 +5,11 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
+    path(
+        "newsletter_signup/",
+        views.NewsletterSignupFormView.as_view(),
+        name="newsletter signup",
+    ),
     path("upload/", views.MediaUploadView.as_view(), name="media upload"),
     path("media/edit/<int:pk>/", views.MediaEditView.as_view(), name="media edit"),
     path(

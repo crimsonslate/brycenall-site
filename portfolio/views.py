@@ -1,5 +1,6 @@
 from typing import Any
 
+from django.conf import settings
 from django.http import HttpResponse
 from django.views.generic import (
     DeleteView,
@@ -50,6 +51,7 @@ class MediaEditView(UpdateView):
     model = Media
     template_name = "portfolio/media_edit.html"
     fields = ["source", "title", "desc"]
+    extra_context = {"title": f"{settings.PORTFOLIO_NAME} | Edit"}
 
     def post(self, request, *args, **kwargs):
         print(self.request.FILES)
