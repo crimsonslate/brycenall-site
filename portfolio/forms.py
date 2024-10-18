@@ -5,9 +5,9 @@ from django.forms.widgets import Textarea
 
 
 class PortfolioFormRenderer(TemplatesSetting):
-    form_template_name = "portfolio/forms/partials/_form.html"
-    formset_template_name = "portfolio/forms/partials/_formset.html"
-    field_template_name = "portfolio/forms/partials/_field.html"
+    form_template_name = "portfolio/forms/form.html"
+    formset_template_name = "portfolio/forms/formset.html"
+    field_template_name = "portfolio/forms/field.html"
 
     def get_template(self, template_name: str) -> Template | None:
         if template_name.startswith("django/forms/widgets/"):
