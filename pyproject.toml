@@ -11,6 +11,7 @@ authors = [
 ]
 
 [project.urls]
+Homepage = "https://brycenall.com"
 Repository = "https://github.com/crimsonslate/brycenall-site"
 
 [tool.ruff]
