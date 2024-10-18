@@ -58,9 +58,6 @@ class Media(models.Model):
     datetime_published = models.DateTimeField(default=timezone.now)
 
     comments = models.ManyToManyField(Comment, default=None, blank=True)
-    previous_title = models.CharField(
-        max_length=256, blank=True, null=True, default=None
-    )
 
     def __str__(self) -> str:
         return self.title
