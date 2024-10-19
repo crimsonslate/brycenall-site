@@ -10,6 +10,7 @@ from portfolio.validators import (
     validate_media_file_extension,
     validate_video_file_extension,
     validate_unique_media_slug,
+    validate_sluggable,
 )
 
 
@@ -30,7 +31,9 @@ class Comment(models.Model):
 
 class Media(models.Model):
     title = models.CharField(
-        max_length=256, unique=True, validators=[validate_unique_media_slug]
+        max_length=256,
+        unique=True,
+        validators=[validate_unique_media_slug, validate_sluggable],
     )
     source = models.FileField(
         storage=storages["bucket"], validators=[validate_media_file_extension]
