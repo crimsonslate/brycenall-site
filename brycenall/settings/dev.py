@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "theme",
     "django_browser_reload",
     "portfolio.apps.PortfolioConfig",
+    "django_htmx",
 ]
 
 MIDDLEWARE = [
@@ -61,6 +62,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
 ]
 
 

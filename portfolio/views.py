@@ -2,7 +2,6 @@ from typing import Any
 
 from django.conf import settings
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
 from django.views.generic import (
     DeleteView,
     DetailView,
@@ -13,12 +12,6 @@ from django.views.generic import (
 
 from portfolio.models import Comment, Media, NewsletterSubmission
 from portfolio.forms import MediaUploadForm, NewsletterSignupForm
-
-
-def validate_form_field(request: HttpRequest, field_name: str) -> HttpResponse:
-    template_name = ""
-    context = {}
-    return render(request, template_name, context=context)
 
 
 class NewsletterSignupFormView(FormView):
@@ -38,6 +31,14 @@ class CommentListView(ListView):
     context_object_name = "comments"
     http_method_names = ["get"]
     model = Comment
+
+
+class MediaListView(ListView):
+    allow_empty = True
+    content_type = "text/html"
+    context_object_name = "medias"
+    http_method_names = ["get"]
+    model = Media
 
 
 class MediaDetailView(DetailView):
@@ -60,10 +61,6 @@ class MediaEditView(UpdateView):
     fields = ["source", "title", "desc"]
     extra_context = {"title": f"{settings.PORTFOLIO_NAME} | Edit"}
 
-    def post(self, request, *args, **kwargs):
-        print(self.request.FILES)
-        return super().post(request, *args, **kwargs)
-
 
 class MediaDeleteView(DeleteView):
     content_type = "text/html"
@@ -78,6 +75,7 @@ class MediaUploadView(FormView):
     http_method_names = ["get", "post"]
     template_name = "portfolio/media_upload.html"
 
-    def post(self, request, *args, **kwargs):
-        print(self.request.FILES)
-        return super().post(request, *args, **kwargs)
+    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        if request.htmx:
+            pass
+        return super().get(request, *args, **kwargs)
