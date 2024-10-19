@@ -1,4 +1,3 @@
-from django.core.validators import validate_image_file_extension
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
@@ -8,7 +7,6 @@ from datetime import date
 
 from portfolio.validators import (
     validate_media_file_extension,
-    validate_video_file_extension,
     validate_unique_media_slug,
     validate_sluggable,
 )
@@ -36,7 +34,9 @@ class Media(models.Model):
         validators=[validate_unique_media_slug, validate_sluggable],
     )
     source = models.FileField(
-        storage=storages["bucket"], validators=[validate_media_file_extension]
+        upload_to="source/",
+        storage=storages["bucket"],
+        validators=[validate_media_file_extension],
     )
     thumb = models.ImageField(
         verbose_name="thumbnail",
@@ -68,20 +68,8 @@ class Media(models.Model):
     def save(self, *args, **kwargs) -> None:
         if not self.slug:
             self.slug = slugify(self.title)
-        if self.is_image:
-            self.source.validators = [validate_image_file_extension]
-        else:
-            self.source.validators = [validate_video_file_extension]
         return super().save(*args, **kwargs)
 
     @property
     def url(self) -> str:
         return self.source.url
-
-
-class NewsletterSubmission(models.Model):
-    email = models.EmailField(max_length=64, unique=True)
-    datetime_submitted = models.DateTimeField(default=timezone.now)
-
-    def __str__(self) -> str:
-        return self.email

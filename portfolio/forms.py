@@ -2,7 +2,6 @@ from django import forms
 from django.forms.models import ModelForm
 from django.forms.renderers import TemplatesSetting
 from django.template import Template
-from django.forms.widgets import Textarea
 
 from portfolio.models import Media
 
@@ -17,8 +16,6 @@ class PortfolioFormRenderer(TemplatesSetting):
             template_name = template_name.replace(
                 "django/forms/widgets/", "portfolio/forms/partials/_"
             )
-        elif template_name.startswith("django/forms/"):
-            template_name = template_name.replace("django/forms/", "portfolio/forms/")
         return super().get_template(template_name)
 
 

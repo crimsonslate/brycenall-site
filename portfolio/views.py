@@ -10,19 +10,8 @@ from django.views.generic import (
     UpdateView,
 )
 
-from portfolio.models import Comment, Media, NewsletterSubmission
-from portfolio.forms import MediaUploadForm, NewsletterSignupForm
-
-
-class NewsletterSignupFormView(FormView):
-    content_type = "text/html"
-    form_class = NewsletterSignupForm
-    http_method_names = ["get", "post"]
-    template_name = "portfolio/newsletter_signup.html"
-
-    def form_valid(self, form: NewsletterSignupForm) -> HttpResponse:
-        NewsletterSubmission.objects.create(email=form.cleaned_data["email"])
-        return super().form_valid(form=form)
+from portfolio.models import Comment, Media
+from portfolio.forms import MediaUploadForm
 
 
 class CommentListView(ListView):
