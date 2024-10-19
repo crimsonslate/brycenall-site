@@ -1,7 +1,8 @@
 from typing import Any
 
 from django.conf import settings
-from django.http import HttpResponse
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import render
 from django.views.generic import (
     DeleteView,
     DetailView,
@@ -12,6 +13,12 @@ from django.views.generic import (
 
 from portfolio.models import Comment, Media, NewsletterSubmission
 from portfolio.forms import MediaUploadForm, NewsletterSignupForm
+
+
+def validate_form_field(request: HttpRequest, field_name: str) -> HttpResponse:
+    template_name = ""
+    context = {}
+    return render(request, template_name, context=context)
 
 
 class NewsletterSignupFormView(FormView):

@@ -1,7 +1,10 @@
 from django import forms
+from django.forms.models import ModelForm
 from django.forms.renderers import TemplatesSetting
 from django.template import Template
 from django.forms.widgets import Textarea
+
+from portfolio.models import Media
 
 
 class PortfolioFormRenderer(TemplatesSetting):
@@ -11,15 +14,11 @@ class PortfolioFormRenderer(TemplatesSetting):
 
     def get_template(self, template_name: str) -> Template | None:
         if template_name.startswith("django/forms/widgets/"):
-            return super().get_template(
-                template_name.replace(
-                    "django/forms/widgets/", "portfolio/forms/partials/_"
-                )
+            template_name = template_name.replace(
+                "django/forms/widgets/", "portfolio/forms/partials/_"
             )
         elif template_name.startswith("django/forms/"):
-            return super().get_template(
-                template_name.replace("django/forms/", "portfolio/forms/")
-            )
+            template_name = template_name.replace("django/forms/", "portfolio/forms/")
         return super().get_template(template_name)
 
 
@@ -28,10 +27,10 @@ class CommentUploadForm(forms.Form):
     text = forms.CharField(max_length=2048)
 
 
-class MediaUploadForm(forms.Form):
-    source = forms.FileField()
-    title = forms.CharField(label="Title", max_length=256)
-    desc = forms.CharField(label="Description", max_length=2048, widget=Textarea())
+class MediaUploadForm(ModelForm):
+    class Meta:
+        model = Media
+        fields = ["source", "title", "desc"]
 
 
 class NewsletterSignupForm(forms.Form):
