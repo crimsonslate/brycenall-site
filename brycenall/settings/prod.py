@@ -4,11 +4,15 @@ from brycenall.aws import get_secret
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 ALLOWED_HOSTS = [".brycenall", "brycenall"]
+CSRF_COOKIE_SECURE = True
 DEBUG = False
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LANGUAGE_CODE = "en-us"
+PORTFOLIO_NAME = "Bryce Nall"
 ROOT_URLCONF = "brycenall.urls"
 SECRET_KEY = get_secret("BRYCENALL_SECRET_KEY")
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
 STATIC_URL = "static/"
 TIME_ZONE = "America/Chicago"
 USE_I18N = True
@@ -30,7 +34,7 @@ STORAGES = {
         "BACKEND": "storages.backends.s3.S3Storage",
         "OPTIONS": {
             "location": "static/",
-            "session_profile": ...,
+            "session_profile": "brycenall-site",
             "bucket_name": "brycenall-bucket",
             "region_name": "us-east-1",
             "verify": False,
@@ -40,7 +44,7 @@ STORAGES = {
         "BACKEND": "storages.backends.s3.S3Storage",
         "OPTIONS": {
             "location": "media/",
-            "session_profile": ...,
+            "session_profile": "brycenall-site",
             "bucket_name": "brycenall-bucket",
             "region_name": "us-east-1",
             "verify": False,
