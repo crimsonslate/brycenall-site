@@ -1,7 +1,6 @@
 from typing import Any
 
 from django.conf import settings
-from django.http import HttpRequest, HttpResponse
 from django.views.generic import (
     DeleteView,
     DetailView,
@@ -35,10 +34,12 @@ class MediaDetailView(DetailView):
     http_method_names = ["get", "post"]
     model = Media
     queryset = Media.objects.filter(hidden__exact=False)
+    extra_context = {"portfolio_name": settings.PORTFOLIO_NAME}
 
     def get_context_data(self, *args, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(*args, **kwargs)
-        context["comments"] = self.get_object().comments.all()[:20]
+        context["comments"] = self.get_object().comments.all()
+        context["title"] = self.get_object().title
         return context
 
 
@@ -48,7 +49,13 @@ class MediaEditView(UpdateView):
     model = Media
     template_name = "portfolio/media_edit.html"
     fields = ["source", "title", "desc"]
-    extra_context = {"title": f"{settings.PORTFOLIO_NAME} | Edit"}
+    extra_context = {"portfolio_name": settings.PORTFOLIO_NAME}
+
+    def get_context_data(self, *args, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(*args, **kwargs)
+        context["comments"] = self.get_object().comments.all()
+        context["title"] = self.get_object().title
+        return context
 
 
 class MediaDeleteView(DeleteView):
@@ -56,6 +63,7 @@ class MediaDeleteView(DeleteView):
     http_method_names = ["get", "post"]
     model = Media
     template_name = "portfolio/media_delete.html"
+    extra_context = {"portfolio_name": settings.PORTFOLIO_NAME}
 
 
 class MediaUploadView(FormView):
@@ -63,8 +71,4 @@ class MediaUploadView(FormView):
     form_class = MediaUploadForm
     http_method_names = ["get", "post"]
     template_name = "portfolio/media_upload.html"
-
-    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
-        if request.htmx:
-            pass
-        return super().get(request, *args, **kwargs)
+    extra_context = {"portfolio_name": settings.PORTFOLIO_NAME}

@@ -6,5 +6,8 @@
     {% if widget.value != None %}
     value="{{ widget.value|stringformat:'s' }}"
     {% endif %}
+    {% if 'required' in widget.attrs %}
+    required
+    {% endif %}
     {% include "portfolio/forms/partials/_attrs.html" with attrs=widget.attrs only %}
 >

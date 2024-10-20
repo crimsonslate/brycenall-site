@@ -1,31 +1,26 @@
 {% extends "portfolio/layout.html" %}
 {% block content %}
-    {% if media.is_image %}
-    <img class="h-auto max-w-full" src="{{ media.url }}" alt="{{ media.title }}">
-    {{ media.title }}
-    {{ media.views }}
-    {{ media.likes }}
-    {{ media.dislikes }}
-    {% else %}
-    <h2 class="text-black"></h2>
-    <video class="w-full" controls>
-        <span class="sr-only">{{ media.title }}</span>
-        <source src="{{ media.url }}" type="video/mp4">
-          Your browser does not support the video tag.
-    </video>
-    {{ media.title }}
-    {{ media.views }}
-    {{ media.likes }}
-    {{ media.dislikes }}
-    {% endif %}
-    {% for comment in comments %}
-    <div class="m-4 p-4 grid">
-        <h2 class="text-serif text-semibold text-gray-700">
-            {% if comment.user %}{{ comment.user.username }}{% else %}Anonymous{% endif %}
-        </h2>
-        <p class="text-normal text-gray-800">{{ comment.text }}<p>
+    <div class="container mx-auto my-8">
+        {% if media.is_image %}
+        <img class="h-auto w-full" src="{{ media.url }}" alt="{{ media.title }}">
+        {% else %}
+        <video class="w-full" controls>
+            <span class="sr-only">{{ media.title }}</span>
+            <source src="{{ media.url }}" type="video/mp4">
+              Your browser does not support the video tag.
+        </video>
+        {% endif %}
+        <h2 class="text-2xl lg:text-4xl my-2 text-gray-700 dark:text-stone-100">{{ media.title }}</h2>
+        <p class="text-md lg:text-lg text-gray-600 dark:text-stone-200">{{ media.desc }}</p>
+        <p class="text-md lg:text-lg text-gray-600 dark:text-stone-200">{% lorem %}</p>
+        <div class="grid grid-flow-row">
+            <span class="sr-only">Comments</span>
+            {% for comment in comments %}
+            <h2 class="text-serif text-semibold text-gray-700 dark:text-stone-100">{{ comment.user.username|default:'Anonymous' }}</h2>
+            <p class="text-normal text-gray-800 dark:text-gray-200">{{ comment.text }}<p>
+            {% empty %}
+            <h2 class="text-serif text-semibold text-gray-700 dark:text-gray-200">No comments... :(</h2>
+            {% endfor %}
+        </div>
     </div>
-    {% empty %}
-    <h2>No comments... :(</h2>
-    {% endfor %}
 {% endblock content %}

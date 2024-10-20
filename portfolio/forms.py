@@ -19,15 +19,15 @@ class PortfolioFormRenderer(TemplatesSetting):
         return super().get_template(template_name)
 
 
-class CommentUploadForm(forms.Form):
-    user = forms.UUIDField()
-    text = forms.CharField(max_length=2048)
-
-
 class MediaUploadForm(ModelForm):
     class Meta:
         model = Media
         fields = ["source", "title", "desc"]
+        help_texts = {
+            "source": "Upload a file.",
+            "title": "Create a unique title for the media.",
+            "desc": "Write a description for the new media.",
+        }
 
 
 class NewsletterSignupForm(forms.Form):
