@@ -43,7 +43,7 @@ class MediaDetailView(DetailView):
         return context
 
 
-class MediaEditView(UpdateView):
+class MediaUpdateView(UpdateView):
     content_type = "text/html"
     http_method_names = ["get", "post"]
     model = Media
