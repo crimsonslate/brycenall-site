@@ -9,16 +9,8 @@ from django.views.generic import (
     UpdateView,
 )
 
-from portfolio.models import Comment, Media
+from portfolio.models import Media
 from portfolio.forms import MediaUploadForm
-
-
-class CommentListView(ListView):
-    allow_empty = True
-    content_type = "text/html"
-    context_object_name = "comments"
-    http_method_names = ["get"]
-    model = Comment
 
 
 class MediaListView(ListView):
@@ -38,7 +30,6 @@ class MediaDetailView(DetailView):
 
     def get_context_data(self, *args, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(*args, **kwargs)
-        context["comments"] = self.get_object().comments.all()
         context["title"] = self.get_object().title
         return context
 
@@ -53,7 +44,6 @@ class MediaUpdateView(UpdateView):
 
     def get_context_data(self, *args, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(*args, **kwargs)
-        context["comments"] = self.get_object().comments.all()
         context["title"] = self.get_object().title
         return context
 

@@ -1,13 +1,6 @@
 from django.contrib import admin
 
-from portfolio.models import Media, Comment
-
-
-@admin.register(Comment)
-class CommentAdmin(admin.ModelAdmin):
-    date_hierarchy = "datetime_published"
-    list_display = ["user", "datetime_published"]
-    empty_value_display = "None"
+from portfolio.models import Media
 
 
 @admin.register(Media)

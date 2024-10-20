@@ -1,11 +1,8 @@
-from django.core.exceptions import ValidationError
 from django.core.files import File
 from django.core.validators import (
     FileExtensionValidator,
     get_available_image_extensions,
 )
-from django.utils.text import slugify
-from django.utils.translation import gettext_lazy as _
 
 
 def validate_video_file_extension(value: File) -> None:
@@ -25,16 +22,3 @@ def validate_media_file_extension(value: File) -> None:
     )
     validator(value)
     return
-
-
-def validate_unique_media_slug(value: str) -> None:
-    return
-
-
-def validate_sluggable(value: str) -> None:
-    if "/" in value or not slugify(value, allow_unicode=True):
-        raise ValidationError(
-            _("'%(value)s' cannot be slugified."),
-            code="invalid",
-            params={"value": value},
-        )
