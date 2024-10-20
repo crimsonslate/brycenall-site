@@ -66,7 +66,7 @@ class Media(models.Model):
         return self.title
 
     def save(self, *args, **kwargs) -> None:
-        if not self.slug:
+        if not self.slug or self.slug != slugify(self.title):
             self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
 
