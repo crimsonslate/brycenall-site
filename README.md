@@ -20,23 +20,23 @@ $ source .venv/bin/activate
 ```
 5. Install the Django project dependencies
 ```sh
-$ pip install -r requirements.txt
+(.venv)$ pip install -r requirements.txt
 ```
 6. Make migrations for the `portfolio` app in your local database
 ```sh
-$ python manage.py makemigrations portfolio
+(.venv)$ python manage.py makemigrations portfolio
 ```
 7. Migrate your local database
 ```sh
-$ python manage.py migrate
+(.venv)$ python manage.py migrate
 ```
 8. Run the development server, served at `http://127.0.0.1:8000/` [Link](http://127.0.0.1:8000/)
 ```sh
-$ python manage.py runserver
+(.venv)$ python manage.py runserver
 ```
 
 I recommend creating a Django `superuser` afterward to access the Django admin:
 ```sh
-$ python manage.py createsuperuser
+(.venv)$ python manage.py createsuperuser
 ```
 Then login [at admin/](http://127.0.0.1:8000/admin/) using that new user.
