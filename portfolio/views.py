@@ -1,6 +1,7 @@
 from typing import Any
 
 from django.conf import settings
+from django.urls import reverse_lazy
 from django.views.generic import (
     DeleteView,
     DetailView,
@@ -54,6 +55,12 @@ class MediaDeleteView(DeleteView):
     model = Media
     template_name = "portfolio/media_delete.html"
     extra_context = {"portfolio_name": settings.PORTFOLIO_NAME}
+    success_url = reverse_lazy("media gallery")
+
+    def get_context_data(self, *args, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(*args, **kwargs)
+        context["title"] = self.get_object().title
+        return context
 
 
 class MediaUploadView(FormView):
@@ -62,3 +69,4 @@ class MediaUploadView(FormView):
     http_method_names = ["get", "post"]
     template_name = "portfolio/media_upload.html"
     extra_context = {"portfolio_name": settings.PORTFOLIO_NAME}
+    success_url = reverse_lazy("media gallery")

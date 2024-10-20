@@ -4,7 +4,11 @@
         {% if media.is_image %}
         <img class="h-auto w-full" src="{{ media.url }}" alt="{{ media.title }}">
         {% else %}
-        <video class="w-full" controls>
+        <video
+            controls
+            class="w-full drop-shadow-lg lg:drop-shadow-xl"
+            {% if media.thumb %}poster="{{ media.thumb.url }}"{% endif %}
+        >
             <span class="sr-only">{{ media.title }}</span>
             <source src="{{ media.url }}" type="video/mp4">
               Your browser does not support the video tag.
@@ -13,14 +17,5 @@
         <h2 class="text-2xl lg:text-4xl my-2 text-gray-700 dark:text-stone-100">{{ media.title }}</h2>
         {% if media.subtitle %}<h3 class="text-xl lg:text-2xl my-2 text-gray-700 dark:text-stone-100">{{ media.subtitle }}</h3>{% endif %}
         {% if media.desc %}<p class="text-md lg:text-lg text-gray-600 dark:text-stone-200">{{ media.desc }}</p>{% endif %}
-        <div class="grid grid-flow-row">
-            <span class="sr-only">Comments</span>
-            {% for comment in comments %}
-            <h2 class="text-serif text-semibold text-gray-700 dark:text-stone-100">{{ comment.user.username|default:'Anonymous' }}</h2>
-            <p class="text-normal text-gray-800 dark:text-gray-200">{{ comment.text }}<p>
-            {% empty %}
-            <h2 class="text-serif text-semibold text-gray-700 dark:text-gray-200">No comments... :(</h2>
-            {% endfor %}
-        </div>
     </div>
 {% endblock content %}

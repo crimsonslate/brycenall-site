@@ -4,9 +4,7 @@ from django.utils.text import slugify
 from django.core.files.storage import storages
 from datetime import date
 
-from portfolio.validators import (
-    validate_media_file_extension,
-)
+from portfolio.validators import validate_media_file_extension
 
 
 class Media(models.Model):
@@ -27,8 +25,10 @@ class Media(models.Model):
         blank=True,
         default=None,
     )
-    subtitle = models.CharField(max_length=128, null=True, default=None)
-    desc = models.TextField(verbose_name="description", max_length=2048)
+    subtitle = models.CharField(max_length=128, blank=True, null=True, default=None)
+    desc = models.TextField(
+        verbose_name="description", max_length=2048, blank=True, null=True, default=None
+    )
     slug = models.SlugField(
         max_length=64, unique=True, blank=True, null=True, default=None
     )

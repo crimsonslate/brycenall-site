@@ -3,21 +3,9 @@
     {% for media in medias %}
         {% if media.is_image %}
         <img class="h-auto max-w-full" src="{{ media.url }}" alt="{{ media.title }}">
-        {{ media.title }}
-        {{ media.views }}
-        {{ media.likes }}
-        {{ media.dislikes }}
+        {% elif not media.is_image and media.thumb %}
+        <img class="h-auto max-w-full" src="{{ media.thumb.url }}" alt="{{ media.title }}">
         {% else %}
-        <h2 class="text-black"></h2>
-        <video class="w-full" controls>
-            <span class="sr-only">{{ media.title }}</span>
-            <source src="{{ media.url }}" type="video/mp4">
-              Your browser does not support the video tag.
-        </video>
-        {{ media.title }}
-        {{ media.views }}
-        {{ media.likes }}
-        {{ media.dislikes }}
         {% endif %}
     {% endfor %}
 {% endblock content %}
