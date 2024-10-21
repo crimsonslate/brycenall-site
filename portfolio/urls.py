@@ -7,9 +7,9 @@ from . import views
 urlpatterns = [
     path("gallery/", views.MediaListView.as_view(), name="media gallery"),
     path("upload/", views.MediaUploadView.as_view(), name="media upload"),
-    path("edit/<str:slug>/", views.MediaUpdateView.as_view(), name="media edit"),
-    path("delete/<str:slug>/", views.MediaDeleteView.as_view(), name="media delete"),
     path("<str:slug>/", views.MediaDetailView.as_view(), name="media detail"),
+    path("<str:slug>/edit/", views.MediaUpdateView.as_view(), name="media edit"),
+    path("<str:slug>/delete/", views.MediaDeleteView.as_view(), name="media delete"),
 ]
 
 if settings.DEBUG:
