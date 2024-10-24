@@ -18,13 +18,16 @@ class MediaListView(ListView):
     allow_empty = True
     content_type = "text/html"
     context_object_name = "medias"
-    http_method_names = ["get"]
+    queryset = Media.objects.filter(hidden__exact=False)
+    http_method_names = ["get", "post"]
     model = Media
+    paginate_by = 12
 
 
 class MediaDetailView(DetailView):
     content_type = "text/html"
     http_method_names = ["get", "post"]
+    template_name = "portfolio/media_detail.html"
     model = Media
     queryset = Media.objects.filter(hidden__exact=False)
     extra_context = {"portfolio_name": settings.PORTFOLIO_NAME}
@@ -68,5 +71,5 @@ class MediaUploadView(FormView):
     form_class = MediaUploadForm
     http_method_names = ["get", "post"]
     template_name = "portfolio/media_upload.html"
-    extra_context = {"portfolio_name": settings.PORTFOLIO_NAME}
+    extra_context = {"portfolio_name": settings.PORTFOLIO_NAME, "title": "Upload"}
     success_url = reverse_lazy("media gallery")

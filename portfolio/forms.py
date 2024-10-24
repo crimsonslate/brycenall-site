@@ -1,32 +1,54 @@
 from django import forms
 from django.forms.models import ModelForm
 from django.forms.renderers import TemplatesSetting
-from django.template import Template
+from django.template.base import Template
 
 from portfolio.models import Media
 
 
 class PortfolioFormRenderer(TemplatesSetting):
     form_template_name = "portfolio/forms/form.html"
-    formset_template_name = "portfolio/forms/formset.html"
     field_template_name = "portfolio/forms/field.html"
 
     def get_template(self, template_name: str) -> Template | None:
-        if template_name.startswith("django/forms/widgets/"):
-            template_name = template_name.replace(
-                "django/forms/widgets/", "portfolio/forms/partials/_"
-            )
-        return super().get_template(template_name)
+        match template_name:
+            case "django/forms/widgets/input.html":
+                return self.get_template("portfolio/forms/input.html")
+            case "django/forms/widgets/text.html":
+                return self.get_template("portfolio/forms/input.html")
+            case "django/forms/widgets/clearable_file_input.html":
+                return self.get_template("portfolio/forms/file.html")
+            case "django/forms/widgets/file.html":
+                return self.get_template("portfolio/forms/file.html")
+            case "django/forms/widgets/textarea.html":
+                return self.get_template("portfolio/forms/textarea.html")
+            case _:
+                print(f"Getting '{template_name}'...")
+                return super().get_template(template_name)
+
+
+class MediaEditForm(ModelForm):
+    class Meta:
+        model = Media
+        fields = [
+            "title",
+            "source",
+            "thumb",
+            "subtitle",
+            "desc",
+            "hidden",
+            "is_image",
+            "date_created",
+        ]
 
 
 class MediaUploadForm(ModelForm):
     class Meta:
         model = Media
-        fields = ["source", "title", "desc"]
+        fields = ["source", "title", "subtitle", "desc"]
         help_texts = {
-            "source": "Upload a file.",
-            "title": "Create a unique title for the media.",
-            "desc": "Write a description for the new media.",
+            "source": "Upload a video or an image.",
+            "title": "Create a unique title.",
         }
 
 

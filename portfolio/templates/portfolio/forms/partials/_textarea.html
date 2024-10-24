@@ -3,8 +3,4 @@
     type="{{ widget.type }}"
     name="{{ widget.name }}"
     {% include "portfolio/forms/partials/_attrs.html" with attrs=widget.attrs only %}
->
-{% if widget.value != None %}
-{{ widget.value|stringformat:'s' }}
-{% endif %}
-</textarea>
+>{% if widget.value != None %}{{ widget.value|stringformat:'s' }}{% endif %}</textarea>

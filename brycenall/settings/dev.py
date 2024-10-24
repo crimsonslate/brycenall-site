@@ -1,7 +1,7 @@
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 DEBUG = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 INTERNAL_IPS = ["127.0.0.1"]
@@ -17,7 +17,7 @@ TIME_ZONE = "America/Chicago"
 USE_I18N = True
 USE_TZ = True
 WSGI_APPLICATION = "brycenall.wsgi.application"
-# FORM_RENDERER = "portfolio.forms.PortfolioFormRenderer"
+FORM_RENDERER = "portfolio.forms.PortfolioFormRenderer"
 PORTFOLIO_NAME = "Bryce Nall"
 
 DATABASES = {
