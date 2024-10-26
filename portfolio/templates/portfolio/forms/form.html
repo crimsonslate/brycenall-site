@@ -1,10 +1,10 @@
-{% if errors and not form.fields %}
+{% include "portfolio/forms/errors.html" with errors=errors %}
+{% if errors and not fields %}
   <div>{% for field in hidden_fields %}{{ field }}{% endfor %}</div>
 {% endif %}
-{% for field in form.fields %}
-  <div class="mb-4">
-    {% if field.label %}{{ field.label }}{% endif %}
-    {{ field }}
+{% for field, errors in fields %}
+<div class="mb-4">
+    {{ field.as_field_group }}
     {% if forloop.last %}
       {% for field in hidden_fields %}{{ field }}{% endfor %}
     {% endif %}
