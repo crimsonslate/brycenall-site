@@ -18,7 +18,7 @@ class MediaListView(ListView):
     allow_empty = True
     content_type = "text/html"
     context_object_name = "medias"
-    queryset = Media.objects.filter(hidden__exact=False)
+    queryset = Media.objects.filter(is_hidden__exact=False)
     http_method_names = ["get", "post"]
     model = Media
     paginate_by = 12
@@ -29,7 +29,7 @@ class MediaDetailView(DetailView):
     http_method_names = ["get", "post"]
     template_name = "portfolio/media_detail.html"
     model = Media
-    queryset = Media.objects.filter(hidden__exact=False)
+    queryset = Media.objects.filter(is_hidden__exact=False)
     extra_context = {"portfolio_name": settings.PORTFOLIO_NAME}
 
     def get_context_data(self, *args, **kwargs) -> dict[str, Any]:

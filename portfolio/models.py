@@ -32,7 +32,7 @@ class Media(models.Model):
     slug = models.SlugField(
         max_length=64, unique=True, blank=True, null=True, default=None
     )
-    hidden = models.BooleanField(default=False)
+    is_hidden = models.BooleanField(default=False)
     is_image = models.BooleanField(default=False)
 
     date_created = models.DateField(default=date.today)

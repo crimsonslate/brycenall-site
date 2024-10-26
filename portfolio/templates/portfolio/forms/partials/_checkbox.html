@@ -1,9 +1,0 @@
-<input
-    class="mx-2"
-    type="{{ widget.type }}"
-    name="{{ widget.name }}"
-    {% if widget.value != None %}
-    value="{{ widget.value|stringformat:'s' }}"
-    {% endif %}
-    {% include "portfolio/forms/partials/_attrs.html" with attrs=widget.attrs only %}
->
