@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    path("", views.MediaListView.as_view(), name="media gallery"),
+    path("", views.GalleryView.as_view(), name="gallery"),
     path("upload/", views.MediaUploadView.as_view(), name="media upload"),
     path("<str:slug>/", views.MediaDetailView.as_view(), name="media detail"),
     path("<str:slug>/edit/", views.MediaUpdateView.as_view(), name="media edit"),

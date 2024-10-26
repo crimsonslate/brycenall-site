@@ -1,5 +1,3 @@
-from typing import Any
-
 from django import forms
 from django.core.validators import validate_image_file_extension
 from django.utils.translation import gettext_lazy as _

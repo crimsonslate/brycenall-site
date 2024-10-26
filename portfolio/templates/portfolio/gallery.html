@@ -1,0 +1,10 @@
+{% extends "portfolio/layout.html" %}
+{% block content %}
+<div class="container">
+    {% for media in media_list %}
+    <h1>{{ media.title }}</h1>
+    <h2>{{ media.subtitle }}</h2>
+    {% endfor %}
+</div>
+{% endblock content %}
+

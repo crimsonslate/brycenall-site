@@ -6,22 +6,26 @@ from django.views.generic import (
     DeleteView,
     DetailView,
     FormView,
-    ListView,
+    TemplateView,
     UpdateView,
 )
+from django.views.generic.list import MultipleObjectMixin
 
 from portfolio.models import Media
 from portfolio.forms import MediaUploadForm
 
 
-class MediaListView(ListView):
-    allow_empty = True
+class GalleryView(MultipleObjectMixin, TemplateView):
+    template_name = "portfolio/gallery.html"
     content_type = "text/html"
-    context_object_name = "medias"
-    queryset = Media.objects.filter(is_hidden__exact=False)
     http_method_names = ["get", "post"]
-    model = Media
+    extra_context = {"title": "Gallery", "porfolio_name": settings.PORTFOLIO_NAME}
+    context_object_name = "media_list"
     paginate_by = 12
+    model = Media
+    ordering = "-date_created"
+    queryset = Media.objects.filter(is_hidden__exact=False)
+    object_list = Media.objects.filter(is_hidden__exact=False)
 
 
 class MediaDetailView(DetailView):
