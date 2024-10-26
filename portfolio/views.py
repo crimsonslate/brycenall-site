@@ -19,7 +19,7 @@ class GalleryView(MultipleObjectMixin, TemplateView):
     template_name = "portfolio/gallery.html"
     content_type = "text/html"
     http_method_names = ["get", "post"]
-    extra_context = {"title": "Gallery", "porfolio_name": settings.PORTFOLIO_NAME}
+    extra_context = {"title": "Gallery", "portfolio_name": settings.PORTFOLIO_NAME}
     context_object_name = "media_list"
     paginate_by = 12
     model = Media
