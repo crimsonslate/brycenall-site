@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from portfolio.models import Media
+from portfolio.models import Media, MediaCategory
 
 
 @admin.register(Media)
@@ -10,4 +10,11 @@ class MediaAdmin(admin.ModelAdmin):
         ("Text", {"fields": ["title", "subtitle", "desc", "slug"]}),
         ("Stats", {"fields": ["hidden", "is_image"]}),
         ("Dates", {"fields": ["date_created"]}),
+    ]
+
+
+@admin.register(MediaCategory)
+class MediaCategoryAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {"fields": ["name", "cover_image"]}),
     ]

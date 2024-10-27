@@ -1,10 +1,15 @@
 {% extends "portfolio/layout.html" %}
 {% block content %}
-<div class="container">
-    {% for media in media_list %}
-    <h1>{{ media.title }}</h1>
-    <h2>{{ media.subtitle }}</h2>
-    {% endfor %}
+<div class="container mx-auto my-4 space-y-6">
+    <h1 class="text-2xl">Gallery</h1>
+    <div class="grid grid-rows-3 gap-4">
+        {% for media in media_list %}
+        <div class="mb-4">
+            <img class="size-64" src={% if media.is_image %}"{{ media.url }}"{% else %}"{{ media.thumb.url }}"{% endif %}>
+            <h2 class="text-xl">{{ media.title|truncatechars:24 }}</h2>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock content %}
 

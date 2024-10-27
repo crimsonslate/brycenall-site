@@ -7,6 +7,18 @@ from datetime import date
 from portfolio.validators import validate_media_file_extension
 
 
+class MediaCategory(models.Model):
+    name = models.CharField(max_length=64)
+    cover_image = models.FileField(upload_to="category/", storage=storages["bucket"])
+
+    class Meta:
+        verbose_name = "category"
+        verbose_name_plural = "categories"
+
+    def __str__(self) -> str:
+        return self.name
+
+
 class Media(models.Model):
     title = models.CharField(
         max_length=64,
@@ -32,6 +44,7 @@ class Media(models.Model):
     slug = models.SlugField(
         max_length=64, unique=True, blank=True, null=True, default=None
     )
+    categories = models.ManyToManyField(MediaCategory, blank=True, default=None)
     is_hidden = models.BooleanField(default=False)
     is_image = models.BooleanField(default=False)
 
