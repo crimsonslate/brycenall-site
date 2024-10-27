@@ -1,0 +1,9 @@
+{% if image %}
+<img class="h-auto w-full" src="{{ url }}" alt="{{ alttext }}">
+{% else %}
+<video class="h-auto w-full" controls>
+    <span class="sr-only">{{ alttext }}</span>
+    <source src="{{ url }}" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+{% endif %}

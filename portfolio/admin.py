@@ -8,7 +8,7 @@ class MediaAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {"fields": ["source", "thumb"]}),
         ("Text", {"fields": ["title", "subtitle", "desc", "slug"]}),
-        ("Stats", {"fields": ["hidden", "is_image"]}),
+        ("Stats", {"fields": ["is_hidden", "is_image", "categories"]}),
         ("Dates", {"fields": ["date_created"]}),
     ]
 
