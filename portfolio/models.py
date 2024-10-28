@@ -44,7 +44,7 @@ class Media(models.Model):
     slug = models.SlugField(
         max_length=64, unique=True, blank=True, null=True, default=None
     )
-    categories = models.ManyToManyField(MediaCategory, blank=True, default=None)
+    categories = models.ManyToManyField(MediaCategory)
     is_hidden = models.BooleanField(default=False)
     is_image = models.BooleanField(default=False)
 
