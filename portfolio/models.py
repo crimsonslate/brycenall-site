@@ -63,7 +63,7 @@ class Media(models.Model):
     def save(self, *args, **kwargs) -> None:
         if not self.slug or self.slug != slugify(self.title):
             self.slug = slugify(self.title)
-            self.validate_constraints()
+            self.validate_constraints()  # Raises error if slug is bad
 
         if self.file_extension in get_available_image_extensions():
             self.is_image = True
