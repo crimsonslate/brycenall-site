@@ -1,6 +1,0 @@
-{% extends "portfolio/layout.html" %}
-{% block content %}
-{% for media in medias %}
-<img class="h-auto max-w-full" src="{% if media.is_image %}{{ media.url }}{% else %}{{ media.thumb.url }}{% endif %}" alt="{{ media.title }}">
-{% endfor %}
-{% endblock content %}

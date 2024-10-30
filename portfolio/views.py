@@ -6,35 +6,33 @@ from django.views.generic import (
     DeleteView,
     DetailView,
     FormView,
-    TemplateView,
+    ListView,
     UpdateView,
 )
-from django.views.generic.list import MultipleObjectMixin
 
 from portfolio.models import Media
 from portfolio.forms import MediaUploadForm
 
 
-class GalleryView(MultipleObjectMixin, TemplateView):
-    template_name = "portfolio/gallery.html"
+class GalleryView(ListView):
     content_type = "text/html"
-    http_method_names = ["get", "post"]
+    context_object_name = "medias"
     extra_context = {"title": "Gallery", "portfolio_name": settings.PORTFOLIO_NAME}
-    context_object_name = "media_list"
-    paginate_by = 12
+    http_method_names = ["get", "post"]
     model = Media
     ordering = "-date_created"
-    queryset = Media.objects.filter(is_hidden__exact=False)
-    object_list = Media.objects.filter(is_hidden__exact=False)
+    paginate_by = 12
+    queryset = Media.objects.filter(is_hidden__exact=False)  # No hidden media retreived
+    template_name = "portfolio/gallery.html"
 
 
 class MediaDetailView(DetailView):
     content_type = "text/html"
+    extra_context = {"portfolio_name": settings.PORTFOLIO_NAME}
     http_method_names = ["get", "post"]
-    template_name = "portfolio/media_detail.html"
     model = Media
     queryset = Media.objects.filter(is_hidden__exact=False)
-    extra_context = {"portfolio_name": settings.PORTFOLIO_NAME}
+    template_name = "portfolio/media_detail.html"
 
     def get_context_data(self, *args, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(*args, **kwargs)
@@ -44,11 +42,11 @@ class MediaDetailView(DetailView):
 
 class MediaUpdateView(UpdateView):
     content_type = "text/html"
+    extra_context = {"portfolio_name": settings.PORTFOLIO_NAME}
+    fields = ["source", "title", "desc"]
     http_method_names = ["get", "post"]
     model = Media
     template_name = "portfolio/media_edit.html"
-    fields = ["source", "title", "desc"]
-    extra_context = {"portfolio_name": settings.PORTFOLIO_NAME}
 
     def get_context_data(self, *args, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(*args, **kwargs)
@@ -58,11 +56,11 @@ class MediaUpdateView(UpdateView):
 
 class MediaDeleteView(DeleteView):
     content_type = "text/html"
+    extra_context = {"portfolio_name": settings.PORTFOLIO_NAME}
     http_method_names = ["get", "post"]
     model = Media
-    template_name = "portfolio/media_delete.html"
-    extra_context = {"portfolio_name": settings.PORTFOLIO_NAME}
     success_url = reverse_lazy("media gallery")
+    template_name = "portfolio/media_delete.html"
 
     def get_context_data(self, *args, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(*args, **kwargs)
@@ -72,8 +70,8 @@ class MediaDeleteView(DeleteView):
 
 class MediaUploadView(FormView):
     content_type = "text/html"
+    extra_context = {"portfolio_name": settings.PORTFOLIO_NAME, "title": "Upload"}
     form_class = MediaUploadForm
     http_method_names = ["get", "post"]
-    template_name = "portfolio/media_upload.html"
-    extra_context = {"portfolio_name": settings.PORTFOLIO_NAME, "title": "Upload"}
     success_url = reverse_lazy("media gallery")
+    template_name = "portfolio/media_upload.html"

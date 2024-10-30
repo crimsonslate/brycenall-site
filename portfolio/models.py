@@ -1,3 +1,6 @@
+import imagesize
+
+from django.core.validators import get_available_image_extensions
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
@@ -9,6 +12,7 @@ from portfolio.validators import validate_media_file_extension
 
 class MediaCategory(models.Model):
     name = models.CharField(max_length=64)
+    hexcode = models.CharField(max_length=6, default="030303")
     cover_image = models.FileField(upload_to="category/", storage=storages["bucket"])
 
     class Meta:
@@ -47,6 +51,8 @@ class Media(models.Model):
     categories = models.ManyToManyField(MediaCategory)
     is_hidden = models.BooleanField(default=False)
     is_image = models.BooleanField(default=False)
+    height = models.PositiveIntegerField(default=None, blank=True, null=True)
+    width = models.PositiveIntegerField(default=None, blank=True, null=True)
 
     date_created = models.DateField(default=date.today)
     datetime_last_modified = models.DateTimeField(auto_now=True)
@@ -59,7 +65,16 @@ class Media(models.Model):
         if not self.slug or self.slug != slugify(self.title):
             self.slug = slugify(self.title)
             self.validate_constraints()
+        self.set_dimensions()
         return super().save(*args, **kwargs)
+
+    def set_dimensions(self) -> None:
+        if self.file_extension in get_available_image_extensions():
+            self.width, self.height = imagesize.get(self.source.path)
+
+    @property
+    def file_extension(self) -> str:
+        return self.source.file.name.split(".")[-1]
 
     @property
     def url(self) -> str:
