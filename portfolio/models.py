@@ -12,7 +12,6 @@ from portfolio.validators import validate_media_file_extension
 
 class MediaCategory(models.Model):
     name = models.CharField(max_length=64)
-    hexcode = models.CharField(max_length=6, default="030303")
     cover_image = models.FileField(upload_to="category/", storage=storages["bucket"])
 
     class Meta:
