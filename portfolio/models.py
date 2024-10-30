@@ -49,7 +49,7 @@ class Media(models.Model):
     )
     categories = models.ManyToManyField(MediaCategory)
     is_hidden = models.BooleanField(default=False)
-    is_image = models.BooleanField(default=False)
+    is_image = models.BooleanField(default=None, blank=True, null=True)
     height = models.PositiveIntegerField(default=None, blank=True, null=True)
     width = models.PositiveIntegerField(default=None, blank=True, null=True)
 
@@ -64,7 +64,12 @@ class Media(models.Model):
         if not self.slug or self.slug != slugify(self.title):
             self.slug = slugify(self.title)
             self.validate_constraints()
-        self.set_dimensions()
+
+        if self.file_extension in get_available_image_extensions():
+            self.is_image = True
+            self.set_dimensions()
+        else:
+            self.is_image = False
         return super().save(*args, **kwargs)
 
     def set_dimensions(self) -> None:
