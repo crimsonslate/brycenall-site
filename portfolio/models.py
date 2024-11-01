@@ -1,3 +1,4 @@
+from django.urls import reverse
 import imagesize
 
 from django.core.validators import get_available_image_extensions
@@ -50,27 +51,37 @@ class Media(models.Model):
     categories = models.ManyToManyField(MediaCategory)
     is_hidden = models.BooleanField(default=False)
     is_image = models.BooleanField(default=None, blank=True, null=True)
-    height = models.PositiveIntegerField(default=None, blank=True, null=True)
     width = models.PositiveIntegerField(default=None, blank=True, null=True)
+    height = models.PositiveIntegerField(default=None, blank=True, null=True)
 
     date_created = models.DateField(default=date.today)
     datetime_last_modified = models.DateTimeField(auto_now=True)
     datetime_published = models.DateTimeField(default=timezone.now)
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["title", "slug"],
+                name="%(app_label)s_%(class)s_unique_title_and_slug",
+            )
+        ]
+
     def __str__(self) -> str:
         return self.title
 
-    def save(self, *args, **kwargs) -> None:
+    def save(self, **kwargs) -> None:
         if not self.slug or self.slug != slugify(self.title):
             self.slug = slugify(self.title)
-            self.validate_constraints()  # Raises error if slug is bad
 
         if self.file_extension in get_available_image_extensions():
             self.is_image = True
             self.set_dimensions()
         else:
             self.is_image = False
-        return super().save(*args, **kwargs)
+        return super().save(**kwargs)
+
+    def get_absolute_url(self) -> str:
+        return reverse("media detail", kwargs={"slug": self.slug})
 
     def set_dimensions(self) -> None:
         if self.file_extension in get_available_image_extensions():

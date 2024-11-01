@@ -1,25 +1,18 @@
 {% extends "portfolio/layout.html" %}
+{% load portfolio_display %}
 {% block content %}
-<div class="container mx-auto my-4 space-y-6">
-    <div class="grid grid-rows-3 gap-4">
+<div class="">
+    <div class="">
     {% for media in medias %}
-        <a class="mb-4" href="{% url 'media detail' media.slug %}">
-            <img class="size-64" src={% if media.is_image %}"{{ media.url }}"{% else %}"{{ media.thumb.url }}"{% endif %}>
-            <h2 class="text-xl">{{ media.title|truncatechars:24 }}</h2>
-        </a>
+    <a class="mb-4" href="{% url 'media detail' media.slug %}">
+        {% display media %}
+        <h2 class="text-xl">{{ media.title|truncatechars:24 }}</h2>
+    </a>
     {% empty %}
+    <a class="mb-4" href="{% url 'upload' %}">
+        Upload some media
+    </a>
     {% endfor %}
-    </div>
-    <div class="flex justify-evenly gap-2">
-    {% if page_obj.has_previous %}
-        <a href="page?=1">First</a>
-        <a href="page?={{ page_obj.previous_page_number }}">Back</a>
-    {% endif %}
-        <h3 class="text-md">Page {{ page_obj.number }} out of {{ page_obj.paginator.num_pages }}</h3>
-    {% if page_obj.has_next %}
-        <a href="page?={{ page_obj.next_page_number }}">Next</a>
-        <a href="page?={{ page_obj.paginator.num_pages }}">Last</a>
-    {% endif %}
     </div>
 </div>
 {% endblock content %}

@@ -11,10 +11,4 @@ class PortfolioFormRenderer(TemplatesSetting):
         if settings.DEBUG:
             print(f"Getting template '{template_name}'...")
 
-        match template_name:
-            case "django/forms/label.html":
-                return self.get_template("portfolio/forms/label.html")
-            case "django/forms/legend.html":
-                return self.get_template("portfolio/forms/legend.html")
-            case _:
-                return super().get_template(template_name)
+        return super().get_template(template_name)

@@ -1,5 +1,6 @@
 from django import forms
 from django.core.validators import validate_image_file_extension
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
 from portfolio.forms.renderer import PortfolioFormRenderer
@@ -32,9 +33,6 @@ class MediaEditForm(forms.Form):
     is_hidden = forms.FileField(
         label=_("Set as hidden?"), help_text=_(""), widget=CheckboxInput()
     )
-    is_image = forms.FileField(
-        label=_("Set as image?"), help_text=_(""), widget=CheckboxInput()
-    )
 
 
 class MediaUploadForm(forms.Form):
@@ -53,15 +51,33 @@ class MediaUploadForm(forms.Form):
         widget=FileInput(),
         allow_empty_file=False,
         validators=[validate_image_file_extension],
+        required=False,
     )
     title = forms.CharField(label=_("Title"), help_text=_(""), widget=TextInput())
-    subtitle = forms.CharField(label=_("Subtitle"), help_text=_(""), widget=TextInput())
+    subtitle = forms.CharField(
+        label=_("Subtitle"), help_text=_(""), widget=TextInput(), required=False
+    )
     desc = forms.CharField(
-        label=_("Description"), help_text=_(""), widget=TextareaInput()
+        label=_("Description"), help_text=_(""), widget=TextareaInput(), required=False
     )
     is_hidden = forms.FileField(
-        label=_("Set as hidden?"), help_text=_(""), widget=CheckboxInput()
+        label=_("Set as hidden?"),
+        help_text=_(""),
+        widget=CheckboxInput(),
+        required=False,
     )
-    is_image = forms.FileField(
-        label=_("Set as image?"), help_text=_(""), widget=CheckboxInput()
+
+
+class MediaSearchForm(forms.Form):
+    default_renderer = PortfolioFormRenderer
+    search = forms.CharField(
+        max_length=64,
+        widget=TextInput(
+            attrs={
+                "hx-post": reverse_lazy("media search"),
+                "hx-trigger": "keyup queue:last",
+                "placeholder": "Search...",
+                "autofocus": True,
+            }
+        ),
     )

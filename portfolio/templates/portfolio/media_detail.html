@@ -1,12 +1,28 @@
 {% extends "portfolio/layout.html" %}
 {% load portfolio_display %}
 {% block content %}
-<div class="container mx-auto mt-4 space-y-4 rounded-lg bg-stone-100 p-4 drop-shadow-md">
-    {% display media %}
-    <h2 class="my-2 text-2xl text-gray-700 lg:text-4xl dark:text-stone-100">{{ media.title }}</h2>
-    <div class="flex flex-col gap-2">
-    {% if media.subtitle %}<h3 class="my-2 text-xl text-gray-700 lg:text-2xl dark:text-stone-100">{{ media.subtitle }}</h3>{% endif %}
-    {% if media.desc %}<p class="text-md text-gray-600 lg:text-lg dark:text-stone-200">{{ media.desc|truncatechars:'512' }}</p>{% endif %}
+<div class="grid h-screen grid-rows-1 place-items-center gap-16">
+    <div class="m-16 space-y-8">
+        {% display media %}
+        <div class="flex flex-col gap-8 text-center">
+            <h2 class="text-3xl font-bold lg:text-6xl">{{ media.title }}</h2>
+            {% if media.subtitle %}<h3 class="text-xl font-semibold lg:text-2xl">{{ media.subtitle }}</h3>{% endif %}
+        </div>
+        {% if media.desc %}
+        <div class="m-16 rounded-md bg-gray-200 p-16">
+            <p class="text-lg">{{ media.desc }}</p>
+        </div>
+        {% endif %}
+    </div>
+    <div class="m-16 flex flex-row justify-between text-blue-500">
+        <a class="hover:text-blue-300 hover:underline"href="{% url 'media gallery' %}">Gallery</a>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-3 text-gray-400">
+              <path fill-rule="evenodd" d="M1 8a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 8.07 3h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 16.07 6H17a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8Zm13.5 3a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM10 14a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
+        </svg>
+        <a class="hover:text-blue-300 hover:underline"href="{% url 'media search' %}">Search</a>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-3 text-gray-400">
+              <path fill-rule="evenodd" d="M1 8a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 8.07 3h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 16.07 6H17a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8Zm13.5 3a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM10 14a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
+        </svg>
     </div>
 </div>
 {% endblock content %}

@@ -4,7 +4,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 DEBUG = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-INTERNAL_IPS = ["127.0.0.1"]
+INTERNAL_IPS = ["127.0.0.1", "0.0.0.0"]
 LANGUAGE_CODE = "en-us"
 MEDIA_ROOT = BASE_DIR / "media/"
 MEDIA_URL = "media/"
@@ -12,6 +12,7 @@ ROOT_URLCONF = "brycenall.urls"
 SECRET_KEY = "django-insecure-#ezlo7tqc&h07y4g^1i3jqg78^z*jgsyd11kq812^=k4%!lk6b"
 STATIC_ROOT = "/static/"
 STATIC_URL = "static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
 TAILWIND_APP_NAME = "theme"
 TIME_ZONE = "America/Chicago"
 USE_I18N = True
