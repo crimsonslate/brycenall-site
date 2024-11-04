@@ -13,9 +13,17 @@ from portfolio.validators import validate_media_file_extension
 
 class MediaCategory(models.Model):
     name = models.CharField(max_length=64)
-    cover_image = models.FileField(upload_to="category/", storage=storages["bucket"])
+    cover = models.ImageField(
+        verbose_name="cover image",
+        storage=storages["bucket"],
+        upload_to="category/",
+        null=True,
+        blank=True,
+        default=None,
+    )
 
     class Meta:
+        ordering = ["name"]
         verbose_name = "category"
         verbose_name_plural = "categories"
 
@@ -48,17 +56,18 @@ class Media(models.Model):
     slug = models.SlugField(
         max_length=64, unique=True, blank=True, null=True, default=None
     )
-    categories = models.ManyToManyField(MediaCategory)
     is_hidden = models.BooleanField(default=False)
     is_image = models.BooleanField(default=None, blank=True, null=True)
     width = models.PositiveIntegerField(default=None, blank=True, null=True)
     height = models.PositiveIntegerField(default=None, blank=True, null=True)
+    categories = models.ManyToManyField(MediaCategory)
 
     date_created = models.DateField(default=date.today)
     datetime_last_modified = models.DateTimeField(auto_now=True)
     datetime_published = models.DateTimeField(default=timezone.now)
 
     class Meta:
+        ordering = ["date_created"]
         constraints = [
             models.UniqueConstraint(
                 fields=["title", "slug"],

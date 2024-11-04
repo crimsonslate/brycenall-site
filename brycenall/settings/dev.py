@@ -18,8 +18,46 @@ TIME_ZONE = "America/Chicago"
 USE_I18N = True
 USE_TZ = True
 WSGI_APPLICATION = "brycenall.wsgi.application"
-PORTFOLIO_NAME = "Bryce Nall"
 FORM_RENDERER = "portfolio.forms.PortfolioFormRenderer"
+
+PORTFOLIO_PROFILE = {
+    "NAME": "Bryce Nall",
+    "FIRST_NAME": "Bryce",
+    "LAST_NAME": "Nall",
+    "EMAIL": "btn04@gmail.com",
+    "PHONE": None,
+    "SOCIALS": {
+        "FACEBOOK": {
+            "display_name": None,
+            "profile_link": None,
+            "username": None,
+        },
+        "YOUTUBE": {
+            "display_name": "Bryce Nall",
+            "profile_link": "https://www.youtube.com/@brycenall7439",
+            "username": "brycenall7439",
+        },
+        "INSTAGRAM": {
+            "display_name": "bryce nall",
+            "profile_link": "https://www.instagram.com/bybnall/",
+            "username": "bybnall",
+        },
+        "TIKTOK": {
+            "display_name": None,
+            "profile_link": None,
+            "username": None,
+        },
+        "TWITTER": {
+            "display_name": None,
+            "profile_link": None,
+            "username": None,
+        },
+        "REDDIT": {
+            "profile_link": None,
+            "username": None,
+        },
+    },
+}
 
 DATABASES = {
     "default": {

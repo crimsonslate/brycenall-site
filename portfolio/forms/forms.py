@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
 from django.core.validators import validate_image_file_extension
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
@@ -6,6 +7,10 @@ from django.utils.translation import gettext_lazy as _
 from portfolio.forms.renderer import PortfolioFormRenderer
 from portfolio.forms.widgets import FileInput, TextInput, TextareaInput, CheckboxInput
 from portfolio.validators import validate_media_file_extension
+
+
+class PortfolioAuthenticationForm(AuthenticationForm):
+    """A basic authentication form."""
 
 
 class MediaEditForm(forms.Form):

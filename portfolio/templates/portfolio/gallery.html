@@ -9,7 +9,7 @@
         <h2 class="text-xl">{{ media.title|truncatechars:24 }}</h2>
     </a>
     {% empty %}
-    <a class="mb-4" href="{% url 'upload' %}">
+    <a class="mb-4" href="{% url 'media upload' %}">
         Upload some media
     </a>
     {% endfor %}

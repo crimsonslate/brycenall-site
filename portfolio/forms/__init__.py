@@ -1,2 +1,2 @@
-from .forms import MediaUploadForm, MediaEditForm
+from .forms import MediaUploadForm, MediaEditForm, PortfolioAuthenticationForm
 from .renderer import PortfolioFormRenderer
