@@ -1,7 +1,7 @@
 {% if image %}
 <img src="{{ url }}" alt="{{ alttext }}" height="{{ height }}" width="{{ width }}">
 {% else %}
-<video controls>
+<video class="aspect-video" controls>
     <span class="sr-only">{{ alttext }}</span>
     <source src="{{ url }}" type="video/mp4">
     Your browser does not support the video tag.

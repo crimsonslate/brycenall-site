@@ -1,12 +1,12 @@
-from django.urls import reverse
 import imagesize
+from datetime import date
 
+from django.core.files.storage import storages
 from django.core.validators import get_available_image_extensions
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
-from django.core.files.storage import storages
-from datetime import date
 
 from portfolio.validators import validate_media_file_extension
 

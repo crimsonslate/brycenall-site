@@ -10,13 +10,13 @@
         <script src="{% static 'portfolio/js/htmx.min.js' %}" defer></script>
         {% django_htmx_script %}
     </head>
-    <body class="bg-white" hx-headers="{'X-CSRFToken': '{{ csrf_token }}'}">
+    <body class="bg-stone-100 dark:bg-gray-700" hx-headers="{'X-CSRFToken': '{{ csrf_token }}'}">
         <main>
         {% block content %}
         {% endblock content %}
         </main>
-        <footer class="fixed bottom-0 left-0 z-20 w-full p-4 bg-white border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
-            <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="{% url 'portfolio contact' %}" class="hover:underline">{{ profile.NAME|default_if_none:'yo mama' }}</a>. All Rights Reserved.
+        <footer class="fixed flex justify-between border-t">
+            <span class="">© 2024 <a href="{% url 'portfolio contact' %}" class="hover:underline">{{ profile.NAME|default_if_none:'yo mama' }}</a>. All Rights Reserved.
             </span>
             <ul class="flex justify-between gap-8">
                 <li>

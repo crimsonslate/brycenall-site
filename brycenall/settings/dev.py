@@ -34,7 +34,7 @@ PORTFOLIO_PROFILE = {
         },
         "YOUTUBE": {
             "display_name": "Bryce Nall",
-            "profile_link": "https://www.youtube.com/@brycenall7439",
+            "profile_link": "https://www.youtube.com/@brycenall7439/",
             "username": "brycenall7439",
         },
         "INSTAGRAM": {
