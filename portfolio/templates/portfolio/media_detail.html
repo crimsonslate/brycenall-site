@@ -1,18 +1,24 @@
 {% extends "portfolio/layout.html" %}
 {% load portfolio_display %}
 {% block content %}
-<div class="grid h-screen grid-rows-1 place-items-center gap-16">
-    <div class="m-16 space-y-8">
-        {% display media %}
-        <div class="flex flex-col gap-8 text-center">
-            <h2 class="text-3xl font-bold lg:text-6xl">{{ media.title }}</h2>
-            {% if media.subtitle %}<h3 class="text-xl font-semibold lg:text-2xl">{{ media.subtitle }}</h3>{% endif %}
-        </div>
-        {% if media.desc %}
-        <div class="m-16 rounded-md bg-gray-200 p-16">
-            <p class="text-lg">{{ media.desc }}</p>
-        </div>
+<div>
+    <div class="container mx-auto">
+        {% if media.is_image %}
+        <img class="h-auto w-full" src="{{ media.url }}" alt="{{ media.title }}">
+        {% else %}
+        <video
+            controls
+            class="w-full drop-shadow-lg lg:drop-shadow-xl"
+            {% if media.thumb %}poster="{{ media.thumb.url }}"{% endif %}
+        >
+            <span class="sr-only">{{ media.title }}</span>
+            <source src="{{ media.url }}" type="video/mp4">
+              Your browser does not support the video tag.
+        </video>
         {% endif %}
+        <h2 class="text-2xl lg:text-4xl my-6 text-gray-700 dark:text-stone-100 mx-8">{{ media.title }}</h2>
+        {% if media.subtitle %}<h3 class="text-xl lg:text-2xl my-2 text-gray-700 dark:text-stone-100 p-8">{{ media.subtitle }}</h3>{% endif %}
+        {% if media.desc %}<button class="mx-8 text-md lg:text-lg text-gray-700 bg-stone-300 hover:bg-stone-200 active:bg-stone-300 dark:text-stone-100 dark:bg-gray-600 dark:hover:bg-gray-700 dark:active:bg-gray-600 transitions-color duration-300 rounded-lg p-6" type="button">{{ media.desc|truncatechars:"256" }}</button>{% endif %}
     </div>
 </div>
 {% endblock content %}
