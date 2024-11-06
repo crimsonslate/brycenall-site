@@ -10,7 +10,7 @@
         <script src="{% static 'portfolio/js/htmx.min.js' %}" defer></script>
         {% django_htmx_script %}
     </head>
-    <body class="bg-stone-100 dark:bg-gray-700" hx-headers="{'X-CSRFToken': '{{ csrf_token }}'}">
+    <body class="mb-20 bg-stone-100 dark:bg-gray-700 dark:text-stone-100" hx-headers="{'X-CSRFToken': '{{ csrf_token }}'}">
         <main>
         {% block content %}
         {% endblock content %}

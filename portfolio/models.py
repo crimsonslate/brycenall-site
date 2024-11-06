@@ -93,7 +93,7 @@ class Media(models.Model):
         return reverse("media detail", kwargs={"slug": self.slug})
 
     def set_dimensions(self) -> None:
-        if self.file_extension in get_available_image_extensions():
+        if self.is_image:
             self.width, self.height = imagesize.get(self.source.path)
 
     @property

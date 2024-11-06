@@ -39,7 +39,7 @@ class PortfolioGalleryView(ListView):
     http_method_names = ["get", "post"]
     model = Media
     ordering = "-date_created"
-    paginate_by = 2
+    paginate_by = 12
     queryset = Media.objects.filter(is_hidden__exact=False)
     template_name = "portfolio/gallery.html"
 
