@@ -18,7 +18,7 @@ class PortfolioLoginView(LoginView):
     content_type = "text/html"
     extra_context = {"profile": settings.PORTFOLIO_PROFILE, "title": "Login"}
     http_method_names = ["get", "post"]
-    template_name = "portfolio/forms/login.html"
+    template_name = "portfolio/login.html"
 
 
 class PortfolioLogoutView(LogoutView):
@@ -26,7 +26,7 @@ class PortfolioLogoutView(LogoutView):
     extra_context = {"profile": settings.PORTFOLIO_PROFILE, "title": "Logout"}
     http_method_names = ["get", "post"]
     success_url_allowed_hosts = settings.ALLOWED_HOSTS
-    template_name = "portfolio/forms/logout.html"
+    template_name = "portfolio/logout.html"
 
 
 class PortfolioContactView(TemplateView):
@@ -52,7 +52,7 @@ class PortfolioSearchView(TemplateView, FormView):
     context_type = "text/html"
     extra_context = {"profile": settings.PORTFOLIO_PROFILE, "title": "Search"}
     http_method_names = ["get", "post"]
-    template_name = "portfolio/forms/search.html"
+    template_name = "portfolio/search.html"
     form_class = MediaSearchForm
     success_url = reverse_lazy("portfolio search")
 
@@ -64,7 +64,7 @@ class PortfolioUploadView(LoginRequiredMixin, FormView):
     http_method_names = ["get", "post"]
     login_url = reverse_lazy("portfolio login")
     success_url = reverse_lazy("portfolio gallery")
-    template_name = "portfolio/forms/upload.html"
+    template_name = "portfolio/upload.html"
 
     def get_success_url(self, media: Media | None = None) -> str:
         if media is not None:
