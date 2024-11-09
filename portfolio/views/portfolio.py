@@ -5,7 +5,11 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView, ListView, FormView
 
-from portfolio.forms import PortfolioAuthenticationForm, MediaUploadForm
+from portfolio.forms import (
+    MediaSearchForm,
+    PortfolioAuthenticationForm,
+    MediaUploadForm,
+)
 from portfolio.models import Media
 
 
@@ -44,11 +48,13 @@ class PortfolioGalleryView(ListView):
     template_name = "portfolio/gallery.html"
 
 
-class PortfolioSearchView(TemplateView):
+class PortfolioSearchView(TemplateView, FormView):
     context_type = "text/html"
     extra_context = {"profile": settings.PORTFOLIO_PROFILE, "title": "Search"}
     http_method_names = ["get", "post"]
     template_name = "portfolio/forms/search.html"
+    form_class = MediaSearchForm
+    success_url = reverse_lazy("portfolio search")
 
 
 class PortfolioUploadView(LoginRequiredMixin, FormView):

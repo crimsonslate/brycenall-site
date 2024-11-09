@@ -15,7 +15,7 @@ class MediaDetailView(DetailView):
     http_method_names = ["get", "post"]
     model = Media
     queryset = Media.objects.filter(is_hidden__exact=False)
-    template_name = "portfolio/media_detail.html"
+    template_name = "portfolio/media/detail.html"
 
     def get_context_data(self, *args, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(*args, **kwargs)
@@ -29,7 +29,7 @@ class MediaUpdateView(LoginRequiredMixin, UpdateView):
     fields = ["source", "thumb", "title", "desc", "is_hidden"]
     http_method_names = ["get", "post"]
     model = Media
-    template_name = "portfolio/media_edit.html"
+    template_name = "portfolio/media/edit.html"
     login_url = reverse_lazy("portfolio login")
 
     def get_context_data(self, *args, **kwargs) -> dict[str, Any]:
@@ -44,7 +44,7 @@ class MediaDeleteView(LoginRequiredMixin, DeleteView):
     http_method_names = ["get", "post"]
     model = Media
     success_url = reverse_lazy("portfolio profile")
-    template_name = "portfolio/media_delete.html"
+    template_name = "portfolio/media/delete.html"
     login_url = reverse_lazy("portfolio login")
 
     def get_context_data(self, *args, **kwargs) -> dict[str, Any]:

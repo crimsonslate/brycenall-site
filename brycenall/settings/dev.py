@@ -18,7 +18,6 @@ TIME_ZONE = "America/Chicago"
 USE_I18N = True
 USE_TZ = True
 WSGI_APPLICATION = "brycenall.wsgi.application"
-FORM_RENDERER = "portfolio.forms.PortfolioFormRenderer"
 
 PORTFOLIO_PROFILE = {
     "NAME": "Bryce Nall",

@@ -1,6 +1,8 @@
 import imagesize
+import datetime
 from datetime import date
 
+from django.core.files import File
 from django.core.files.storage import storages
 from django.core.validators import get_available_image_extensions
 from django.db import models
@@ -84,17 +86,29 @@ class Media(models.Model):
 
         if self.file_extension in get_available_image_extensions():
             self.is_image = True
-            self.set_dimensions()
         else:
             self.is_image = False
+            self.set_thumbnail(file=None)
         return super().save(**kwargs)
 
     def get_absolute_url(self) -> str:
         return reverse("media detail", kwargs={"slug": self.slug})
 
-    def set_dimensions(self) -> None:
-        if self.is_image:
-            self.width, self.height = imagesize.get(self.source.path)
+    def set_thumbnail(self, file: File | None = None) -> None:
+        self.thumb = file if file else self.generate_thumbnail()
+
+    def generate_thumbnail(self, name: str | None = None) -> File:
+        if not name:
+            name = f"default_{datetime.datetime.now():%y%m%d%f}"
+
+        with open(name, mode="w") as f:
+            default_thumbnail = File(f)
+        return default_thumbnail
+
+    @property
+    def dimensions(self) -> tuple[int, int]:
+        image: File = self.source.path if self.is_image else self.thumb.path
+        return imagesize.get(image)
 
     @property
     def file_extension(self) -> str:
