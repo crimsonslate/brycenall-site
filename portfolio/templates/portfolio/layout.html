@@ -15,7 +15,6 @@
         {% block content %}
         {% endblock content %}
         </main>
-        <ul id="footer-menu"></ul>
         <footer class="fixed bottom-0 left-0 z-20 w-full p-6 bg-white border-t border-gray-200 shadow flex items-center justify-between dark:bg-gray-800 dark:border-gray-600">
             <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="{% url 'portfolio contact' %}" class="hover:underline">{{ profile.NAME|default_if_none:'yo mama' }}</a>. All Rights Reserved.</span>
             <ul class="flex gap-8">

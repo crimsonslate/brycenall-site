@@ -49,34 +49,40 @@ class MediaUploadForm(forms.Form):
     source = forms.FileField(
         label=_("Source"),
         help_text=_("Upload a video or an image."),
-        widget=widgets.FileInput(),
+        widget=widgets.FileInput(
+            attrs={
+                "class": "w-full bg-white rounded-md",
+            }
+        ),
         allow_empty_file=False,
         validators=[validate_media_file_extension],
     )
     thumb = forms.FileField(
         label=_("Thumbnail"),
         help_text=_("Upload an optional thumbnail."),
-        widget=widgets.FileInput(),
+        widget=widgets.FileInput(attrs={"class": "w-full bg-white rounded-md"}),
         allow_empty_file=False,
         validators=[validate_image_file_extension],
         required=False,
     )
     title = forms.CharField(
-        label=_("Title"), help_text=_(""), widget=widgets.TextInput()
+        label=_("Title"),
+        widget=widgets.TextInput(attrs={"class": "w-full bg-white rounded-md"}),
+        max_length=128,
     )
     subtitle = forms.CharField(
-        label=_("Subtitle"), help_text=_(""), widget=widgets.TextInput(), required=False
+        label=_("Subtitle"),
+        widget=widgets.TextInput(attrs={"class": "w-full bg-white rounded-md"}),
+        required=False,
     )
     desc = forms.CharField(
         label=_("Description"),
-        help_text=_(""),
-        widget=widgets.Textarea(),
+        widget=widgets.Textarea(attrs={"class": "w-full bg-white rounded-md"}),
         required=False,
     )
     is_hidden = forms.FileField(
         label=_("Set as hidden?"),
-        help_text=_(""),
-        widget=widgets.CheckboxInput(),
+        widget=widgets.CheckboxInput(attrs={"class": "bg-white rounded-md"}),
         required=False,
     )
 
@@ -89,6 +95,7 @@ class MediaSearchForm(forms.Form):
                 "class": "w-full bg-white rounded-md text-center",
                 "hx-post": reverse_lazy("portfolio search"),
                 "hx-trigger": "keyup queue:last",
+                "hx-target": "#search-results",
                 "placeholder": "Search...",
                 "autofocus": True,
             },
