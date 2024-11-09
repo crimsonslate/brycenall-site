@@ -1,0 +1,9 @@
+{% extends "portfolio/layout.html" %}
+{% load portfolio_display %}
+{% block content %}
+<form action="{% url 'portfolio upload' %}" method="post" class="grid grid-cols-1">
+    {% csrf_token %}
+    {{ form }}
+    <button>Submit</button>
+</form>
+{% endblock content %}
