@@ -68,7 +68,7 @@ class MediaUploadForm(forms.Form):
     title = forms.CharField(
         label=_("Title"),
         widget=widgets.TextInput(attrs={"class": "w-full bg-white rounded-md"}),
-        max_length=128,
+        max_length=64,
     )
     subtitle = forms.CharField(
         label=_("Subtitle"),
@@ -89,13 +89,14 @@ class MediaUploadForm(forms.Form):
 
 class MediaSearchForm(forms.Form):
     search = forms.CharField(
-        max_length=128,
+        max_length=64,
         widget=widgets.TextInput(
             attrs={
                 "class": "w-full bg-white rounded-md text-center",
                 "hx-post": reverse_lazy("portfolio search"),
                 "hx-trigger": "keyup queue:last",
-                "hx-target": "#search-results",
+                "hx-target": "this",
+                "hx-swap": "innerHTML",
                 "placeholder": "Search...",
                 "autofocus": True,
             },

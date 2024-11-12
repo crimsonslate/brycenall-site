@@ -1,9 +1,12 @@
+from typing import Any
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
-from django.http import HttpResponseRedirect
+from django.db.models import Q, QuerySet
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView, ListView, FormView
+
 
 from portfolio.forms import (
     MediaSearchForm,
@@ -55,6 +58,22 @@ class PortfolioSearchView(TemplateView, FormView):
     template_name = "portfolio/search.html"
     form_class = MediaSearchForm
     success_url = reverse_lazy("portfolio search")
+
+    def form_valid(self, form: MediaSearchForm) -> HttpResponse:
+        results = Media.objects.filter(
+            Q(title__iexact=form.cleaned_data["search"])
+            | Q(title__contains=form.cleaned_data["search"])
+        )
+        print(results)
+        return self.render_to_response(context=self.get_context_data(results))
+
+    def get_context_data(
+        self, results: QuerySet[Media, Media] | None = None, **kwargs
+    ) -> dict[str, Any]:
+        context: dict[str, Any] = super().get_context_data(**kwargs)
+        if results:
+            context["results"] = results
+        return context
 
 
 class PortfolioUploadView(LoginRequiredMixin, FormView):
