@@ -2,12 +2,9 @@ import cv2 as cv
 import datetime
 import imagesize
 import numpy
-import os
 
-from cv2.typing import MatLike
 from datetime import date
 
-from django.conf import settings
 from django.core.files import File
 from django.core.files.storage import storages
 from django.core.validators import get_available_image_extensions
