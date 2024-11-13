@@ -1,7 +1,13 @@
-import imagesize
+import cv2 as cv
 import datetime
+import imagesize
+import numpy
+import os
+
+from cv2.typing import MatLike
 from datetime import date
 
+from django.conf import settings
 from django.core.files import File
 from django.core.files.storage import storages
 from django.core.validators import get_available_image_extensions
@@ -97,18 +103,43 @@ class Media(models.Model):
     def set_thumbnail(self, file: File | None = None) -> None:
         self.thumb = file if file else self.generate_thumbnail()
 
-    def generate_thumbnail(self, name: str | None = None) -> File:
-        if not name:
-            name = f"default_{datetime.datetime.now():%y%m%d%f}"
+    def generate_thumbnail(self, filename: str | None = None, loc: int = 0) -> File:
+        if self.is_image:
+            raise ValueError("Images cannot generate thumbnails")
 
-        with open(name, mode="w") as f:
-            default_thumbnail = File(f)
-        return default_thumbnail
+        if filename is None:
+            timestamp = f"{datetime.datetime.now():%y%m%d%f}"
+            filename = f"default_thumbnail_{timestamp}.jpg"
+
+        frame = self._capture_frame(loc)
+        cv.imwrite(filename, frame)
+        return File(open(filename, "rb"))
+
+    def _capture_frame(self, loc: int = 0) -> numpy.ndarray:
+        if self.is_image:
+            raise ValueError("Cannot capture a frame from an image")
+
+        capture = cv.VideoCapture(self.source.path)
+        if loc > 0:
+            capture.set(cv.CAP_PROP_POS_FRAMES, loc)
+
+        try:
+            ret, frame = capture.read()
+            if not ret:
+                raise ValueError(f"Failed to read frame {loc} in '{self.source.path}'")
+            capture.release()
+            if frame.dtype != numpy.uint8:
+                frame = numpy.clip(frame * 255, 0, 255).astype(numpy.uint8)
+            return frame
+
+        finally:
+            capture.release()
 
     @property
-    def dimensions(self) -> tuple[int, int]:
-        image: File = self.source.path if self.is_image else self.thumb.path
-        return imagesize.get(image)
+    def dimensions(self) -> tuple[int, int] | None:
+        if self.is_image:
+            width, height = imagesize.get(self.source.path)
+            return int(width), int(height)
 
     @property
     def file_extension(self) -> str:

@@ -60,15 +60,16 @@ class PortfolioSearchView(TemplateView, FormView):
     success_url = reverse_lazy("portfolio search")
 
     def form_valid(self, form: MediaSearchForm) -> HttpResponse:
+        order_by: str = form.cleaned_data.get("order_by") or "-date_created"
         results = Media.objects.filter(
             Q(title__iexact=form.cleaned_data["search"])
             | Q(title__contains=form.cleaned_data["search"])
-        )
+        ).order_by(order_by)
         print(results)
         return self.render_to_response(context=self.get_context_data(results))
 
     def get_context_data(
-        self, results: QuerySet[Media, Media] | None = None, **kwargs
+        self, results: QuerySet[Media, Media | None] | None = None, **kwargs
     ) -> dict[str, Any]:
         context: dict[str, Any] = super().get_context_data(**kwargs)
         if results:
