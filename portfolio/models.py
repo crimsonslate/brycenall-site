@@ -135,8 +135,11 @@ class Media(models.Model):
     @property
     def dimensions(self) -> tuple[int, int] | None:
         if self.is_image:
-            width, height = imagesize.get(self.source.path)
-            return int(width), int(height)
+            filepath = self.source.path
+        else:
+            filepath = self.thumb.path
+        width, height = imagesize.get(filepath)
+        return int(width), int(height)
 
     @property
     def file_extension(self) -> str:
