@@ -1,6 +1,5 @@
 import cv2 as cv
 import datetime
-import imagesize
 import numpy
 
 from datetime import date
@@ -105,7 +104,7 @@ class Media(models.Model):
             raise ValueError("Images cannot generate thumbnails")
 
         if filename is None:
-            timestamp = f"{datetime.datetime.now():%y%m%d%f}"
+            timestamp = f"{datetime.datetime.now():%y_%m_%d_%f}"
             filename = f"default_thumbnail_{timestamp}.jpg"
 
         frame = self._capture_frame(loc)
@@ -113,9 +112,6 @@ class Media(models.Model):
         return File(open(filename, "rb"))
 
     def _capture_frame(self, loc: int = 0) -> numpy.ndarray:
-        if self.is_image:
-            raise ValueError("Cannot capture a frame from an image")
-
         capture = cv.VideoCapture(self.source.path)
         if loc > 0:
             capture.set(cv.CAP_PROP_POS_FRAMES, loc)
@@ -124,7 +120,6 @@ class Media(models.Model):
             ret, frame = capture.read()
             if not ret:
                 raise ValueError(f"Failed to read frame {loc} in '{self.source.path}'")
-            capture.release()
             if frame.dtype != numpy.uint8:
                 frame = numpy.clip(frame * 255, 0, 255).astype(numpy.uint8)
             return frame
@@ -133,18 +128,13 @@ class Media(models.Model):
             capture.release()
 
     @property
-    def dimensions(self) -> tuple[int, int] | None:
-        if self.is_image:
-            filepath = self.source.path
-        else:
-            filepath = self.thumb.path
-        width, height = imagesize.get(filepath)
-        return int(width), int(height)
-
-    @property
     def file_extension(self) -> str:
         return self.source.file.name.split(".")[-1]
 
     @property
     def url(self) -> str:
         return self.source.url
+
+    @property
+    def detail_url(self) -> str:
+        return self.get_absolute_url()
