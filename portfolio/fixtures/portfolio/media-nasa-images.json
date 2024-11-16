@@ -1,112 +1,123 @@
 [
     {
         "model": "portfolio.Media",
-        "pk": 1,
+        "pk": 1001,
         "fields" : {
             "title": "Moons of the Solar System",
             "subtitle": "Moons of the Solar System Subtitle",
-            "source": "ssmoons-browse.jpg",
-            "desc": "Moons of the Solar System Description"
+            "source": "static/portfolio/media/ssmoons-browse.jpg",
+            "desc": "Moons of the Solar System Description",
+            "datetime_last_modified": "2024-11-16T17:35:55.000"
         }
     },
     {
         "model": "portfolio.Media",
-        "pk": 2,
+        "pk": 1002,
         "fields" : {
             "title": "Dino Killer",
             "subtitle": "Dino Killer Subtitle",
-            "source": "Dino_Killer.jpg",
-            "desc": "Dino Killer Description"
+            "source": "static/portfolio/media/Dino_Killer.jpg",
+            "desc": "Dino Killer Description",
+            "datetime_last_modified": "2024-11-16T17:35:55.000"
         }
     },
     {
         "model": "portfolio.Media",
-        "pk": 3,
+        "pk": 1003,
         "fields" : {
             "title": "Craig Attebery's Huygens",
             "subtitle": "Craig Attebery's Huygens Subtitle",
-            "source": "CraigAttebery_huygens.jpg",
-            "desc": "Craig Attebery's Huygens Description"
+            "source": "static/portfolio/media/CraigAttebery_huygens.jpg",
+            "desc": "Craig Attebery's Huygens Description",
+            "datetime_last_modified": "2024-11-16T17:35:55.000"
         }
     },
     {
         "model": "portfolio.Media",
-        "pk": 4,
+        "pk": 1004,
         "fields" : {
             "title": "Neutron",
             "subtitle": "Neutron Subtitle",
-            "source": "neutron.jpg",
-            "desc": "Neutron Description"
+            "source": "static/portfolio/media/neutron.jpg",
+            "desc": "Neutron Description",
+            "datetime_last_modified": "2024-11-16T17:35:55.000"
         }
     },
     {
         "model": "portfolio.Media",
-        "pk": 5,
+        "pk": 1005,
         "fields" : {
             "title": "Giotto 1",
             "subtitle": "Giotto 1 Subtitle",
-            "source": "Giotto1.jpg",
-            "desc": "Giotto 1 Description"
+            "source": "static/portfolio/media/Giotto1.jpg",
+            "desc": "Giotto 1 Description",
+            "datetime_last_modified": "2024-11-16T17:35:55.000"
         }
     },
     {
         "model": "portfolio.Media",
-        "pk": 6,
+        "pk": 1006,
         "fields" : {
             "title": "Chicxulub Crater",
             "subtitle": "Chicxulub Crater Subtitle",
-            "source": "Chicxulub.jpg",
-            "desc": "Chicxulub Crater Description"
+            "source": "static/portfolio/media/Chicxulub.jpg",
+            "desc": "Chicxulub Crater Description",
+            "datetime_last_modified": "2024-11-16T17:35:55.000"
         }
     },
     {
         "model": "portfolio.Media",
-        "pk": 7,
+        "pk": 1007,
         "fields" : {
             "title": "Earth's Magnetosphere",
             "subtitle": "Earth's Magnetosphere Subtitle",
-            "source": "470173main_magnetosphere2_full.jpg",
-            "desc": "Earth's Magnetosphere Description"
+            "source": "static/portfolio/media/470173main_magnetosphere2_full.jpg",
+            "desc": "Earth's Magnetosphere Description",
+            "datetime_last_modified": "2024-11-16T17:35:55.000"
         }
     },
     {
         "model": "portfolio.Media",
-        "pk": 8,
+        "pk": 1008,
         "fields" : {
             "title": "Europa's Oceanic Icesheet",
             "subtitle": "Europa's Oceanic Icesheet Subtitle",
-            "source": "PIA101131_reduced.jpg",
-            "desc": "Europa's Oceanic Icesheet Description"
+            "source": "static/portfolio/media/PIA101131_reduced.jpg",
+            "desc": "Europa's Oceanic Icesheet Description",
+            "datetime_last_modified": "2024-11-16T17:35:55.000"
         }
     },
     {
         "model": "portfolio.Media",
-        "pk": 9,
+        "pk": 1009,
         "fields" : {
             "title": "Earth as seen from Mars",
             "subtitle": "Earth as seen from Mars subtitle",
-            "source": "Mars_to_Earth.jpg",
-            "desc": "Earth as seen from Mars Description"
+            "source": "static/portfolio/media/Mars_to_Earth.jpg",
+            "desc": "Earth as seen from Mars Description",
+            "datetime_last_modified": "2024-11-16T17:35:55.000"
         }
     },
     {
         "model": "portfolio.Media",
-        "pk": 10,
+        "pk": 1010,
         "fields" : {
             "title": "Saturn",
             "subtitle": "Saturn Subtitle",
-            "source": "PIA02888.jpg",
-            "desc": "Saturn Description"
+            "source": "static/portfolio/media/PIA02888.jpg",
+            "desc": "Saturn Description",
+            "datetime_last_modified": "2024-11-16T17:35:55.000"
         }
     },
     {
         "model": "portfolio.Media",
-        "pk": 11,
+        "pk": 1011,
         "fields" : {
             "title": "Sputnik 1",
             "subtitle": "Sputnik 1 Subtitle",
-            "source": "sputnik1.jpg",
-            "desc": "Sputnik 1 Description"
+            "source": "static/portfolio/media/sputnik1.jpg",
+            "desc": "Sputnik 1 Description",
+            "datetime_last_modified": "2024-11-16T17:35:55.000"
         }
     }
 ]
