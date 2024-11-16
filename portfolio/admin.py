@@ -16,5 +16,5 @@ class MediaAdmin(admin.ModelAdmin):
 @admin.register(MediaCategory)
 class MediaCategoryAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {"fields": ["name", "cover_image"]}),
+        (None, {"fields": ["name", "cover"]}),
     ]

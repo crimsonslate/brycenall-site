@@ -1,5 +1,4 @@
 {% extends "portfolio/layout.html" %}
-{% load portfolio_display %}
 {% block content %}
 <div class="flex flex-col gap-4 items-center mt-20">
     <div class="flex flex-col gap-4">
@@ -13,11 +12,7 @@
     <form action="{% url 'portfolio search' %}" method="post" class="grid grid-cols-1 gap-8" autocomplete="off">
         {% csrf_token %}
         {{ form.search }}
-        <noscript>
-            <button class="w-full block p-8 bg-blue-500 text-white rounded-lg hover:bg-blue-300 border-gray-600 drop-shadow-sm"type="submit">
-                Submit
-            </button>
-        </noscript>
+        <span class="sr-only">Press enter to submit</span>
     </form>
     <div id="id-search-results" name="search-results" class={% if not results %}"hidden"{% else %}"grid grid-cols-2 lg:grid-cols-3 gap-4"{% endif %}>
         {% for result in results %}
