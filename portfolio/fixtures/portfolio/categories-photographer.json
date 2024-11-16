@@ -19,6 +19,14 @@
         "model": "portfolio.MediaCategory",
         "pk": 3,
         "fields" : {
+            "name": "Denmark",
+            "cover": null
+        }
+    },
+    {
+        "model": "portfolio.MediaCategory",
+        "pk": 4,
+        "fields" : {
             "name": "Football",
             "cover": null
         }
@@ -33,9 +41,9 @@
     },
     {
         "model": "portfolio.MediaCategory",
-        "pk": 4,
+        "pk": 6,
         "fields" : {
-            "name": "Short Films",
+            "name": "Nightlife",
             "cover": null
         }
     }
