@@ -6,9 +6,8 @@
             "title": "A Corny Concerto",
             "subtitle": null,
             "thumb": null,
-            "source": "static/portfolio/media/ACornyConcerto.mp4",
-            "desc": "A Corny Concerto Description",
-            "datetime_last_modified": "2024-11-16T17:35:55.000"
+            "source": "ACornyConcerto.mp4",
+            "desc": "A Corny Concerto Description"
         }
     },
     {
@@ -18,9 +17,8 @@
             "title": "Daffy and Egghead",
             "subtitle": null,
             "thumb": null,
-            "source": "static/portfolio/media/DaffyAndEgghead.mp4",
-            "desc": "Daffy and Egghead Description",
-            "datetime_last_modified": "2024-11-16T17:35:55.000"
+            "source": "DaffyAndEgghead.mp4",
+            "desc": "Daffy and Egghead Description"
         }
     }
 ]

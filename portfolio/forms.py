@@ -92,7 +92,7 @@ class MediaUploadForm(forms.Form):
             """If you're not ready to share this media with the world,
             or if you'd rather just store it here, check this box."""
         ),
-        widget=widgets.CheckboxInput(attrs=base_attrs),
+        widget=widgets.CheckboxInput(attrs={"class": "accent-blue-700"}),
         required=False,
     )
 

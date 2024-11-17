@@ -62,12 +62,9 @@ class Media(models.Model):
     )
     is_hidden = models.BooleanField(default=False)
     is_image = models.BooleanField(default=None, blank=True, null=True)
-    width = models.PositiveIntegerField(default=None, blank=True, null=True)
-    height = models.PositiveIntegerField(default=None, blank=True, null=True)
-    categories = models.ManyToManyField(MediaCategory)
+    categories = models.ManyToManyField(MediaCategory, default=None, blank=True)
 
     date_created = models.DateField(default=date.today)
-    datetime_last_modified = models.DateTimeField(auto_now=True)
     datetime_published = models.DateTimeField(default=timezone.now)
 
     class Meta:
