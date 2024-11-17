@@ -4,5 +4,4 @@
 __pycache__/
 node_modules/
 migrations/
-brycenall/media/
 db.*
