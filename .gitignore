@@ -4,4 +4,7 @@
 __pycache__/
 node_modules/
 migrations/
+brycenall/media/thumb/
+brycenall/media/source/
+brycenall/media/categories/
 db.*

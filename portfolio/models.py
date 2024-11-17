@@ -1,5 +1,6 @@
 import cv2 as cv
 import datetime
+import imagesize
 import numpy
 
 from datetime import date
@@ -133,5 +134,10 @@ class Media(models.Model):
         return self.source.url
 
     @property
-    def detail_url(self) -> str:
-        return self.get_absolute_url()
+    def dimensions(self) -> tuple[int, int]:
+        if not self.is_image and not self.thumb:
+            self.set_thumbnail(file=None)
+
+        image = self.source.path if self.is_image else self.thumb.path
+        width, height = imagesize.get(image)
+        return int(width), int(height)
