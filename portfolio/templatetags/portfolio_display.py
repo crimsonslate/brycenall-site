@@ -5,8 +5,8 @@ from portfolio.models import Media
 register = Library()
 
 
-@register.inclusion_tag("portfolio/media/gallery_display.html")
-def gallery_display(
+@register.inclusion_tag("portfolio/media/display_gallery.html")
+def display_gallery(
     media: Media, css_class: str | None = None
 ) -> dict[str, str | bool | None]:
     return {
@@ -18,15 +18,14 @@ def gallery_display(
     }
 
 
-@register.inclusion_tag("portfolio/media/search_result.html")
-def search_result(
+@register.inclusion_tag("portfolio/media/display_detail.html")
+def display_detail(
     media: Media, css_class: str | None = None
 ) -> dict[str, str | bool | None]:
     return {
-        "url": media.source.url if media.is_image else media.thumb.url,
+        "source_url": media.source.url,
         "detail_url": media.get_absolute_url(),
         "alttext": media.title,
-        "class": css_class if css_class else "",
-        "height": str(32),
-        "width": str(32),
+        "image": media.is_image,
+        "class": css_class,
     }

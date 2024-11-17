@@ -1,7 +1,7 @@
 [
     {
         "model": "portfolio.Media",
-        "pk": 1,
+        "pk": 101,
         "fields" : {
             "title": "A Corny Concerto",
             "subtitle": null,
@@ -12,7 +12,7 @@
     },
     {
         "model": "portfolio.Media",
-        "pk": 2,
+        "pk": 102,
         "fields" : {
             "title": "Daffy and Egghead",
             "subtitle": null,

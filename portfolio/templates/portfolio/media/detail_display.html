@@ -1,9 +1,0 @@
-{% if media.is_image == True %}
-<img src="{{ media.url }}" alt="{{ media.title }}"/>
-{% else %}
-<video width="{{ media.width|default:480 }}" height=="{{ media.height|default:480 }}" controls>
-    <span class="sr-only">{{ media.title }}</span>
-    <source src="{{ media.url }}"></source>
-    Your browser does not support the video tag.
-</video>
-{% endif %}

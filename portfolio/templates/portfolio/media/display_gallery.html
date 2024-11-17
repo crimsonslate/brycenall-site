@@ -1,5 +1,5 @@
 {% if image %}
 <img class="{% if class %}{{ class }}{% else %}h-96 w-96{% endif %}" src="{{ url }}" alt="{{ alttext }}">
 {% else %}
-<img class="{% if class %}{{ class }}{% else %}h-96 w-96{% endif %}" src="{{ url }}" alt="{{ alttext }}>
+<img class="{% if class %}{{ class }}{% else %}h-96 w-96{% endif %}" src="{{ thumb.url }}" alt="{{ alttext }}>
 {% endif %}

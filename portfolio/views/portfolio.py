@@ -56,17 +56,21 @@ class PortfolioSearchView(TemplateView, FormView):
     extra_context = {"profile": settings.PORTFOLIO_PROFILE, "title": "Search"}
     http_method_names = ["get", "post"]
     template_name = "portfolio/search.html"
-    partial_template_name = "portfolio/partials/_search.html"
     form_class = MediaSearchForm
     success_url = reverse_lazy("portfolio search")
 
-    def form_valid(self, form: MediaSearchForm, **response_kwargs) -> HttpResponse:
+    def form_valid(self, form: MediaSearchForm) -> HttpResponse:
         results: QuerySet[Media, Media | None] = Media.objects.filter(
             Q(title__iexact=form.cleaned_data["search"])
             | Q(title__contains=form.cleaned_data["search"])
         ).order_by("-date_created")
         context: dict[str, Any] = self.get_context_data(results=results)
-        return self.render_to_response(context=context, **response_kwargs)
+        return self.render_to_response(context=context)
+
+    def post(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        if request.headers.get("HX-Request"):
+            print(f"{request.headers.get("HX-Request") = }")
+        return super().post(request, *args, **kwargs)
 
     def get_context_data(
         self, results: QuerySet[Media, Media | None] | None = None, **kwargs

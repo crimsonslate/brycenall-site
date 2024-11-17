@@ -104,16 +104,19 @@ class MediaSearchForm(forms.Form):
 
     search = forms.CharField(
         max_length=64,
-        widget=widgets.TextInput(
+        widget=widgets.Input(
             attrs={
+                "id": "id-search",
+                "name": "search",
+                "type": "search",
                 "class": base_attrs["class"],
                 "hx-post": reverse_lazy("portfolio search"),
-                "hx-trigger": "keyup queue:last",
+                "hx-trigger": "input changed delay:150ms, search",
                 "hx-target": "#search-results",
-                "hx-swap": "outerHTML",
-                "placeholder": "Search...",
+                "hx-indicator": ".htmx-indicator",
                 "autofocus": True,
                 "required": False,
+                "placeholder": "Search...",
             },
         ),
     )
