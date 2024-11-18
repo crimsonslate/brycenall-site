@@ -1,4 +1,5 @@
 {% extends "portfolio/layout.html" %}
+{% load portfolio_display %}
 {% block content %}
 <div class="mt-20 flex flex-col items-center gap-4">
     <div class="flex flex-col gap-4">
@@ -16,17 +17,7 @@
     </form>
     <div id="id-search-results" name="search-results" class="grid grid-cols-2 gap-4 lg:grid-cols-3">
         {% for result in results %}
-            {% if result.is_image %}
-            <a class="group flex flex-col rounded-md bg-blue-500 p-8 group-hover:bg-gray-500" href="{{ result.detail_url }}">
-                <img class="h-36 w-36" src="{{ result.url }}"></img>
-                <h2 class="absolute hidden group-hover:flex text-lg text-white">{{ result.title }}</h2>
-            </a>
-            {% else %}
-            <a class="group flex flex-col rounded-md bg-blue-500 p-8 group-hover:bg-gray-500" href="{{ result.detail_url }}">
-                <img class="h-36 w-36" src="{{ result.thumb.url }}"></img>
-                <h2 class="absolute hidden group-hover:flex text-lg text-white">{{ result.title }}</h2>
-            </a>
-            {% endif %}
+            {% display_search_result media=result %}
         {% empty %}
         {% endfor %}
     </div>
