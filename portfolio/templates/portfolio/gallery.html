@@ -2,11 +2,11 @@
 {% load portfolio_display %}
 {% block content %}
 <div class="">
-    <div class="p-8 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 xsm:grid-cols-1 gap-8">
+    <div class="grid gap-8 p-8 sm:grid-cols-1 lg:grid-cols-3">
     {% for media in medias %}
-    <a class="mb-4" href="{% url 'media detail' media.slug %}">
-        {% display_gallery media %}
-        <h2 class="p-2 m-2 bg-stone-300 rounded-lg text-xl hover:bg-stone-200 active:bg-stone-300 dark:text-stone-100 dark:bg-gray-600 dark:hover:bg-gray-800 dark:active:bg-gray-600 transitions-color duration-300 ">{{ media.title|truncatechars:24 }}</h2>
+    <a class="group flex flex-col" href="{% url 'media detail' media.slug %}">
+        {% display_gallery media css_class="w-96 h-full" %}
+        <h2 class="max-w-96 rounded-b-lg bg-gray-400 p-4 text-center text-xl font-semibold tracking-wide transition-colors duration-300 ease-in-out group-hover:bg-gray-300">{{ media.title|truncatechars:32 }}</h2>
     </a>
     {% empty %}
     <a class="mb-4" href="{% url 'portfolio upload' %}">

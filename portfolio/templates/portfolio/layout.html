@@ -1,4 +1,4 @@
-{% load static tailwind_tags django_htmx portfolio_backgrounds %}
+{% load static tailwind_tags django_htmx %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,8 +10,7 @@
         <script src="{% static 'portfolio/js/htmx.min.js' %}" defer></script>
         {% django_htmx_script %}
     </head>
-    <body class="mb-20 bg-stone-100 dark:bg-gray-700 dark:text-stone-100" hx-headers="{'X-CSRFToken': '{{ csrf_token }}'}">
-        {% background_terrain %}
+    <body class="max-w-screen-xl mx-auto mb-20 bg-stone-100 dark:bg-gray-700 dark:text-stone-100" hx-headers="{'X-CSRFToken': '{{ csrf_token }}'}">
         <main>
         {% block content %}
         {% endblock content %}
