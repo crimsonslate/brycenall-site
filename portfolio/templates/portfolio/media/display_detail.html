@@ -1,7 +1,7 @@
 {% if image %}
-<img class="h-full w-full" width="{{ width }}" height="{{ height }}" src="{{ source_url }}" alt="{{ title }}"/>
+<img class="{% if class %}{{ class }}{% else %}h-full w-full{% endif %}" width="{{ width }}" height="{{ height }}" src="{{ source_url }}" alt="{{ title }}"/>
 {% else %}
-<video class="{% if class %}{{ class }}{% else %}h-full w-full{% endif %}" height="{{ height }}" controls>
+<video class="{% if class %}{{ class }}{% else %}h-full w-full{% endif %}" width="{{ width }}" height="{{ height }}" controls>
     <span class="sr-only">{{ title }}</span>
     <source src="{{ source_url }}"></source>
     Your browser does not support the video tag.

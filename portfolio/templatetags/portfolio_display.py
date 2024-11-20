@@ -22,6 +22,8 @@ def display_search_result(media: Media, css_class: str | None = None) -> dict[st
         "detail_url": media.get_absolute_url(),
         "title": media.title,
         "class": css_class,
+        "width": 64,
+        "height": 64,
     }
 
 
