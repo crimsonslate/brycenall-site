@@ -11,6 +11,8 @@
         {% django_htmx_script %}
     </head>
     <body class="max-w-screen-xl mx-auto mb-20 bg-stone-100 dark:bg-gray-700 dark:text-stone-100" hx-headers="{'X-CSRFToken': '{{ csrf_token }}'}">
+        <div class="bg-[]">
+        </div>
         <main>
         {% block content %}
         {% endblock content %}

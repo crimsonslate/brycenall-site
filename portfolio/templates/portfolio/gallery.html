@@ -5,7 +5,7 @@
     <div class="grid gap-8 p-8 sm:grid-cols-1 lg:grid-cols-3">
     {% for media in medias %}
     <a class="group flex flex-col" href="{% url 'media detail' media.slug %}">
-        {% display_gallery media css_class="w-96 h-full" %}
+        {% display media force_image=True css_class="w-96 h-full" %}
         <h2 class="max-w-96 rounded-b-lg bg-gray-400 p-4 text-center text-xl font-semibold tracking-wide transition-colors duration-300 ease-in-out group-hover:bg-gray-300">{{ media.title|truncatechars:32 }}</h2>
     </a>
     {% empty %}
