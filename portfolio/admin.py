@@ -5,6 +5,7 @@ from portfolio.models import Media, MediaCategory
 
 @admin.register(Media)
 class MediaAdmin(admin.ModelAdmin):
+    readonly_fields = ["slug", "is_image"]
     fieldsets = [
         (None, {"fields": ["source", "thumb"]}),
         ("Text", {"fields": ["title", "subtitle", "desc", "slug"]}),

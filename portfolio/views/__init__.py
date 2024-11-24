@@ -4,10 +4,10 @@ from .media import (
     MediaUpdateView,
 )
 from .portfolio import (
+    PortfolioContactView,
+    PortfolioGalleryView,
     PortfolioLoginView,
     PortfolioLogoutView,
-    PortfolioGalleryView,
     PortfolioSearchView,
-    PortfolioContactView,
     PortfolioUploadView,
 )

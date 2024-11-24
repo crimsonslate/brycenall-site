@@ -1,0 +1,22 @@
+{% extends "portfolio/layout.html" %}
+{% load static portfolio_display %}
+{% block content %}
+<div class="h-full w-screen bg-cover" style="background-image: url('{% static "brycenall/landing.jpg" %}');">
+    <h2 class="max-w-xl py-20 text-xl font-semibold tracking-wide text-white backdrop-grayscale">{{ profile.NAME }}</h2>
+    <div class="flex flex-col gap-16">
+        <a href="{% url 'portfolio gallery' %}">featured gallery</a>
+        <a href="{% url 'portfolio search' %}">search my work</a>
+        <a href="{% url 'portfolio contact' %}">get in touch</a>
+    </div>
+    <div class="flex gap-2 fill-gray-300">
+    {% for name, data in profile.SOCIALS.items %}
+        {% if data %}
+        <a class="hover:fill-white" href="{{ data.profile_link|default_if_none:'#' }}">
+            <span class="sr-only">{{ name|title }}</span>
+            {{ name|social_icon:8 }}
+        </a>
+        {% endif %}
+    {% endfor %}
+    </div>
+</div>
+{% endblock content %}

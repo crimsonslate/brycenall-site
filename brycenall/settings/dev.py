@@ -26,11 +26,6 @@ PORTFOLIO_PROFILE = {
     "EMAIL": "btn04@gmail.com",
     "PHONE": None,
     "SOCIALS": {
-        "FACEBOOK": {
-            "display_name": None,
-            "profile_link": None,
-            "username": None,
-        },
         "YOUTUBE": {
             "display_name": "Bryce Nall",
             "profile_link": "https://www.youtube.com/@brycenall7439/",
@@ -41,20 +36,10 @@ PORTFOLIO_PROFILE = {
             "profile_link": "https://www.instagram.com/bybnall/",
             "username": "bybnall",
         },
-        "TIKTOK": {
-            "display_name": None,
-            "profile_link": None,
-            "username": None,
-        },
-        "TWITTER": {
-            "display_name": None,
-            "profile_link": None,
-            "username": None,
-        },
-        "REDDIT": {
-            "profile_link": None,
-            "username": None,
-        },
+        "FACEBOOK": None,
+        "TIKTOK": None,
+        "TWITTER": None,
+        "REDDIT": None,
     },
 }
 
