@@ -26,6 +26,7 @@ PORTFOLIO_PROFILE = {
     "EMAIL": "btn04@gmail.com",
     "PHONE": None,
     "SOCIALS": {
+        "DISCORD": None,
         "YOUTUBE": {
             "display_name": "Bryce Nall",
             "profile_link": "https://www.youtube.com/@brycenall7439/",

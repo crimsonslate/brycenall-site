@@ -1,0 +1,8 @@
+<div
+    name="background"
+    class="{{ class|default:'hidden' }}"
+    hx-get="{% url 'background' next_frame|default:0 %}"
+    hx-trigger="every 1s"
+    hx-swap="outerHTML"
+    hx-target="this">
+</div>

@@ -8,6 +8,7 @@ from . import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.LandingView.as_view(), name="landing"),
+    path("background/<int:frame>/", views.BackgroundView.as_view(), name="background"),
     path("", include("portfolio.urls")),
 ]
 
