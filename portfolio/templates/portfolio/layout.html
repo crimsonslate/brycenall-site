@@ -7,17 +7,14 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>{{ title }}</title>
         {% tailwind_css %}
-        <script src="{% static 'portfolio/js/htmx.min.js' %}" defer></script>
         {% django_htmx_script %}
     </head>
-    <body class="max-w-screen-xl mx-auto mb-20 bg-stone-100 dark:bg-gray-700 dark:text-stone-100" hx-headers="{'X-CSRFToken': '{{ csrf_token }}'}">
-        <div class="bg-[]">
-        </div>
+    <body class="mx-auto mb-20 max-w-screen-xl bg-stone-100 dark:bg-gray-700 dark:text-stone-100" hx-headers="{'X-CSRFToken': '{{ csrf_token }}'}">
         <main>
         {% block content %}
         {% endblock content %}
         </main>
-        <footer class="fixed bottom-0 left-0 z-20 w-full p-6 bg-white border-t border-gray-200 shadow flex items-center justify-between dark:bg-gray-800 dark:border-gray-600">
+        <footer class="fixed bottom-0 left-0 z-20 flex w-full items-center justify-between border-t border-gray-200 bg-white p-6 shadow dark:border-gray-600 dark:bg-gray-800">
             <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="{% url 'portfolio contact' %}" class="hover:underline">{{ profile.NAME|default_if_none:'yo mama' }}</a>. All Rights Reserved.</span>
             <ul class="flex gap-8">
                 <li>

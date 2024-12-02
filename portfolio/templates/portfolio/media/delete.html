@@ -4,7 +4,7 @@
 <div class="container mx-auto">
     <div class="flex items-center gap-2">
         <div id="{{ media.slug }}" class="size-72">
-            {% display media force_image=True css_class="w-96 h-full"%}
+            {% display media force_image=True css_class="w-72 h-full"%}
         </div>
         <form method="post" action="{% url 'media delete' media.slug %}" class="">
             <h2 class="">Are you sure you want to delete "{{ media.title }}"?</h2>
@@ -17,7 +17,7 @@
                 <button class="bg-red-600 hover:bg-red-600" type="submit">
                     Yes, delete it
                 </button>
-                <img id="dots" class="hidden htmx-indicator" src="{% static "portfolio/dots.svg" %}">
+                <img id="dots" class="htmx-indicator" src="{% static "portfolio/dots.svg" %}">
             </div>
         </form>
     </div>

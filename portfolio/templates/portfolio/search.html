@@ -1,7 +1,7 @@
 {% extends "portfolio/layout.html" %}
 {% load portfolio_display %}
 {% block content %}
-<div class="mt-20 flex flex-col items-center gap-4">
+<div class="mx-auto flex max-w-screen-sm flex-col items-center gap-4 pt-20 lg:max-w-screen-lg">
     <div class="flex flex-col gap-4">
         <div class="inline-flex gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
@@ -13,16 +13,8 @@
     <form action="{% url 'portfolio search' %}" method="post" class="grid grid-cols-1 gap-8" autocomplete="off">
         {% csrf_token %}
         {{ form.search }}
-        <span class="sr-only">Press enter to submit</span>
+        <span class="sr-only">Type or press enter to submit</span>
     </form>
-    <div id="id-search-results" name="search-results" class="grid grid-cols-2 gap-4 lg:grid-cols-3">
-        {% for result in results %}
-        <a href="{% url 'media detail' result.slug %}" class="inline-flex flex-col gap-2 bg-blue-300 px-8 py-4">
-            <img class="h-64 w-64" width="64" height="64" src="{{ result.url }}" alt="{{ result.title }}"/>
-            {{ result.title|truncatechars:24 }}
-        </a>
-        {% empty %}
-        {% endfor %}
-    </div>
+    {% include "portfolio/search_results.html" with results=results %}
 </div>
 {% endblock content %}

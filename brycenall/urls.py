@@ -3,9 +3,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from . import views
+
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("portfolio.urls")),
+    path("", views.LandingView.as_view(), name="landing"),
+    path("", include("crimsonslate_portfolio.urls")),
 ]
 
 if settings.DEBUG:
