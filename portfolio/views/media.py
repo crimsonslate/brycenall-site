@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import DeleteView, DetailView, UpdateView
 
 
-from portfolio.models import Media
+from crimsonslate_portfolio.models import Media
 
 
 class MediaDetailView(DetailView):

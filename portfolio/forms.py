@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.forms import widgets
 
-from portfolio.validators import validate_media_file_extension
+from crimsonslate_portfolio.validators import validate_media_file_extension
 
 
 class PortfolioAuthenticationForm(AuthenticationForm):

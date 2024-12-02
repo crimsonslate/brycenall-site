@@ -13,7 +13,7 @@ from portfolio.forms import (
     PortfolioAuthenticationForm,
     MediaUploadForm,
 )
-from portfolio.models import Media
+from crimsonslate_portfolio.models import Media
 
 
 class PortfolioLoginView(LoginView):
