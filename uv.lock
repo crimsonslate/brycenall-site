@@ -158,7 +158,7 @@ wheels = [
 
 [[package]]
 name = "crimsonslate-portfolio"
-version = "1.0.1"
+version = "1.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "arrow" },
@@ -191,9 +191,9 @@ dependencies = [
     { name = "types-python-dateutil" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/7e/86/461ddea8cd30f1f6c39f157bb034cd3c82c8d20466928ffc7306b8742501/crimsonslate_portfolio-1.0.1.tar.gz", hash = "sha256:b68a1b63b2f9100bd9a50ab32331fa799018bd52409ca43c3fe75c6e44baae94", size = 34683 }
+sdist = { url = "https://files.pythonhosted.org/packages/cf/d1/80f6764a43d2ee45b9e19ba43b9576ba1a099d719079016077116fde0d88/crimsonslate_portfolio-1.1.0.tar.gz", hash = "sha256:f520aa4714450df7864b0932be39be69f84ac36cd2a641865069df0dfbd73388", size = 35065 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/df/94/2d82f42c3d681b08571111286baf9ad76b1373113ecb7fdebaa9dcf1e93d/crimsonslate_portfolio-1.0.1-py3-none-any.whl", hash = "sha256:182f1066af8b343523ac6210fb04751bfd29f2fe86b08350b93944bf791e3979", size = 14461 },
+    { url = "https://files.pythonhosted.org/packages/b7/ac/034689cf30d2528b776082fe1fad676fc3d219fece381d87772c3eea1dd8/crimsonslate_portfolio-1.1.0-py3-none-any.whl", hash = "sha256:03a5539e70b93de71f4ddd56924a5fb4ede2362585d5bc2894f46913a0d91fd5", size = 13860 },
 ]
 
 [[package]]

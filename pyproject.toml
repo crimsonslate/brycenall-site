@@ -9,6 +9,12 @@ authors = [
     { name = "Blake Nall", email = "dev@darthnall.com" },
     { name = "Constantine Kapatos", email = "kapatos.constantine@gmail.com" },
 ]
+dependencies = [
+    "crimsonslate-portfolio>=1.0.0",
+    "django>=5.1.3",
+    "django-htmx>=1.21.0",
+    "django-tailwind[reload]>=3.8.0",
+]
 
 [project.urls]
 Homepage = "https://brycenall.com"
@@ -53,6 +59,3 @@ skip-magic-trailing-comma = false
 line-ending = "auto"
 docstring-code-format = true
 docstring-code-line-length = "dynamic"
-
-[tool.uv.workspace]
-members = ["portfolio"]

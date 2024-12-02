@@ -71,11 +71,12 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.forms",
+    "django_browser_reload",
+    "django_htmx",
     "tailwind",
     "theme",
-    "django_browser_reload",
+    "crimsonslate_portfolio.apps.CrimsonslatePortfolioConfig",
     "portfolio.apps.PortfolioConfig",
-    "django_htmx",
 ]
 
 MIDDLEWARE = [

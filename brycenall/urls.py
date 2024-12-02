@@ -8,7 +8,7 @@ from . import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.LandingView.as_view(), name="landing"),
-    path("", include("portfolio.urls")),
+    path("", include("crimsonslate_portfolio.urls")),
 ]
 
 if settings.DEBUG:
