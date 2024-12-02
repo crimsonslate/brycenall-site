@@ -1,6 +1,6 @@
 from django.urls import path
 
-from crimsonslate_portfolio import views
+from portfolio import views
 
 urlpatterns = [
     path("gallery/", views.PortfolioGalleryView.as_view(), name="portfolio gallery"),

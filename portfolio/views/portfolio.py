@@ -8,9 +8,9 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView, ListView, FormView
 
 
+from crimsonslate_portfolio.forms import PortfolioAuthenticationForm
 from portfolio.forms import (
     MediaSearchForm,
-    PortfolioAuthenticationForm,
     MediaUploadForm,
 )
 from crimsonslate_portfolio.models import Media
