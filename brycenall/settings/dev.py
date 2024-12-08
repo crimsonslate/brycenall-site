@@ -76,7 +76,6 @@ INSTALLED_APPS = [
     "tailwind",
     "theme",
     "crimsonslate_portfolio.apps.CrimsonslatePortfolioConfig",
-    "portfolio.apps.PortfolioConfig",
 ]
 
 MIDDLEWARE = [

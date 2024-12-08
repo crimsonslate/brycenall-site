@@ -13,7 +13,6 @@
     <form action="{% url 'portfolio search' %}" method="post" class="grid grid-cols-1 gap-8" autocomplete="off">
         {% csrf_token %}
         {{ form.title }}
-        {{ form.categories }}
         <span class="sr-only">Type or press enter to submit</span>
     </form>
     {% include "portfolio/search_results.html" with results=results %}
