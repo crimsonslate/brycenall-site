@@ -10,7 +10,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LANGUAGE_CODE = "en-us"
 PORTFOLIO_NAME = "Bryce Nall"
 ROOT_URLCONF = "brycenall.urls"
-SECRET_KEY = get_secret("BRYCENALL_SECRET_KEY")
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 STATIC_URL = "static/"
@@ -18,7 +17,9 @@ TIME_ZONE = "America/Chicago"
 USE_I18N = True
 USE_TZ = True
 WSGI_APPLICATION = "brycenall.wsgi.application"
-FORM_RENDERER = "portfolio.forms.PortfolioFormRenderer"
+
+secret: dict[str, str] = get_secret("brycenall-site-env-live")
+SECRET_KEY = secret.get("SECRET_KEY")
 
 DATABASES = {
     "default": {
@@ -34,35 +35,26 @@ PORTFOLIO_PROFILE = {
     "EMAIL": "btn04@gmail.com",
     "PHONE": None,
     "SOCIALS": {
-        "FACEBOOK": {
-            "display_name": None,
-            "profile_link": None,
-            "username": None,
-        },
-        "YOUTUBE": {
-            "display_name": "Bryce Nall",
-            "profile_link": "https://www.youtube.com/@brycenall7439/",
-            "username": "brycenall7439",
-        },
         "INSTAGRAM": {
             "display_name": "bryce nall",
             "profile_link": "https://www.instagram.com/bybnall/",
             "username": "bybnall",
         },
         "TIKTOK": {
-            "display_name": None,
-            "profile_link": None,
-            "username": None,
+            "display_name": "bnall",
+            "profile_link": "https://www.tiktok.com/@by_bnall",
+            "username": "by_bnall",
         },
-        "TWITTER": {
-            "display_name": None,
-            "profile_link": None,
-            "username": None,
+        "YOUTUBE": {
+            "display_name": "Bryce Nall",
+            "profile_link": "https://www.youtube.com/@brycenall7439/",
+            "username": "brycenall7439",
         },
-        "REDDIT": {
-            "profile_link": None,
-            "username": None,
-        },
+        "DISCORD": None,
+        "FACEBOOK": None,
+        "REDDIT": None,
+        "TIKTOK": None,
+        "TWITTER": None,
     },
 }
 

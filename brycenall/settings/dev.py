@@ -26,21 +26,25 @@ PORTFOLIO_PROFILE = {
     "EMAIL": "btn04@gmail.com",
     "PHONE": None,
     "SOCIALS": {
-        "DISCORD": None,
-        "YOUTUBE": {
-            "display_name": "Bryce Nall",
-            "profile_link": "https://www.youtube.com/@brycenall7439/",
-            "username": "brycenall7439",
-        },
         "INSTAGRAM": {
             "display_name": "bryce nall",
             "profile_link": "https://www.instagram.com/bybnall/",
             "username": "bybnall",
         },
+        "TIKTOK": {
+            "display_name": "bnall",
+            "profile_link": "https://www.tiktok.com/@by_bnall",
+            "username": "by_bnall",
+        },
+        "YOUTUBE": {
+            "display_name": "Bryce Nall",
+            "profile_link": "https://www.youtube.com/@brycenall7439/",
+            "username": "brycenall7439",
+        },
+        "DISCORD": None,
         "FACEBOOK": None,
-        "TIKTOK": None,
-        "TWITTER": None,
         "REDDIT": None,
+        "TWITTER": None,
     },
 }
 
