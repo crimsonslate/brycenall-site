@@ -3,6 +3,8 @@ from django.http import HttpRequest
 
 
 class AuthenticationForm(AuthForm):
+    error_messages = {"invalid_login": "couldn't find that user, please try again"}
+
     def __init__(self, request: HttpRequest | None = None, *args, **kwargs) -> None:
         super().__init__(request, *args, **kwargs)
         self.fields["username"].widget.attrs.update(
