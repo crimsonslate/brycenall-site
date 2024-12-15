@@ -15,6 +15,7 @@ dependencies = [
     "django>=5.1.4",
     "django-htmx>=1.21.0",
     "django-tailwind[reload]>=3.8.0",
+    "docutils>=0.21.2",
 ]
 
 [project.urls]

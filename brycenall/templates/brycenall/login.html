@@ -1,0 +1,37 @@
+{% extends "brycenall/layout.html" %}
+{% load static %}
+{% block content %}
+<div class="flex flex-col text-white">
+    <div class="flex flex-col bg-cover" style="background-image: url('{% static "brycenall/cleaners.jpg" %}');">
+        <div class="flex flex-col space-y-8 bg-gradient-to-r from-black to-transparent p-20 backdrop-grayscale">
+            <h2 class="text-3xl font-extrabold tracking-widest">{{ title|upper }}</h2>
+        </div>
+        <form class="flex flex-col" action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <div class="flex m-4 flex-col rounded bg-gray-900/75 p-4">
+                <label class="text-white">username</label>
+                {{ form.username }}
+            </div>
+            <div class="flex m-4 flex-col rounded bg-gray-900/75 p-4">
+                <label class="text-white">password</label>
+                {{ form.password }}
+            </div>
+            <input class="hidden" value="{{ next }}">
+        </form>
+        <div class="flex flex-col">
+            <button class="rounded-t bg-green-500 p-6 hover:bg-green-300" type="submit">let me in</button>
+            <a href="{% url 'landing' %}" class="rounded-t bg-red-500 p-6 text-center hover:bg-red-300">never mind</a>
+        </div>
+    </div>
+    <div class="flex mx-auto mt-4 gap-8 fill-gray-300">
+    {% for name, data in profile.SOCIALS.items %}
+        {% if data %}
+        <a class="transition duration-700 ease-in-out hover:fill-white" href="{{ data.profile_link|default:'#' }}">
+            <span class="sr-only">{{ name|title }}</span>
+            {% include data.icon|default:'portfolio/icons/link.svg' with class="size-8" %}
+        </a>
+        {% endif %}
+    {% endfor %}
+    </div>
+</div>
+{% endblock content %}

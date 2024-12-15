@@ -96,6 +96,7 @@ dependencies = [
     { name = "django" },
     { name = "django-htmx" },
     { name = "django-tailwind", extra = ["reload"] },
+    { name = "docutils" },
 ]
 
 [package.metadata]
@@ -105,6 +106,7 @@ requires-dist = [
     { name = "django", specifier = ">=5.1.4" },
     { name = "django-htmx", specifier = ">=1.21.0" },
     { name = "django-tailwind", extras = ["reload"], specifier = ">=3.8.0" },
+    { name = "docutils", specifier = ">=0.21.2" },
 ]
 
 [[package]]

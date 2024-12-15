@@ -62,6 +62,7 @@ django-tailwind==3.8.0
     # via brycenall-site (pyproject.toml)
 docutils==0.21.2
     # via
+    #   brycenall-site (pyproject.toml)
     #   sphinx
     #   sphinx-rtd-theme
 idna==3.10

@@ -1,0 +1,25 @@
+{% extends "brycenall/layout.html" %}
+{% load static %}
+{% block content %}
+<div class="flex flex-col text-white">
+    <div class="flex flex-col bg-cover" style="background-image: url('{% static "brycenall/cleaners.jpg" %}');">
+        <div class="flex flex-col space-y-8 bg-gradient-to-r from-black to-transparent p-20 backdrop-grayscale">
+            <h2 class="text-3xl font-extrabold tracking-widest">{{ title|upper }}</h2>
+        </div>
+        <h2 class="text-white">you were logged out.</h2>
+        <div class="flex flex-col">
+            <a href="{% url 'landing' %}" class="rounded-t bg-green-500 p-6 text-center hover:bg-green-300">cool</a>
+        </div>
+    </div>
+    <div class="flex mx-auto mt-4 gap-8 fill-gray-300">
+    {% for name, data in profile.SOCIALS.items %}
+        {% if data %}
+        <a class="transition duration-700 ease-in-out hover:fill-white" href="{{ data.profile_link|default:'#' }}">
+            <span class="sr-only">{{ name|title }}</span>
+            {% include data.icon|default:'portfolio/icons/link.svg' with class="size-8" %}
+        </a>
+        {% endif %}
+    {% endfor %}
+    </div>
+</div>
+{% endblock content %}
