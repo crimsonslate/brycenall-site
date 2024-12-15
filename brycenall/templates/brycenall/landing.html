@@ -24,7 +24,7 @@
         {% if data %}
         <a class="transition duration-700 ease-in-out hover:fill-white" href="{{ data.profile_link|default:'#' }}">
             <span class="sr-only">{{ name|title }}</span>
-            {% include data.icon with class="size-8" %}
+            {% include data.icon|default:'portfolio/icons/link.svg' with class="size-8" %}
         </a>
         {% endif %}
     {% endfor %}
