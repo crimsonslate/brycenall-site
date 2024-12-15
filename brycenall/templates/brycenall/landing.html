@@ -1,5 +1,5 @@
 {% extends "brycenall/layout.html" %}
-{% load static portfolio_display %}
+{% load static %}
 {% block content %}
 <div class="flex flex-col text-white">
     <div class="flex flex-col bg-cover" style="background-image: url('{% static "brycenall/landing.jpg" %}');">
@@ -24,7 +24,7 @@
         {% if data %}
         <a class="transition duration-700 ease-in-out hover:fill-white" href="{{ data.profile_link|default:'#' }}">
             <span class="sr-only">{{ name|title }}</span>
-            {{ name|social_icon:8 }}
+            {% include data.icon with class="size-8" %}
         </a>
         {% endif %}
     {% endfor %}
