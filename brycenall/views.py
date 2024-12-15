@@ -32,11 +32,6 @@ class LoginView(LoginViewBase):
         "title": "Login",
     }
 
-    def get_form_kwargs(self) -> dict[str, Any]:
-        kwargs = super().get_form_kwargs()
-        print(kwargs)
-        return kwargs
-
     def form_invalid(self, form: AuthenticationForm) -> HttpResponse:
         form.fields["username"].widget.attrs.update(
             {"class": self.field_classes["invalid"]}

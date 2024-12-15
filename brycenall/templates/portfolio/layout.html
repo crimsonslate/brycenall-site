@@ -12,14 +12,14 @@
     </head>
     <body class="mx-auto mb-20 max-w-screen-xl bg-gray-700" hx-headers="{'X-CSRFToken': '{{ csrf_token }}'}">
         <main class="-mb-2">
-            <div class="flex flex-col space-y-8 bg-gray-800 bg-gradient-to-r from-black to-transparent p-20">
+            <div class="flex flex-col space-y-8 bg-gray-800 bg-gradient-to-t from-black to-transparent p-20">
                 <h2 class="text-3xl font-extrabold tracking-widest text-white">{{ title|upper }}</h2>
             </div>
             {% block content %}
             {% endblock content %}
         </main>
         <footer class="fixed bottom-0 left-0 z-20 flex w-full items-center justify-between border-t border-gray-600 bg-gray-800 bg-gradient-to-l from-black to-transparent p-6 shadow">
-            <span class="text-sm text-gray-400 sm:text-center">© 2024 <a href="{% url 'landing' %}" class="hover:underline">{{ profile.NAME|default_if_none:'yo mama' }}</a>. All Rights Reserved.</span>
+            <span class="text-sm text-gray-400">© 2024 <a href="{% url 'landing' %}" class="hover:underline">{{ profile.NAME|default_if_none:'yo mama' }}</a>. All Rights Reserved.</span>
             <ul class="flex gap-8 text-gray-300">
                 <li>
                     <a href="{% url 'portfolio gallery' %}">
