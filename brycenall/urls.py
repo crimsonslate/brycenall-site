@@ -13,11 +13,6 @@ urlpatterns = [
         views.LoginView.as_view(),
         name="login",
     ),
-    path(
-        "logout/",
-        views.LogoutView.as_view(),
-        name="logout",
-    ),
     path("", views.LandingView.as_view(), name="landing"),
     path("", include("crimsonslate_portfolio.urls")),
 ]

@@ -1,10 +1,8 @@
-from typing import Any
 from django.conf import settings
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView as LoginViewBase
-from django.contrib.auth.views import LogoutView as LogoutViewBase
 
 from brycenall.forms import AuthenticationForm
 
@@ -40,8 +38,3 @@ class LoginView(LoginViewBase):
             {"class": self.field_classes["invalid"]}
         )
         return super().form_invalid(form=form)
-
-
-class LogoutView(LogoutViewBase):
-    template_name = "brycenall/logged_out.html"
-    extra_context = {"profile": settings.PORTFOLIO_PROFILE}
