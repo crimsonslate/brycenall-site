@@ -11,7 +11,6 @@ asgiref==3.8.1
     #   crimsonslate-portfolio
     #   django
     #   django-browser-reload
-    #   django-htmx
 babel==2.16.0
     # via sphinx
 binaryornot==0.4.4
@@ -50,14 +49,11 @@ django==5.1.4
     #   crimsonslate-portfolio
     #   django-browser-reload
     #   django-docs
-    #   django-htmx
     #   django-tailwind
 django-browser-reload==1.17.0
     # via django-tailwind
 django-docs==0.3.3
     # via crimsonslate-portfolio
-django-htmx==1.21.0
-    # via brycenall-site (pyproject.toml)
 django-tailwind==3.8.0
     # via brycenall-site (pyproject.toml)
 docutils==0.21.2

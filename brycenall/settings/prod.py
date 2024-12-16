@@ -18,7 +18,7 @@ USE_I18N = True
 USE_TZ = True
 WSGI_APPLICATION = "brycenall.wsgi.application"
 
-secret: dict[str, str] = get_secret("brycenall-site-env-live")
+secret: dict[str, str] = get_secret("brycenall-site-secrets")
 SECRET_KEY = secret.get("SECRET_KEY")
 
 DATABASES = {
@@ -32,7 +32,7 @@ PORTFOLIO_PROFILE = {
     "NAME": "Bryce Nall",
     "FIRST_NAME": "Bryce",
     "LAST_NAME": "Nall",
-    "EMAIL": "btn04@gmail.com",
+    "EMAIL": "bryce@llandv.com",
     "PHONE": None,
     "SOCIALS": {
         "INSTAGRAM": {
@@ -89,12 +89,14 @@ STORAGES = {
 
 INSTALLED_APPS = [
     "django.contrib.admin",
+    "django.contrib.admindocs",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "portfolio.apps.PortfolioConfig",
-    "django_htmx",
+    "django.forms",
+    "crimsonslate_portfolio.apps.CrimsonslatePortfolioConfig",
+    "tailwind",
     "theme",
 ]
 
@@ -106,7 +108,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django_htmx.middleware.HtmxMiddleware",
 ]
 
 

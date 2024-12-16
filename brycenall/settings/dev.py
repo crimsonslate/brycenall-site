@@ -23,7 +23,7 @@ PORTFOLIO_PROFILE = {
     "NAME": "Bryce Nall",
     "FIRST_NAME": "Bryce",
     "LAST_NAME": "Nall",
-    "EMAIL": "btn04@gmail.com",
+    "EMAIL": "bryce@llandv.com",
     "PHONE": None,
     "SOCIALS": {
         "INSTAGRAM": {
@@ -80,7 +80,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.forms",
     "django_browser_reload",
-    "django_htmx",
     "tailwind",
     "theme",
     "crimsonslate_portfolio.apps.CrimsonslatePortfolioConfig",
