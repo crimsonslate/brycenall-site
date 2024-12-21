@@ -5,23 +5,30 @@
     {% for media in medias %}
     <a class="group relative border-gray-600" href="{% url 'media detail' media.slug %}">
         {% display media force_image=True css_class="h-full" %}
-        <div class="absolute bottom-0 mx-auto w-full bg-gray-800 py-4 text-center transition-all duration-700 ease-in-out group-hover:top-0 group-hover:p-0">
+        <div class="absolute bottom-0 w-full bg-gray-800 py-4 text-center transition-all duration-700 ease-out will-change-auto group-hover:inset-0">
             <h2 class="text-gray-200">{{ media.title|title|truncatechars:24 }}</h2>
-            {% if media.subtitle %}<h2 class="text-sm text-gray-400">{{ media.subtitle|truncatechars:64 }}</h2>{% endif %}
-        </div>
-    </a>
-    {% empty %}
-    <a class="container m-8 mx-auto rounded border-gray-600 bg-gray-300 p-8 text-center drop-shadow" href="{% url 'portfolio upload' %}">
-        <div class="flex flex-col items-center gap-8">
-            <h2 class="text-xl lowercase">there's nothing here..?</h2>
-            <div class="flex-inline flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15" />
+            {% if media.subtitle %}<h3 class="text-sm text-gray-400">{{ media.subtitle|truncatechars:64 }}</h3>{% endif %}
+            <div class="flex-inline hidden items-center gap-2 text-gray-600 group-hover:flex">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5" />
                 </svg>
-                <h3 class="text-xl lowercase md:text-2xl">upload something</h3>
+                <p class="text-sm">{{ media.date_created|date:'F dS, Y' }}</p>
             </div>
         </div>
     </a>
+    {% empty %}
+    <div class="absolute inset-0 bg-gray-900">
+        <div class="flex h-screen flex-col items-center justify-center">
+            <a href="{% url 'portfolio upload' %}" class="flex flex-col items-center rounded bg-gray-300 p-8 drop-shadow-lg transition-transform duration-150 ease-in-out hover:scale-105">
+                <div class="flex flex-col items-center gap-8">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12 animate-bounce">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15" />
+                    </svg>
+                    <h2 class="text-xl lowercase">upload something</h2>
+                </div>
+            </a>
+        </div>
+    </div>
     {% endfor %}
 </div>
 {% endblock content %}
