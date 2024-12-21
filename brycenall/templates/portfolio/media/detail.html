@@ -1,11 +1,14 @@
 {% extends "portfolio/layout.html" %}
 {% load portfolio_display %}
 {% block content %}
-<div class="">
+<div class="-mt-2">
     {% display media force_image=False css_class="h-full w-full" %}
-    <div class="m-8 flex flex-col gap-8 rounded bg-gray-800 p-8 text-center drop-shadow">
+    <div class="{% if not media.subtitle and not media.desc %}hidden{% else %}drop-shadow m-8 flex flex-col gap-8 rounded bg-gray-800 p-8 text-center{% endif %}">
         {% if media.subtitle %}<h3 class="text-xl font-bold text-gray-100 lg:text-2xl">{{ media.subtitle }}</h3>{% endif %}
         {% if media.desc %}<p class="text-gray-300">{{ media.desc }}</p>{% endif %}
+    </div>
+    <div class="m-4 hidden rounded bg-gray-600 p-8">
+        <!-- TODO: Download buttons from portfolio app go here -->
     </div>
 </div>
 {% endblock content %}

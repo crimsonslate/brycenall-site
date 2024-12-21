@@ -21,22 +21,12 @@
                 <label class="text-white">password</label>
                 {{ form.password }}
             </div>
-            <input class="hidden" value="{{ next }}">
+            <input name="next" class="hidden" type="hidden" value="{{ next }}">
             <div class="flex flex-col">
                 <button class="rounded-t bg-green-500 p-6 hover:bg-green-300" type="submit">let me in</button>
                 <a href="{% url 'landing' %}" class="bg-red-500 p-6 text-center hover:bg-red-300">never mind</a>
             </div>
         </form>
-    </div>
-    <div class="mx-auto mt-4 flex gap-8 fill-gray-300">
-    {% for name, data in profile.SOCIALS.items %}
-        {% if data %}
-        <a class="transition duration-700 ease-in-out hover:fill-white" href="{{ data.profile_link|default:'#' }}">
-            <span class="sr-only">{{ name|title }}</span>
-            {% include data.icon|default:'portfolio/icons/link.svg' with class="size-8" %}
-        </a>
-        {% endif %}
-    {% endfor %}
     </div>
 </div>
 {% endblock content %}

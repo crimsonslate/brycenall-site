@@ -11,7 +11,7 @@ authors = [
 ]
 dependencies = [
     "boto3>=1.35.81",
-    "crimsonslate-portfolio>=1.4.1",
+    "crimsonslate-portfolio==1.6.2",
     "django>=5.1.4",
     "django-tailwind[reload]>=3.8.0",
     "docutils>=0.21.2",
