@@ -8,11 +8,15 @@ CSRF_COOKIE_SECURE = True
 DEBUG = False
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LANGUAGE_CODE = "en-us"
+MEDIA_ROOT = BASE_DIR / "media/"
+MEDIA_URL = "media/"
 PORTFOLIO_NAME = "Bryce Nall"
 ROOT_URLCONF = "brycenall.urls"
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
+STATIC_ROOT = "/static/"
 STATIC_URL = "static/"
+TAILWIND_APP_NAME = "theme"
 TIME_ZONE = "America/Chicago"
 USE_I18N = True
 USE_TZ = True
@@ -35,28 +39,25 @@ PORTFOLIO_PROFILE = {
     "EMAIL": "bryce@llandv.com",
     "PHONE": None,
     "SOCIALS": {
+        "DISCORD": {},
         "INSTAGRAM": {
             "display_name": "bryce nall",
             "profile_link": "https://www.instagram.com/bybnall/",
             "username": "bybnall",
-            "icon": "portfolio/icons/instagram.svg",
         },
+        "FACEBOOK": {},
+        "REDDIT": {},
         "TIKTOK": {
             "display_name": "bnall",
             "profile_link": "https://www.tiktok.com/@by_bnall",
             "username": "by_bnall",
-            "icon": "portfolio/icons/tiktok.svg",
         },
+        "TWITTER": {},
         "YOUTUBE": {
             "display_name": "Bryce Nall",
             "profile_link": "https://www.youtube.com/@brycenall7439/",
             "username": "brycenall7439",
-            "icon": "portfolio/icons/youtube.svg",
         },
-        "DISCORD": None,
-        "FACEBOOK": None,
-        "REDDIT": None,
-        "TWITTER": None,
     },
 }
 
@@ -68,20 +69,18 @@ STORAGES = {
         "BACKEND": "storages.backends.s3.S3Storage",
         "OPTIONS": {
             "location": "static/",
-            "session_profile": "brycenall-site",
             "bucket_name": "brycenall-bucket",
             "region_name": "us-east-1",
-            "verify": False,
+            "verify": "/home/ubuntu/Certificate.pem",
         },
     },
     "bucket": {
         "BACKEND": "storages.backends.s3.S3Storage",
         "OPTIONS": {
             "location": "media/",
-            "session_profile": "brycenall-site",
             "bucket_name": "brycenall-bucket",
             "region_name": "us-east-1",
-            "verify": False,
+            "verify": "/home/ubuntu/Certificate.pem",
         },
     },
 }
@@ -95,9 +94,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.forms",
-    "crimsonslate_portfolio.apps.CrimsonslatePortfolioConfig",
     "tailwind",
     "theme",
+    "crimsonslate_portfolio.apps.CrimsonslatePortfolioConfig",
 ]
 
 MIDDLEWARE = [
