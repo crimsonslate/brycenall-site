@@ -22,7 +22,7 @@ USE_I18N = True
 USE_TZ = True
 WSGI_APPLICATION = "brycenall.wsgi.application"
 
-secret: dict[str, str] = get_secret("brycenall-site-secrets")
+secret: dict[str, str] = get_secret("brycenall-site-live-env")
 SECRET_KEY = secret.get("SECRET_KEY")
 
 DATABASES = {
