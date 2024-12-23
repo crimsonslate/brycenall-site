@@ -16,6 +16,7 @@ dependencies = [
     "django-tailwind[reload]>=3.8.0",
     "docutils>=0.21.2",
     "gunicorn>=23.0.0",
+    "pip>=24.3.1",
 ]
 
 [project.urls]
