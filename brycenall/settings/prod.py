@@ -3,7 +3,7 @@ from brycenall.aws import get_secret
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = [".brycenall", "brycenall"]
+ALLOWED_HOSTS = [".llandv", "www.llandv"]
 CSRF_COOKIE_SECURE = True
 DEBUG = False
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
