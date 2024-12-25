@@ -11,6 +11,7 @@ LANGUAGE_CODE = "en-us"
 MEDIA_ROOT = BASE_DIR / "media/"
 MEDIA_URL = "media/"
 PORTFOLIO_NAME = "Bryce Nall"
+INTERNAL_IPS = ["127.0.0.1", "0.0.0.0", "localhost"]
 ROOT_URLCONF = "brycenall.urls"
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
