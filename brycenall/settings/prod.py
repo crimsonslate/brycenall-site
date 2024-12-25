@@ -3,7 +3,7 @@ from brycenall.aws import get_secret
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = [".llandv", "www.llandv"]
+ALLOWED_HOSTS = [".llandv.com"]
 CSRF_COOKIE_SECURE = True
 DEBUG = False
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
@@ -14,9 +14,10 @@ PORTFOLIO_NAME = "Bryce Nall"
 INTERNAL_IPS = ["127.0.0.1", "0.0.0.0", "localhost"]
 ROOT_URLCONF = "brycenall.urls"
 SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_HTTP_ONLY = True
 SESSION_COOKIE_SECURE = True
-STATIC_ROOT = "/static/"
-STATIC_URL = "static/"
+STATIC_ROOT = "/var/www/static/brycenall-site/"
+STATIC_URL = "/static/"
 TAILWIND_APP_NAME = "theme"
 TIME_ZONE = "America/Chicago"
 USE_I18N = True
