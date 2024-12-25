@@ -60,7 +60,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "boto3", specifier = ">=1.35.81" },
-    { name = "crimsonslate-portfolio", specifier = "==1.6.2" },
+    { name = "crimsonslate-portfolio", specifier = "==1.6.3" },
     { name = "django", specifier = ">=5.1.4" },
     { name = "django-tailwind", extras = ["reload"], specifier = ">=3.8.0" },
     { name = "docutils", specifier = ">=0.21.2" },
@@ -70,7 +70,7 @@ requires-dist = [
 
 [[package]]
 name = "crimsonslate-portfolio"
-version = "1.6.2"
+version = "1.6.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django" },
@@ -79,9 +79,9 @@ dependencies = [
     { name = "opencv-python" },
     { name = "pillow" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/aa/8e/6945e9682b7a10adc4c2d1cf0c2dd64501a06c952827b9efc8f07f3bfcd9/crimsonslate_portfolio-1.6.2.tar.gz", hash = "sha256:d27e83bccf2525d647f7ac4a419969828059031386362026854cb93c596fd6fa", size = 71076 }
+sdist = { url = "https://files.pythonhosted.org/packages/d7/c5/7c5ea2399eb7898f9559443ee63fbb43e4c9e73ebda91bf0cdbc509a3e51/crimsonslate_portfolio-1.6.3.tar.gz", hash = "sha256:cc19b5f3aae497ce71b26988950fd62a25748e54f4df8a70240b5d1f54ef1dcd", size = 71093 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0d/58/1ac2bc801abc107f1c231302368e3e7eed9afb502a90efe4d19107693c04/crimsonslate_portfolio-1.6.2-py3-none-any.whl", hash = "sha256:0a84772735fcc4ff35f573ae60c843819fdd0c5fe632597ee9fdcd9359ec2c15", size = 49317 },
+    { url = "https://files.pythonhosted.org/packages/d0/ef/2d6fc83e8cd075e1c80829804b20afe97a7144f924b648113e3479866f5e/crimsonslate_portfolio-1.6.3-py3-none-any.whl", hash = "sha256:8d6a015420e513a188883d9aba2ec2eb919162b7c1888a43036a09ba62e37dff", size = 49327 },
 ]
 
 [[package]]
