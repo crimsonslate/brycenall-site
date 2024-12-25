@@ -5,8 +5,8 @@
     <div class="m-4 space-y-4 rounded bg-gray-800 bg-cover bg-no-repeat p-8 drop-shadow-lg" style="background-image: url('{% static "brycenall/cleaners.jpg" %}');">
         <div class="flex items-center gap-8 bg-gray-800/60">
             {% include "brycenall/logo.svg" with class="size-48" %}
-            <div class="flex flex-col gap-4 p-8">
-                <h2 class="text-xl font-bold tracking-widest">llandv</h2>
+            <div class="flex flex-col gap-4 p-4">
+                <h2 class="text-lg font-bold tracking-widest md:text-xl">llandv</h2>
                 <h3 class="font-semibold tracking-wider">photography + videography</h3>
             </div>
         </div>
@@ -35,8 +35,8 @@
     <div class="mx-auto grid grid-cols-3 grid-rows-2">
         {% for name, social in profile.SOCIALS.items %}
             {% if social %}
-            <a class="group flex gap-4 rounded-full bg-gray-300 p-4 transition-all duration-500 ease-in-out hover:scale-105" href="{{ social.profile_link }}">
-                {% include social.icon with class="size-12 group-hover:animate-pulse" %}
+            <a class="group flex items-center gap-4 rounded-full bg-gray-300 p-4 transition-all duration-500 ease-in-out hover:scale-105" href="{{ social.profile_link }}">
+                {% include social.icon with class="size-8 lg:size-12 group-hover:animate-pulse" %}
                 <div class="flex flex-col text-left">
                     <h2 class="text-gray-800">{{ social.display_name }}</h2>
                     <h3 class="text-sm text-gray-600">@{{ social.username }}</h3>
