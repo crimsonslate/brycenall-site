@@ -1,9 +1,8 @@
 {% load portfolio_display %}
-<div id="search-results" class="{% if search_results == None %}hidden{% else %}flex overflow-x-clip{% endif %}">
+<div id="search-results" class="flex items-center gap-2 overflow-x-hidden">
     {% for result in search_results %}
     <a href="{% url 'media detail' result.slug %}">
         {% display result force_image=True css_class="h-full w-96" %}
-        <p class="text-white">{{ result.title|truncatechars:24 }}<p>
     </a>
     {% endfor %}
 </div>
