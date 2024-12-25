@@ -54,25 +54,28 @@ PORTFOLIO_PROFILE = {
     "EMAIL": "bryce@llandv.com",
     "PHONE": None,
     "SOCIALS": {
-        "DISCORD": {},
         "INSTAGRAM": {
             "display_name": "bryce nall",
             "profile_link": "https://www.instagram.com/bybnall/",
             "username": "bybnall",
+            "icon": "portfolio/icons/instagram.svg",
         },
-        "FACEBOOK": {},
-        "REDDIT": {},
         "TIKTOK": {
             "display_name": "bnall",
             "profile_link": "https://www.tiktok.com/@by_bnall",
             "username": "by_bnall",
+            "icon": "portfolio/icons/tiktok.svg",
         },
-        "TWITTER": {},
         "YOUTUBE": {
             "display_name": "Bryce Nall",
-            "profile_link": "https://www.youtube.com/@brycenall7439/",
-            "username": "brycenall7439",
+            "profile_link": "https://www.youtube.com/@bybnall/",
+            "username": "bybnall",
+            "icon": "portfolio/icons/youtube.svg",
         },
+        "DISCORD": None,
+        "FACEBOOK": None,
+        "REDDIT": None,
+        "TWITTER": None,
     },
 }
 
