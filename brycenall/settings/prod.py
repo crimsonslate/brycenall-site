@@ -71,7 +71,7 @@ STORAGES = {
             "location": "static/",
             "bucket_name": "brycenall-bucket",
             "region_name": "us-east-1",
-            "verify": "/home/ubuntu/Certificate.pem",
+            "verify": False,
         },
     },
     "bucket": {
@@ -80,7 +80,7 @@ STORAGES = {
             "location": "media/",
             "bucket_name": "brycenall-bucket",
             "region_name": "us-east-1",
-            "verify": "/home/ubuntu/Certificate.pem",
+            "verify": False,
         },
     },
 }
