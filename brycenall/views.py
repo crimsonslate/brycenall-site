@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.http import HttpResponse
+from django.http import HttpRequest, HttpResponse
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView as LoginViewBase
@@ -38,3 +38,14 @@ class LoginView(LoginViewBase):
             {"class": self.field_classes["invalid"]}
         )
         return super().form_invalid(form=form)
+
+
+class FilmStripAnimationView(TemplateView):
+    content_type = "text/html"
+    http_method_names = ["get"]
+    template_name = "brycenall/filmstrip.html"
+    extra_context = {
+        "class": "",
+        "total_width": 200,
+        "num_rects": 64,
+    }

@@ -1,6 +1,4 @@
-{% extends "portfolio/layout.html" %}
 {% load portfolio_display %}
-{% block content %}
 <div class="grid h-screen grid-rows-1 place-items-center gap-16">
     <div class="m-16 p-16 space-y-8">
         {% display media force_image=False css_class="h-full w-full" %}
@@ -15,4 +13,3 @@
         {% endif %}
     </div>
 </div>
-{% endblock content %}

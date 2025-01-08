@@ -1,8 +1,0 @@
-{% load portfolio_display %}
-<div id="search-results" class="flex items-center gap-2 overflow-x-hidden">
-    {% for result in search_results %}
-    <a href="{% url 'media detail' result.slug %}">
-        {% display result force_image=True css_class="h-full w-96" %}
-    </a>
-    {% endfor %}
-</div>
