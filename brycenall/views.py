@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpResponse
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView as LoginViewBase
