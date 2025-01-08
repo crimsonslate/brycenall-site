@@ -1,4 +1,8 @@
+import django
+from django.utils.translation import gettext
 from pathlib import Path
+
+django.utils.translation.ugettext = gettext
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]

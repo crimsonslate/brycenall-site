@@ -1,5 +1,10 @@
+import django
+from django.utils.translation import gettext
 from pathlib import Path
+
 from brycenall.aws import get_secret
+
+django.utils.translation.ugettext = gettext
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
