@@ -10,7 +10,7 @@
         <script src="{% static 'brycenall/js/htmx.min.js' %}" defer></script>
         <script src="{% static 'brycenall/js/_hyperscript.min.js' %}" defer></script>
     </head>
-    <body class="mx-auto mb-20 max-w-screen-xl bg-gray-700" hx-headers="{'X-CSRFToken': '{{ csrf_token }}'}">
+    <body class="mx-auto justify-center mb-20 max-w-screen-xl bg-gray-900" hx-headers="{'X-CSRFToken': '{{ csrf_token }}'}">
         <main>
             <div class="flex bg-gradient-to-t from-black to-transparent p-20 items-center">
                 <a class="hover:animate-pulse" href="{% url 'landing' %}">{% include "brycenall/logo.svg" with class="size-12 mr-4 align-middle" %}</a>

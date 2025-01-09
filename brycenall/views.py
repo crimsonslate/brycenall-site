@@ -7,6 +7,18 @@ from django.contrib.auth.views import LoginView as LoginViewBase
 from brycenall.forms import AuthenticationForm
 
 
+class FilmStripAnimationView(TemplateView):
+    content_type = "text/html"
+    http_method_names = ["get"]
+    template_name = "brycenall/filmstrip.html"
+
+class FilmStripAnimationStepView(TemplateView):
+    content_type = "text/html"
+    http_method_names = ["get"]
+    template_name = "brycenall/filmrect.html"
+    
+
+
 class LandingView(TemplateView):
     content_type = "text/html"
     extra_context = {
