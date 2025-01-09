@@ -1,24 +1,4 @@
 {% extends "portfolio/layout.html" %}
-{% load static portfolio_display %}
 {% block content %}
-<div class="flex flex-col bg-gray-900">
-    <div class="text-black text-center text-2xl font-bold">
-        {% include "brycenall/filmstrip.html" with class="" %}              
-        {% for name, social in profile.SOCIALS.items %}
-            {% if social %}
-            <a class="flex items-center justify-center gap-4 bg-gray-300 p-4 m-8 rounded-full transition-all duration-500 ease-in-out hover:scale-105 drop-shadow hover:drop-shadow-xl" href="{{ social.profile_link }}">
-                {% include social.icon with class="size-8 lg:size-12" %}
-                <div class="text-left">
-                    <h2 class="text-gray-800">{{ social.display_name }}</h2>
-                    <h3 class="text-sm text-gray-600">@{{ social.username }}</h3>
-                </div>
-            </a>
-            {% endif %}
-        {% endfor %}
-        {% include "brycenall/filmstrip.html" with class="" %}             
-        <h2 class="text-3xl select-none p-4 m-8 font-extrabold bg-gray-300 rounded-full transition-all duration-500 ease-in-out hover:scale-105 drop-shadow hover:drop-shadow-xl" hx-on:click="!window.s?s=this.textContent:null;navigator.clipboard.writeText(s.trim());this.textContent='Copied!';setTimeout(()=>{this.textContent=s}, 1000)">
-            {{ profile.EMAIL }}
-        </h2>
-    </div>
-</div>
+{% include "portfolio/partials/_contact.html" %}
 {% endblock content %}

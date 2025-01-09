@@ -25,6 +25,9 @@ module.exports = {
 		 * Adjust the following line to match your project structure.
 		 */
 		"../../**/templates/**/*.html",
+		"../../.venv/lib/**/site-packages/crimsonslate_portfolio/templates/crimsonslate_portfolio/*.html",
+		"../../.venv/lib/**/site-packages/crimsonslate_portfolio/templates/crimsonslate_portfolio/**/*.html",
+		"../../.venv/lib/**/site-packages/crimsonslate_portfolio/templates/crimsonslate_portfolio/**/**/*.html",
 
 		/**
 		 * JS: If you use Tailwind CSS in JavaScript, uncomment the following lines and make sure
@@ -40,6 +43,8 @@ module.exports = {
 		 * and make sure the pattern below matches your project structure.
 		 */
 		"../../**/*.py",
+		"../../**/**/*.py",
+		"../../.venv/lib/**/site-packages/crimsonslate_portfolio/*.py",
 	],
 	theme: {
 		extend: {},
