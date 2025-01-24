@@ -93,9 +93,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.forms",
-    "django_browser_reload",
-    "tailwind",
-    "theme",
     "crimsonslate_portfolio.apps.CrimsonslatePortfolioConfig",
 ]
 
@@ -107,7 +104,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 
