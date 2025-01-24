@@ -23,7 +23,6 @@ SESSION_COOKIE_HTTP_ONLY = True
 SESSION_COOKIE_SECURE = True
 STATIC_ROOT = "/var/www/static/brycenall-site/"
 STATIC_URL = "/static/"
-TAILWIND_APP_NAME = "theme"
 TIME_ZONE = "America/Chicago"
 USE_I18N = True
 USE_TZ = True
@@ -118,8 +117,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.staticfiles",
     "django.forms",
-    "tailwind",
-    "theme",
     "crimsonslate_portfolio.apps.CrimsonslatePortfolioConfig",
 ]
 

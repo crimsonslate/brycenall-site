@@ -17,7 +17,6 @@ SECRET_KEY = "django-insecure-#ezlo7tqc&h07y4g^1i3jqg78^z*jgsyd11kq812^=k4%!lk6b
 STATIC_ROOT = "/static/"
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
-TAILWIND_APP_NAME = "theme"
 TIME_ZONE = "America/Chicago"
 USE_I18N = True
 USE_TZ = True
@@ -93,9 +92,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.forms",
-    "django_browser_reload",
-    "tailwind",
-    "theme",
     "crimsonslate_portfolio.apps.CrimsonslatePortfolioConfig",
 ]
 
@@ -107,7 +103,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 

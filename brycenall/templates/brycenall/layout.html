@@ -1,4 +1,4 @@
-{% load static tailwind_tags %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>{{ title }}</title>
-        {% tailwind_css %}
+        <link href="{% static 'brycenall/css/output.css' %}" rel="stylesheet">
         <script src="{% static 'brycenall/js/htmx.min.js' %}" defer></script>
     </head>
     <body class="mx-auto mb-20 max-w-screen-xl bg-gray-900 text-stone-100">

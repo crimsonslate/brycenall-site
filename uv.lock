@@ -82,7 +82,6 @@ dependencies = [
     { name = "crimsonslate-portfolio" },
     { name = "django" },
     { name = "django-storages", extra = ["s3"] },
-    { name = "django-tailwind", extra = ["reload"] },
     { name = "docutils" },
     { name = "gunicorn" },
     { name = "pip" },
@@ -94,7 +93,6 @@ requires-dist = [
     { name = "crimsonslate-portfolio", specifier = "==2.1.0" },
     { name = "django", specifier = ">=5.1.5" },
     { name = "django-storages", extras = ["s3"], specifier = ">=1.14.4" },
-    { name = "django-tailwind", extras = ["reload"], specifier = ">=3.8.0" },
     { name = "docutils", specifier = ">=0.21.2" },
     { name = "gunicorn", specifier = ">=23.0.0" },
     { name = "pip", specifier = ">=24.3.1" },
@@ -134,19 +132,6 @@ wheels = [
 ]
 
 [[package]]
-name = "django-browser-reload"
-version = "1.17.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "asgiref" },
-    { name = "django" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/9f/bc/3c67f7daca53b826ec51888576fe5e117d9442d2d0acb58f4264d48b9dba/django_browser_reload-1.17.0.tar.gz", hash = "sha256:3667939cde0eee1a6d698dbe3b78cf10b573dabc4e711fb7933f1ba91fb98da4", size = 14312 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/7f/8f/62fc4fbf5c05c2210e6cb616f1c2a3da53871dfecbaa4c44b1f482ca3e8f/django_browser_reload-1.17.0-py3-none-any.whl", hash = "sha256:d372c12c1c5962c02279a53cac7e8a020c48f104592c637a06d0768b28d2d6be", size = 12228 },
-]
-
-[[package]]
 name = "django-storages"
 version = "1.14.4"
 source = { registry = "https://pypi.org/simple" }
@@ -161,23 +146,6 @@ wheels = [
 [package.optional-dependencies]
 s3 = [
     { name = "boto3" },
-]
-
-[[package]]
-name = "django-tailwind"
-version = "3.8.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "django" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/3c/ee/1065c57c87213f566d76b398f8391cd544380ef9661f7fdacdfe4264633c/django_tailwind-3.8.0.tar.gz", hash = "sha256:31c2f4a7879d685c2de0feaf0b63f246200b37337bea4d7dbafb59bc3f10c008", size = 8969 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/cf/14/20c40882d9ee91f7a2a20d3c0175cf813340c02ae31c975ce567de2c7c67/django_tailwind-3.8.0-py3-none-any.whl", hash = "sha256:fa969c5b95d314b173fe2b2ed2cb2c03f2e2c94fdc2c01ff73a993fa159085da", size = 12936 },
-]
-
-[package.optional-dependencies]
-reload = [
-    { name = "django-browser-reload" },
 ]
 
 [[package]]
