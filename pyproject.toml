@@ -13,7 +13,7 @@ dependencies = [
     "boto3>=1.35.81",
     "crimsonslate-portfolio==2.1.0",
     "django-storages[s3]>=1.14.4",
-    "django>=5.1.4",
+    "django>=5.1.5",
     "django-tailwind[reload]>=3.8.0",
     "docutils>=0.21.2",
     "gunicorn>=23.0.0",
@@ -21,7 +21,7 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://brycenall.com"
+Homepage = "https://llandv.com"
 Repository = "https://github.com/crimsonslate/brycenall-site"
 
 [tool.ruff]
