@@ -53,7 +53,7 @@ LOGGING = {
 }
 
 PORTFOLIO_PROFILE = {
-    "NAME": "Bryce Nall",
+    "NAME": "llandv",
     "FIRST_NAME": "Bryce",
     "LAST_NAME": "Nall",
     "EMAIL": "bryce@llandv.com",

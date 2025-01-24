@@ -1,63 +1,31 @@
 from django.conf import settings
-from django.http import HttpResponse
-from django.views.generic import TemplateView
-from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView as LoginViewBase
+from django.contrib.auth.views import LogoutView as LogoutViewBase
+
+from crimsonslate_portfolio.views.base import HtmxView, PortfolioProfileMixin
 
 from brycenall.forms import AuthenticationForm
 
 
-class FilmStripAnimationView(TemplateView):
+class LandingView(HtmxView, PortfolioProfileMixin):
     content_type = "text/html"
-    http_method_names = ["get"]
-    template_name = "brycenall/filmstrip.html"
-
-class FilmStripAnimationStepView(TemplateView):
-    content_type = "text/html"
-    http_method_names = ["get"]
-    template_name = "brycenall/filmrect.html"
-    
-
-
-class LandingView(TemplateView):
-    content_type = "text/html"
-    extra_context = {
-        "profile": settings.PORTFOLIO_PROFILE,
-        "title": settings.PORTFOLIO_PROFILE["NAME"],
-    }
+    extra_context = {"title": settings.PORTFOLIO_PROFILE["USER"]["first_name"]}
     http_method_names = ["get"]
     template_name = "brycenall/landing.html"
 
 
-class LoginView(LoginViewBase):
+class LoginView(LoginViewBase, HtmxView, PortfolioProfileMixin):
     authentication_form = AuthenticationForm
-    success_url = reverse_lazy("landing")
-    template_name = "brycenall/login.html"
-    field_classes = {
-        "unbound": "m-4 p-4 grow rounded bg-white text-gray-800",
-        "invalid": "m-4 p-4 grow rounded bg-red-100 text-red-500",
-    }
-    extra_context = {
-        "profile": settings.PORTFOLIO_PROFILE,
-        "title": "Login",
-    }
-
-    def form_invalid(self, form: AuthenticationForm) -> HttpResponse:
-        form.fields["username"].widget.attrs.update(
-            {"class": self.field_classes["invalid"]}
-        )
-        form.fields["password"].widget.attrs.update(
-            {"class": self.field_classes["invalid"]}
-        )
-        return super().form_invalid(form=form)
-
-
-class FilmStripAnimationView(TemplateView):
     content_type = "text/html"
-    http_method_names = ["get"]
-    template_name = "brycenall/filmstrip.html"
-    extra_context = {
-        "class": "",
-        "total_width": 200,
-        "num_rects": 64,
-    }
+    extra_context = {"title": "Login"}
+    http_method_names = ["get", "post"]
+    template_name = "brycenall/login.html"
+    partial_template_name = "brycenall/partials/_login.html"
+
+
+class LogoutView(LogoutViewBase, HtmxView, PortfolioProfileMixin):
+    content_type = "text/html"
+    extra_context = {"title": "Logout"}
+    http_method_names = ["get", "post"]
+    template_name = "brycenall/logout.html"
+    partial_template_name = "brycenall/partials/_logout.html"

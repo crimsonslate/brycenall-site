@@ -24,35 +24,45 @@ USE_TZ = True
 WSGI_APPLICATION = "brycenall.wsgi.application"
 
 PORTFOLIO_PROFILE = {
-    "NAME": "Bryce Nall",
-    "FIRST_NAME": "Bryce",
-    "LAST_NAME": "Nall",
-    "EMAIL": "bryce@llandv.com",
-    "PHONE": None,
-    "SOCIALS": {
-        "INSTAGRAM": {
-            "display_name": "bryce nall",
-            "profile_link": "https://www.instagram.com/bybnall/",
-            "username": "bybnall",
-            "icon": "portfolio/icons/instagram.svg",
-        },
-        "TIKTOK": {
-            "display_name": "bnall",
-            "profile_link": "https://www.tiktok.com/@by_bnall",
-            "username": "by_bnall",
-            "icon": "portfolio/icons/tiktok.svg",
-        },
-        "YOUTUBE": {
-            "display_name": "Bryce Nall",
-            "profile_link": "https://www.youtube.com/@bybnall/",
-            "username": "bybnall",
-            "icon": "portfolio/icons/youtube.svg",
-        },
-        "DISCORD": None,
-        "FACEBOOK": None,
-        "REDDIT": None,
-        "TWITTER": None,
+    "USER": {
+        "name": "Bryce Nall",
+        "first_name": "Bryce",
+        "last_name": "Nall",
+        "email": "bryce@llandv.com",
+        "phone": None,
     },
+    "SOCIALS": [
+        {"NAME": "Discord", "OPTIONS": {}},
+        {"NAME": "Facebook", "OPTIONS": {}},
+        {
+            "NAME": "Instagram",
+            "OPTIONS": {
+                "display_name": "bryce nall",
+                "profile_link": "https://www.instagram.com/bybnall/",
+                "username": "bybnall",
+                "icon": "portfolio/icons/instagram.svg",
+            },
+        },
+        {"NAME": "Reddit", "OPTIONS": {}},
+        {
+            "NAME": "TikTok",
+            "OPTIONS": {
+                "display_name": "bnall",
+                "profile_link": "https://www.tiktok.com/@by_bnall",
+                "username": "by_bnall",
+                "icon": "portfolio/icons/tiktok.svg",
+            },
+        },
+        {
+            "NAME": "Youtube",
+            "OPTIONS": {
+                "display_name": "Bryce Nall",
+                "profile_link": "https://www.youtube.com/@bybnall/",
+                "username": "bybnall",
+                "icon": "portfolio/icons/youtube.svg",
+            },
+        },
+    ],
 }
 
 DATABASES = {
