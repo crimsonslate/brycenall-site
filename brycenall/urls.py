@@ -8,6 +8,7 @@ from . import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("admin/docs/", include("django.contrib.admindocs.urls")),
+    path("", views.LandingView.as_view(), name="landing"),
     path("", include("crimsonslate_portfolio.urls")),
 ]
 

@@ -9,9 +9,10 @@ from brycenall.forms import AuthenticationForm
 
 class LandingView(HtmxView, PortfolioProfileMixin):
     content_type = "text/html"
-    extra_context = {"title": settings.PORTFOLIO_PROFILE["USER"]["first_name"]}
+    extra_context = {"title": settings.PORTFOLIO_PROFILE["USER"]["name"]}
     http_method_names = ["get"]
     template_name = "brycenall/landing.html"
+    partial_template_name = "brycenall/partials/_landing.html"
 
 
 class LoginView(LoginViewBase, HtmxView, PortfolioProfileMixin):
