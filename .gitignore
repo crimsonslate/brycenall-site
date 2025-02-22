@@ -5,6 +5,6 @@ __pycache__/
 node_modules/
 migrations/
 brycenall/static/brycenall/css/output.css
-brycenall/package-lock.json
+package-lock.json
 brycenall/media/
 db.*

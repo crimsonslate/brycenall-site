@@ -2,12 +2,12 @@ from django.conf import settings
 from django.contrib.auth.views import LoginView as LoginViewBase
 from django.contrib.auth.views import LogoutView as LogoutViewBase
 
-from crimsonslate_portfolio.views.base import HtmxView, PortfolioProfileMixin
+from crimsonslate_portfolio.views.base import HtmxTemplateView, PortfolioProfileMixin
 
 from brycenall.forms import AuthenticationForm
 
 
-class LandingView(HtmxView, PortfolioProfileMixin):
+class LandingView(HtmxTemplateView, PortfolioProfileMixin):
     content_type = "text/html"
     extra_context = {"title": settings.PORTFOLIO_PROFILE["USER"]["name"]}
     http_method_names = ["get"]
@@ -15,7 +15,15 @@ class LandingView(HtmxView, PortfolioProfileMixin):
     partial_template_name = "brycenall/partials/_landing.html"
 
 
-class LoginView(LoginViewBase, HtmxView, PortfolioProfileMixin):
+class ContactView(HtmxTemplateView, PortfolioProfileMixin):
+    content_type = "text/html"
+    http_method_names = ["get"]
+    template_name = "brycenall/contact.html"
+    partial_template_name = "brycenall/partials/_contact.html"
+    extra_context = {"title": "Contact"}
+
+
+class LoginView(LoginViewBase, HtmxTemplateView, PortfolioProfileMixin):
     authentication_form = AuthenticationForm
     content_type = "text/html"
     extra_context = {"title": "Login"}
@@ -24,7 +32,7 @@ class LoginView(LoginViewBase, HtmxView, PortfolioProfileMixin):
     partial_template_name = "brycenall/partials/_login.html"
 
 
-class LogoutView(LogoutViewBase, HtmxView, PortfolioProfileMixin):
+class LogoutView(LogoutViewBase, HtmxTemplateView, PortfolioProfileMixin):
     content_type = "text/html"
     extra_context = {"title": "Logout"}
     http_method_names = ["get", "post"]
