@@ -1,11 +1,8 @@
-import django
-from django.utils.translation import gettext
 from pathlib import Path
 
-django.utils.translation.ugettext = gettext
 
-BASE_DIR = Path(__file__).resolve().parent.parent
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 INTERNAL_IPS = ["127.0.0.1", "0.0.0.0"]
@@ -14,13 +11,21 @@ MEDIA_ROOT = BASE_DIR / "media/"
 MEDIA_URL = "media/"
 ROOT_URLCONF = "brycenall.urls"
 SECRET_KEY = "django-insecure-#ezlo7tqc&h07y4g^1i3jqg78^z*jgsyd11kq812^=k4%!lk6b"
+STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = "/static/"
 STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
 TIME_ZONE = "America/Chicago"
 USE_I18N = True
 USE_TZ = True
 WSGI_APPLICATION = "brycenall.wsgi.application"
+
+THUMBNAIL_PROCESSORS = (
+    "easy_thumbnails.processors.colorspace",
+    "easy_thumbnails.processors.autocrop",
+    "easy_thumbnails.processors.scale_and_crop",
+    # "easy_thumbnails.processors.scale_and_crop_with_subject_location",
+    "easy_thumbnails.processors.filters",
+)
 
 PORTFOLIO_PROFILE = {
     "USER": {
@@ -92,6 +97,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.forms",
+    "django_browser_reload",
+    "easy_thumbnails",
+    "filer",
     "crimsonslate_portfolio.apps.CrimsonslatePortfolioConfig",
 ]
 
@@ -103,6 +111,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 

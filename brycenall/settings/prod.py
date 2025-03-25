@@ -1,10 +1,6 @@
-import django
-from django.utils.translation import gettext
 from pathlib import Path
 
 from brycenall.aws import get_secret
-
-django.utils.translation.ugettext = gettext
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -12,17 +8,17 @@ ALLOWED_HOSTS = [".llandv.com"]
 CSRF_COOKIE_SECURE = True
 DEBUG = False
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+INTERNAL_IPS = ["127.0.0.1", "0.0.0.0", "localhost"]
 LANGUAGE_CODE = "en-us"
-MEDIA_ROOT = BASE_DIR / "media/"
+MEDIA_ROOT = "/var/www/media/brycenall-site/"
 MEDIA_URL = "media/"
 PORTFOLIO_NAME = "Bryce Nall"
-INTERNAL_IPS = ["127.0.0.1", "0.0.0.0", "localhost"]
 ROOT_URLCONF = "brycenall.urls"
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_HTTP_ONLY = True
 SESSION_COOKIE_SECURE = True
 STATIC_ROOT = "/var/www/static/brycenall-site/"
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 TIME_ZONE = "America/Chicago"
 USE_I18N = True
 USE_TZ = True
@@ -96,15 +92,6 @@ STORAGES = {
             "verify": False,
         },
     },
-    "bucket": {
-        "BACKEND": "storages.backends.s3.S3Storage",
-        "OPTIONS": {
-            "location": "media/",
-            "bucket_name": "brycenall-bucket",
-            "region_name": "us-east-1",
-            "verify": False,
-        },
-    },
 }
 
 
@@ -117,6 +104,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.staticfiles",
     "django.forms",
+    "easy_thumbnails",
+    "filer",
     "crimsonslate_portfolio.apps.CrimsonslatePortfolioConfig",
 ]
 

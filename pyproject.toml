@@ -10,13 +10,10 @@ authors = [
     { name = "Constantine Kapatos", email = "kapatos.constantine@gmail.com" },
 ]
 dependencies = [
-    "boto3>=1.35.81",
-    "crimsonslate-portfolio==5.0.0",
+    "crimsonslate-portfolio==9.2.0",
     "django-storages[s3]>=1.14.4",
     "django>=5.1.5",
-    "docutils>=0.21.2",
-    "gunicorn>=23.0.0",
-    "pip>=24.3.1",
+    "django-filer[heif]>=3.3.1",
 ]
 
 [project.urls]
@@ -62,3 +59,11 @@ skip-magic-trailing-comma = false
 line-ending = "auto"
 docstring-code-format = true
 docstring-code-line-length = "dynamic"
+
+[dependency-groups]
+dev = [
+    "django-browser-reload>=1.18.0",
+    "docutils>=0.21.2",
+    "gunicorn>=23.0.0",
+    "pip>=25.0.1",
+]
